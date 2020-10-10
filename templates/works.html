@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bristol Style File</title>
+</head>
+<body>
+    {% for work in works %}
+        {{ work.image_url }}<br>
+        {{ work.artist_name }}<br>
+        {{ work.year_painted }}<br>
+        {{ work.style_type }}<br>
+        {{ work.submitted_by }}<br>
+        {{ work.submission_date }}<br>
+    {% endfor %}
+</body>
+</html>
