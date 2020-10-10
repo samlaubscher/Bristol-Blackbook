@@ -1,0 +1,19 @@
+.text-shadow {
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-dark .navbar-toggler {
+    border: 0 transparent;
+}
+
+.navbar-collapse {
+    text-align: center;
+}
+
+.nav-link {
+    margin: 0 5px;
+}
+
+button:focus {
+    outline: none;
+}
