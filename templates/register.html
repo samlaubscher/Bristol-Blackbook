@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="text-center">Register</h3>
+
+<div class="row">
+    <form class="col-sm-12 col-md-8 offset-2" method="POST" action="{{ url_for('register') }}">
+        <div class="card">
+            <div class="card-body">
+                <!-- username -->
+                <div class="md-form" style="max-width: 60%; margin: auto;">
+                    <i class="fas fa-user-plus prefix"></i>
+                    <input type="text" name="username" id="username" class="form-control validate required">
+                    <label for="username">Username</label>
+                </div>
+                <!-- password -->
+                <div class="md-form" style="max-width: 60%; margin: auto;">
+                    <i class="fas fa-user-lock prefix"></i>
+                    <input type="password" name="password" id="password" class="form-control validate required">
+                    <label for="password" data-error="wrong" data-success="right">Type your password</label>
+                </div>
+                <!-- register -->
+                <div class="row" style="justify-content: center;">
+                    <button type="submit" class="col-sm-4 btn-elegant">
+                        Register <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>        
+    </form>
+    <div class="col-2"></div>
+</div>
+
+{% endblock %}
