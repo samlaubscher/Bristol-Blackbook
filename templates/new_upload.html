@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="light-blue-text text-darken-4 text-center">New Upload</h3>
+
+    <div class="row">
+        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('login') }}">
+            <div class="card">
+                <div class="card-body">
+                    <!-- artist name -->
+                    <div class="md-form input-with-pre-icon" style="max-width: 60%; margin: auto;">
+                        <i class="fas fa-user input-prefix"></i>
+                        <input type="text" id="prefixInside" class="form-control">
+                        <label for="prefixInside">Artist Name</label>
+                    </div>
+                    <!-- Year -->
+                    <div class="md-form input-with-pre-icon" style="max-width: 60%; margin: auto;">
+                        <i class="fas fa-user input-prefix"></i>
+                        <input type="text" id="prefixInside" class="form-control">
+                        <label for="prefixInside">Year Painted</label>
+                    </div>
+                    <!-- Style -->
+                    <div class="md-form input-with-pre-icon" style="max-width: 60%; margin: auto;">
+                        <i class="fas fa-user input-prefix"></i>
+                        <input type="text" id="prefixInside" class="form-control">
+                        <label for="prefixInside">Style of Graffiti</label>
+                    </div>
+                    <!-- Image URL -->
+                    <div class="md-form input-with-pre-icon" style="max-width: 60%; margin: auto; justify-self: start;">
+                        <i class="fas fa-user input-prefix"></i>
+                        <input type="text" id="prefixInside" class="form-control">
+                        <label for="prefixInside">Image URL</label>
+                    </div>
+                        <small id="image-url-helper" class="form-text text-muted text-center" style="max-width: 60%; margin: auto;">
+                            Please only use direct links to images. You can upload files elsewhere and link them using the image URL by clicking 'copy link address' feature.
+                          </small>
+                    </div>
+                </div>
+            </div>        
+        </form>
+    </div>
+
+{% endblock %}
