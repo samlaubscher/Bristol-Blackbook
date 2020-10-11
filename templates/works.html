@@ -5,9 +5,7 @@
     {% for work in works %}
         <div class="row">
             <div class="col-4">
-                <!-- Card Wider -->
                 <div class="card card-cascade wider">
-                    <!-- Card image -->
                     <div class="view view-cascade overlay">
                             <img class="card-img-top" 
                                 src="{{ work.image_url }}" alt="Graffiti Image">
@@ -15,17 +13,13 @@
                             <div class="mask rgba-white-slight"></div>
                         </a>
                     </div>
-                    <!-- Card content -->
                     <div class="card-body card-body-cascade text-center">
-                        <!-- Title -->
                         <h4 class="card-title"><strong>{{ work.artist_name }}</strong></h4>
-                        <!-- Subtitle -->
-                        <h5 class="blue-text pb-2"><strong>{{ work.year_painted }}</strong></h5>
-                        <h5 class="blue-text pb-2"><strong>{{ work.style_type }}</strong></h5>
-                        <!-- Text -->
+                        <h5 class="blue-text pb-2"><strong>Year: {{ work.year_painted }}</strong></h5>
+                        <h5 class="blue-text pb-2"><strong>Style: {{ work.style_type }}</strong></h5>
                         <p class="card-text">
-                            {{ work.submitted_by }}<br>
-                            {{ work.submission_date }}<br>
+                            Uploaded by: {{ work.submitted_by }}<br>
+                            Date uploaded: {{ work.submission_date }}<br>
                         </p>               
                     </div>
                 </div>
