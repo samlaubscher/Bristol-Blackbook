@@ -8,33 +8,49 @@
             <div class="card">
                 <div class="card-body">
                     <!-- artist name -->
-                    <div class="md-form input-with-pre-icon" style="max-width: 60%; margin: auto;">
-                        <i class="fas fa-user input-prefix"></i>
-                        <input type="text" id="prefixInside" class="form-control">
-                        <label for="prefixInside">Artist Name</label>
+                    <div class="row">
+                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                            <i class="fas fa-user-ninja input-prefix"></i>
+                            <input type="text" id="artist_name" name="artist_name" 
+                            minlength="3" maxlength="8" pattern="^[a-zA-Z]{3,8}$" class="form-control" required>
+                            <label for="artist_name">Artist Name</label>
+                        </div>
                     </div>
                     <!-- Year -->
-                    <div class="md-form input-with-pre-icon" style="max-width: 60%; margin: auto;">
-                        <i class="fas fa-user input-prefix"></i>
-                        <input type="text" id="prefixInside" class="form-control">
-                        <label for="prefixInside">Year Painted</label>
+                    <div class="row">
+                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                            <i class="fas fa-calendar-alt input-prefix"></i>
+                            <input type="text" id="year_painted" name="year_painted" 
+                            minlength="4" maxlength="4" pattern="^[0-9]{4,4}$" class="form-control" required>
+                            <label for="year_painted">Year Painted</label>
+                        </div>
                     </div>
                     <!-- Style -->
-                    <div class="md-form input-with-pre-icon" style="max-width: 60%; margin: auto;">
-                        <i class="fas fa-user input-prefix"></i>
-                        <input type="text" id="prefixInside" class="form-control">
-                        <label for="prefixInside">Style of Graffiti</label>
+                    <div class="row">
+                        <class class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                            <i class="fas fa-spray-can input-prefix"></i>
+                            <select class="form-control" id="exampleSelect2">
+                                {% for style in styles %}
+                                    <option>{{ style.style_type }}</option>
+                                {% endfor %}
+                            </select>
+                        </class>
                     </div>
                     <!-- Image URL -->
-                    <div class="md-form input-with-pre-icon" style="max-width: 60%; margin: auto; justify-self: start;">
-                        <i class="fas fa-user input-prefix"></i>
-                        <input type="text" id="prefixInside" class="form-control">
-                        <label for="prefixInside">Image URL</label>
+                    <div class="row">
+                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
+                            <i class="fas fa-camera-retro input-prefix"></i>
+                            <input type="text" id="image_url" name="image_url" class="form-control">
+                            <label for="image_url">Image URL</label>
+                        </div>
+                        <small id="image-url-helper" class="form-text text-muted text-center" style="width: 60%; margin: auto;">
+                            Please only use direct links to images. You can upload files elsewhere and link them using the image URL by clicking 'copy link address'.
+                        </small>
                     </div>
-                        <small id="image-url-helper" class="form-text text-muted text-center" style="max-width: 60%; margin: auto;">
-                            Please only use direct links to images. You can upload files elsewhere and link them using the image URL by clicking 'copy link address' feature.
-                          </small>
+                    
+                        
                     </div>
+                        
                 </div>
             </div>        
         </form>

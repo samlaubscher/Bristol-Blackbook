@@ -105,7 +105,9 @@ def logout():
 
 @app.route("/new_upload")
 def new_upload():
-    return render_template("new_upload.html")
+
+    styles = mongo.db.styles.find()
+    return render_template("new_upload.html", styles=styles)
 
 
 if __name__ == "__main__":
