@@ -103,10 +103,21 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/new_upload")
+@app.route("/new_upload", methods=["GET", "POST"])
 def new_upload():
+    if request.method == "POST":
+        work = {
+            "artist_name": request.form.get("artist_name"),
+            "year_painted": request.form.get("year_painted"),
+            "style_type": request.form.get("style_type"),
+            "image_url": request.form.getlist("image_url"),
+            "submitted_by": session["user"],
+            }
+        mongo.db.works.insert_one(work)
+        flash("Piece Successfully Uploaded!")
+        return redirect(url_for("get_works"))
 
-    styles = mongo.db.styles.find()
+    styles = mongo.db.styles.find().sort("style_type", 1)
     return render_template("new_upload.html", styles=styles)
 
 
