@@ -128,8 +128,10 @@ def new_upload():
 @app.route("/edit_upload/<work_id>", methods=["GET", "POST"])
 def edit_upload(work_id):
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
+
+    artists =  mongo.db.artists.find().sort("artist_name", 1)
     styles = mongo.db.styles.find().sort("style_type", 1)
-    return render_template("edit_upload.html", work=work, styles=styles)
+    return render_template("edit_upload.html", work=work, artists=artists, styles=styles)
 
 
 if __name__ == "__main__":
