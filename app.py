@@ -83,6 +83,7 @@ def login():
     return render_template("login.html")
 
 
+# profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # get session user's username from db
@@ -95,6 +96,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+# logout route
 @app.route("/logout")
 def logout():
     # delete session cookies
@@ -103,6 +105,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# new upload page
 @app.route("/new_upload", methods=["GET", "POST"])
 def new_upload():
     if request.method == "POST":
@@ -119,6 +122,14 @@ def new_upload():
 
     styles = mongo.db.styles.find().sort("style_type", 1)
     return render_template("new_upload.html", styles=styles)
+
+
+# edit upload page
+@app.route("/edit_upload/<work_id>", methods=["GET", "POST"])
+def edit_upload(work_id):
+    work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
+    styles = mongo.db.styles.find().sort("style_type", 1)
+    return render_template("edit_upload.html", work=work, styles=styles)
 
 
 if __name__ == "__main__":
