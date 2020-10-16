@@ -83,6 +83,7 @@ def login():
     return render_template("login.html")
 
 
+# profile page
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # get session user's username from db
@@ -95,6 +96,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+# logout route
 @app.route("/logout")
 def logout():
     # delete session cookies
@@ -103,6 +105,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# new upload page
 @app.route("/new_upload", methods=["GET", "POST"])
 def new_upload():
     if request.method == "POST":
@@ -110,7 +113,7 @@ def new_upload():
             "artist_name": request.form.get("artist_name"),
             "year_painted": request.form.get("year_painted"),
             "style_type": request.form.get("style_type"),
-            "image_url": request.form.getlist("image_url"),
+            "image_url": request.form.get("image_url"),
             "submitted_by": session["user"],
             }
         mongo.db.works.insert_one(work)
@@ -120,6 +123,33 @@ def new_upload():
     styles = mongo.db.styles.find().sort("style_type", 1)
     return render_template("new_upload.html", styles=styles)
 
+
+# edit upload page
+@app.route("/edit_upload/<work_id>", methods=["GET", "POST"])
+def edit_upload(work_id):
+    if request.method == "POST":
+        update = {
+            "artist_name": request.form.get("artist_name"),
+            "year_painted": request.form.get("year_painted"),
+            "style_type": request.form.get("style_type"),
+            "image_url": request.form.get("image_url"),
+            "submitted_by": session["user"],
+            }
+        mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update})
+        flash("Piece Successfully Updated!")
+
+    work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
+    artists =  mongo.db.artists.find().sort("artist_name", 1)
+    styles = mongo.db.styles.find().sort("style_type", 1)
+    return render_template("edit_upload.html", work=work, artists=artists, styles=styles)
+
+
+# delete upload
+@app.route("/delete_upload/<work_id>")
+def delete_upload(work_id):
+    mongo.db.works.remove({"_id": ObjectId(work_id)})
+    flash("Piece Successfully Deleted!")
+    return redirect(url_for("get_works"))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
