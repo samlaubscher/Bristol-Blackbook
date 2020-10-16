@@ -165,6 +165,19 @@ def delete_artist(artist_id):
     return redirect(url_for("get_artists"))
 
 
+@app.route("/add_artist", methods=["GET", "POST"])
+def add_artist():
+    if request.method == "POST":
+        artist = {
+            "artist_name": request.form.get("artist_name"),
+            }
+        mongo.db.artists.insert_one(artist)
+        flash("Artist Successfully Added!")
+        return redirect(url_for("get_artists"))
+
+    return render_template("add_artist.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
