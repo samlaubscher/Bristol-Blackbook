@@ -144,6 +144,13 @@ def edit_upload(work_id):
     return render_template("edit_upload.html", work=work, artists=artists, styles=styles)
 
 
+# delete upload
+@app.route("/delete_upload/<work_id>")
+def delete_upload(work_id):
+    mongo.db.works.remove({"_id": ObjectId(work_id)})
+    flash("Piece Successfully Deleted!")
+    return redirect(url_for("get_works"))
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
