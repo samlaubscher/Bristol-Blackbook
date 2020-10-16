@@ -113,7 +113,7 @@ def new_upload():
             "artist_name": request.form.get("artist_name"),
             "year_painted": request.form.get("year_painted"),
             "style_type": request.form.get("style_type"),
-            "image_url": request.form.getlist("image_url"),
+            "image_url": request.form.get("image_url"),
             "submitted_by": session["user"],
             }
         mongo.db.works.insert_one(work)
@@ -127,8 +127,18 @@ def new_upload():
 # edit upload page
 @app.route("/edit_upload/<work_id>", methods=["GET", "POST"])
 def edit_upload(work_id):
-    work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
+    if request.method == "POST":
+        update = {
+            "artist_name": request.form.get("artist_name"),
+            "year_painted": request.form.get("year_painted"),
+            "style_type": request.form.get("style_type"),
+            "image_url": request.form.get("image_url"),
+            "submitted_by": session["user"],
+            }
+        mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update})
+        flash("Piece Successfully Updated!")
 
+    work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
     artists =  mongo.db.artists.find().sort("artist_name", 1)
     styles = mongo.db.styles.find().sort("style_type", 1)
     return render_template("edit_upload.html", work=work, artists=artists, styles=styles)

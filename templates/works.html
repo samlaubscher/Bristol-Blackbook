@@ -21,8 +21,10 @@
                             Uploaded by: {{ work.submitted_by }}<br>
                             Date uploaded: {{ work.submission_date }}<br>
                         </p>
-                        <a href="{{ url_for('edit_upload', work_id=work._id) }}" class="btn btn-cyan text-shadow">Edit</a>
-                        
+                        {% if session.user|lower == work.submitted_by|lower %}
+                            <a href="{{ url_for('edit_upload', work_id=work._id) }}" class="btn btn-cyan text-shadow">Edit</a>
+                            <a href="{{ url_for('edit_upload', work_id=work._id) }}" class="btn btn-mdb-color text-shadow">Delete</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
