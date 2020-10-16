@@ -151,6 +151,20 @@ def delete_upload(work_id):
     flash("Piece Successfully Deleted!")
     return redirect(url_for("get_works"))
 
+
+@app.route("/get_artists")
+def get_artists():
+    artists = list(mongo.db.artists.find().sort("artist_name", 1))
+    return render_template("artists.html", artists=artists)
+
+
+@app.route("/delete_artist/<artist_id>")
+def delete_artist(artist_id):
+    mongo.db.artists.remove({"_id": ObjectId(artist_id)})
+    flash("Artist Successfully Deleted!")
+    return redirect(url_for("get_artists"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
