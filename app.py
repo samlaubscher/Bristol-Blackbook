@@ -260,39 +260,47 @@ def get_styles():
 # add style page
 @app.route("/add_style", methods=["GET", "POST"])
 def add_style():
-    if request.method == "POST":
-        style = {
-            "style_type": request.form.get("style_type")
-            }
-        mongo.db.styles.insert_one(style)
-        flash("Style Successfully Added!")
-        return redirect(url_for("get_styles"))
+    if session["user"] == "admin":
+        if request.method == "POST":
+            style = {
+                "style_type": request.form.get("style_type")
+                }
+            mongo.db.styles.insert_one(style)
+            flash("Style Successfully Added!")
+            return redirect(url_for("get_styles"))
 
-    return render_template("add_style.html")
+        return render_template("add_style.html")
+
+    return redirect(url_for("get_styles"))
 
 
 # edit style page
 @app.route("/edit_style/<style_id>", methods=["GET", "POST"])
 def edit_style(style_id):
-    if request.method == "POST":
-        update_style = {
-            "style_type": request.form.get("style_type")
-        }
-        mongo.db.styles.update_one({"_id": ObjectId(style_id)}, {"$set": update_style})
-        flash("Style Successfully Updated!")
-        return redirect(url_for("get_styles"))
+    if session["user"] == "admin":
+        if request.method == "POST":
+            update_style = {
+                "style_type": request.form.get("style_type")
+            }
+            mongo.db.styles.update_one({"_id": ObjectId(style_id)}, {"$set": update_style})
+            flash("Style Successfully Updated!")
+            return redirect(url_for("get_styles"))
 
-    style = mongo.db.styles.find_one({"_id": ObjectId(style_id)})
-    return render_template("edit_style.html", style=style)
+        styles = mongo.db.styles.find_one({"_id": ObjectId(style_id)})
+        return render_template("edit_style.html", styles=styles)
+    
+    return redirect(url_for("get_styles"))
 
 
 # delete style route
 @app.route("/delete_style/<style_id>")
 def delete_style(style_id):
-    mongo.db.styles.remove({"_id": ObjectId(style_id)})
-    flash("Style Successfully Deleted!")
-    return redirect(url_for("get_styles"))
+    if session["user"] == "admin":
+        mongo.db.styles.remove({"_id": ObjectId(style_id)})
+        flash("Style Successfully Deleted!")
+        return redirect(url_for("get_styles"))
 
+    return redirect(url_for("get_styles"))
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
