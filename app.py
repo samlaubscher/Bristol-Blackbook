@@ -173,7 +173,7 @@ def get_artists():
 def add_artist():
     if request.method == "POST":
         artist = {
-            "artist_name": request.form.get("artist_name"),
+            "artist_name": request.form.get("artist_name")
             }
         mongo.db.artists.insert_one(artist)
         flash("Artist Successfully Added!")
@@ -218,6 +218,7 @@ def add_crew():
     if request.method == "POST":
         crew = {
             "crew_name": request.form.get("crew_name"),
+            "submitted_by": session["user"]
             }
         mongo.db.crews.insert_one(crew)
         flash("Crew Successfully Added!")
@@ -239,6 +240,14 @@ def edit_crew(crew_id):
 
     crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
     return render_template("edit_crew.html", crew=crew)
+
+
+# delete crew route
+@app.route("/delete_crew/<crew_id>")
+def delete_crew(crew_id):
+    mongo.db.crews.remove({"_id": ObjectId(crew_id)})
+    flash("Crew Successfully Deleted!")
+    return redirect(url_for("get_crews"))
 
 
 if __name__ == "__main__":

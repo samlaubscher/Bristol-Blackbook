@@ -18,9 +18,9 @@
                     <div class="card-body card-body-cascade text-center">
                         <h4 class="card-title"><strong>{{ crew.crew_name }}</strong></h4>
                         <h5 class="blue-text pb-2"><strong>#</strong></h5>
-                        {% if session.user|lower == "admin"|lower %}
+                        {% if session.user|lower == "admin"|lower or session.user|lower == crew.submitted_by|lower %}
                             <a href="{{ url_for('edit_crew', crew_id=crew._id) }}" class="btn btn-cyan text-shadow">Edit</a>
-                            <a href="{{ url_for('delete_artist', artist_id=artist._id) }}" class="btn btn-mdb-color text-shadow">Delete</a>
+                            <a href="{{ url_for('delete_crew', crew_id=crew._id) }}" class="btn btn-mdb-color text-shadow">Delete</a>
                         {% endif %}
                     </div>
                 </div>
