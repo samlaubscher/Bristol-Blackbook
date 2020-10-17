@@ -31,6 +31,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('get_works') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('get_artists') }}">Artists</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('get_crews') }}">Crews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('get_styles') }}">Styles</a></li>
                     {% if session.user %}
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('new_upload') }}">New Upload</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('add_artist') }}">Add Artist</a></li>
