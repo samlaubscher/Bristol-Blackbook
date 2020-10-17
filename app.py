@@ -99,9 +99,11 @@ def profile(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
     works = list(mongo.db.works.find())
+    artists = list(mongo.db.artists.find())
 
     if session["user"]:
-        return render_template("profile.html", username=username, works=works)
+        return render_template(
+            "profile.html", username=username, works=works, artists=artists)
 
     return redirect(url_for("login"))
 
@@ -174,7 +176,8 @@ def get_artists():
 def add_artist():
     if request.method == "POST":
         artist = {
-            "artist_name": request.form.get("artist_name")
+            "artist_name": request.form.get("artist_name"),
+            "submitted_by": session["user"]
             }
         mongo.db.artists.insert_one(artist)
         flash("Artist Successfully Added!")
