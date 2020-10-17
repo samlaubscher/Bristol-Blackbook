@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 class="text-center">Crews</h1>
+
+<div class="row" style="justify-content: center;">
+    <div class="col-sm12 text-center">
+        <a href="{{ url_for('add_crew') }}" class="btn btn-mdb-color text-shadow">
+            Add Crew  <i class="fas fa-plus"></i>
+        </a>
+    </div>
+</div>
+    {% for crew in crews %}
+        <div class="row">
+            <div class="col-md-3 col-sm-12">
+                <div class="card card-cascade wider">
+                    <div class="view view-cascade overlay">
+                    <div class="card-body card-body-cascade text-center">
+                        <h4 class="card-title"><strong>{{ crew.crew_name }}</strong></h4>
+                        <h5 class="blue-text pb-2"><strong>#</strong></h5>
+                        {% if session.user|lower == "admin"|lower or session.user|lower == crew.submitted_by|lower %}
+                            <a href="{{ url_for('edit_crew', crew_id=crew._id) }}" class="btn btn-cyan text-shadow">Edit</a>
+                            <a href="{{ url_for('delete_crew', crew_id=crew._id) }}" class="btn btn-mdb-color text-shadow">Delete</a>
+                        {% endif %}
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

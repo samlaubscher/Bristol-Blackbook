@@ -173,7 +173,7 @@ def get_artists():
 def add_artist():
     if request.method == "POST":
         artist = {
-            "artist_name": request.form.get("artist_name"),
+            "artist_name": request.form.get("artist_name")
             }
         mongo.db.artists.insert_one(artist)
         flash("Artist Successfully Added!")
@@ -203,6 +203,51 @@ def delete_artist(artist_id):
     mongo.db.artists.remove({"_id": ObjectId(artist_id)})
     flash("Artist Successfully Deleted!")
     return redirect(url_for("get_artists"))
+
+
+# crews page
+@app.route("/get_crews")
+def get_crews():
+    crews = list(mongo.db.crews.find().sort("crew_name", 1))
+    return render_template("crews.html", crews=crews)
+
+
+# add crew page
+@app.route("/add_crew", methods=["GET", "POST"])
+def add_crew():
+    if request.method == "POST":
+        crew = {
+            "crew_name": request.form.get("crew_name"),
+            "submitted_by": session["user"]
+            }
+        mongo.db.crews.insert_one(crew)
+        flash("Crew Successfully Added!")
+        return redirect(url_for("get_crews"))
+
+    return render_template("add_crew.html")
+
+
+# edit crew page
+@app.route("/edit_crew/<crew_id>", methods=["GET", "POST"])
+def edit_crew(crew_id):
+    if request.method == "POST":
+        update_crew = {
+            "crew_name": request.form.get("crew_name")
+        }
+        mongo.db.crews.update_one({"_id": ObjectId(crew_id)}, {"$set": update_crew})
+        flash("Crew Successfully Updated!")
+        return redirect(url_for("get_crews"))
+
+    crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
+    return render_template("edit_crew.html", crew=crew)
+
+
+# delete crew route
+@app.route("/delete_crew/<crew_id>")
+def delete_crew(crew_id):
+    mongo.db.crews.remove({"_id": ObjectId(crew_id)})
+    flash("Crew Successfully Deleted!")
+    return redirect(url_for("get_crews"))
 
 
 if __name__ == "__main__":
