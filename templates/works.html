@@ -1,33 +1,55 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1 class="text-center">Bristol Street Art</h1>
-    {% for work in works %}
-        <div class="row">
-            <div class="col-4">
-                <div class="card card-cascade wider">
-                    <div class="view view-cascade overlay">
-                            <img class="card-img-top" 
-                                src="{{ work.image_url }}" alt="Graffiti Image">
-                        <a href="#!">
-                            <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-                    <div class="card-body card-body-cascade text-center">
-                        <h4 class="card-title"><strong>{{ work.artist_name }}</strong></h4>
-                        <h5 class="blue-text pb-2"><strong>Year: {{ work.year_painted }}</strong></h5>
-                        <h5 class="blue-text pb-2"><strong>Style: {{ work.style_type }}</strong></h5>
-                        <p class="card-text">
-                            Uploaded by: {{ work.submitted_by }}<br>
-                            Date uploaded: {{ work.submission_date }}<br>
-                        </p>
-                        {% if session.user|lower == work.submitted_by|lower %}
-                            <a href="{{ url_for('edit_upload', work_id=work._id) }}" class="btn btn-cyan text-shadow">Edit</a>
-                            <a href="{{ url_for('delete_upload', work_id=work._id) }}" class="btn btn-mdb-color text-shadow">Delete</a>
-                        {% endif %}
+    <h1 class="text-center">Bristol Street Art</h1>
+
+    <div class="row text-center">
+        <div class="card card-cascade wider" style="width: 70%; margin: auto;">
+            <form action="{{ url_for('search') }}" method="POST" 
+                class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+                <div class="col-sm-12">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+                        name="query" id="query" minlength="3" maxlength="15" aria-label="Search">
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <a href="{{ url_for('get_works') }}" class="btn btn-danger text-shadow">Reset</a>
+                    <button type="submit" class="btn-cyan text-shadow">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% if works|length > 0 %}
+        {% for work in works %}
+            <div class="row">
+                <div class="col-4">
+                    <div class="card card-cascade wider">
+                        <div class="view view-cascade overlay">
+                                <img class="card-img-top" 
+                                    src="{{ work.image_url }}" alt="Graffiti Image">
+                            <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+                        <div class="card-body card-body-cascade text-center">
+                            <h4 class="card-title"><strong>{{ work.artist_name }}</strong></h4>
+                            <h5 class="blue-text pb-2"><strong>Year: {{ work.year_painted }}</strong></h5>
+                            <h5 class="blue-text pb-2"><strong>Style: {{ work.style_type }}</strong></h5>
+                            <p class="card-text">
+                                Uploaded by: {{ work.submitted_by }}<br>
+                                Date uploaded: {{ work.submission_date }}<br>
+                            </p>
+                            {% if session.user|lower == work.submitted_by|lower %}
+                                <a href="{{ url_for('edit_upload', work_id=work._id) }}" class="btn btn-cyan text-shadow">Edit</a>
+                                <a href="{{ url_for('delete_upload', work_id=work._id) }}" class="btn btn-mdb-color text-shadow">Delete</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+        <h2 class="red-text text-center">No Results Found</h2>
+    {% endif %}
 {% endblock %}

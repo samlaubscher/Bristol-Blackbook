@@ -1,5 +1,6 @@
 from contextlib import redirect_stdout
 import os
+from dns.resolver import query
 from flask import (
     Flask, flash, render_template, 
     redirect, request, session, url_for)
@@ -24,7 +25,15 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/get_works")
 def get_works():
-    works = mongo.db.works.find()
+    works = list(mongo.db.works.find())
+    return render_template("works.html", works=works)
+
+
+# search route
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    works = list(mongo.db.works.find({"$text": {"$search": query}}))
     return render_template("works.html", works=works)
 
 
