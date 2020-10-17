@@ -205,6 +205,11 @@ def delete_artist(artist_id):
     return redirect(url_for("get_artists"))
 
 
+@app.route("/get_crews")
+def get_crews():
+    crews = list(mongo.db.crews.find().sort("crew_name", 1))
+    return render_template("crews.html", crews=crews)
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
