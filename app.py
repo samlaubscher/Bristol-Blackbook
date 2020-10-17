@@ -152,19 +152,14 @@ def delete_upload(work_id):
     return redirect(url_for("get_works"))
 
 
+# artists page
 @app.route("/get_artists")
 def get_artists():
     artists = list(mongo.db.artists.find().sort("artist_name", 1))
     return render_template("artists.html", artists=artists)
 
 
-@app.route("/delete_artist/<artist_id>")
-def delete_artist(artist_id):
-    mongo.db.artists.remove({"_id": ObjectId(artist_id)})
-    flash("Artist Successfully Deleted!")
-    return redirect(url_for("get_artists"))
-
-
+# add artist page
 @app.route("/add_artist", methods=["GET", "POST"])
 def add_artist():
     if request.method == "POST":
@@ -178,6 +173,7 @@ def add_artist():
     return render_template("add_artist.html")
 
 
+# edit artist page
 @app.route("/edit_artist/<artist_id>", methods=["GET", "POST"])
 def edit_artist(artist_id):
     if request.method == "POST":
@@ -190,6 +186,14 @@ def edit_artist(artist_id):
 
     artist = mongo.db.artists.find_one({"_id": ObjectId(artist_id)})
     return render_template("edit_artist.html", artist=artist)
+
+
+# delete artist route
+@app.route("/delete_artist/<artist_id>")
+def delete_artist(artist_id):
+    mongo.db.artists.remove({"_id": ObjectId(artist_id)})
+    flash("Artist Successfully Deleted!")
+    return redirect(url_for("get_artists"))
 
 
 if __name__ == "__main__":
