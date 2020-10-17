@@ -286,6 +286,14 @@ def edit_style(style_id):
     return render_template("edit_style.html", style=style)
 
 
+# delete style route
+@app.route("/delete_style/<style_id>")
+def delete_style(style_id):
+    mongo.db.styles.remove({"_id": ObjectId(style_id)})
+    flash("Style Successfully Deleted!")
+    return redirect(url_for("get_styles"))
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
