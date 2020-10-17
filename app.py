@@ -257,6 +257,20 @@ def get_styles():
     return render_template("styles.html", styles=styles)
 
 
+# add style page
+@app.route("/add_style", methods=["GET", "POST"])
+def add_style():
+    if request.method == "POST":
+        style = {
+            "style_type": request.form.get("style_type")
+            }
+        mongo.db.styles.insert_one(style)
+        flash("Style Successfully Added!")
+        return redirect(url_for("get_styles"))
+
+    return render_template("add_style.html")
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
