@@ -205,10 +205,26 @@ def delete_artist(artist_id):
     return redirect(url_for("get_artists"))
 
 
+# crews page
 @app.route("/get_crews")
 def get_crews():
     crews = list(mongo.db.crews.find().sort("crew_name", 1))
     return render_template("crews.html", crews=crews)
+
+
+# add crew page
+@app.route("/add_crew", methods=["GET", "POST"])
+def add_crew():
+    if request.method == "POST":
+        crew = {
+            "crew_name": request.form.get("crew_name"),
+            }
+        mongo.db.crews.insert_one(crew)
+        flash("Crew Successfully Added!")
+        return redirect(url_for("get_crews"))
+
+    return render_template("add_crew.html")
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
