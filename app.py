@@ -128,14 +128,14 @@ def new_upload():
 @app.route("/edit_upload/<work_id>", methods=["GET", "POST"])
 def edit_upload(work_id):
     if request.method == "POST":
-        update = {
+        update_upload = {
             "artist_name": request.form.get("artist_name"),
             "year_painted": request.form.get("year_painted"),
             "style_type": request.form.get("style_type"),
             "image_url": request.form.get("image_url"),
             "submitted_by": session["user"],
             }
-        mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update})
+        mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update_upload})
         flash("Piece Successfully Updated!")
 
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
@@ -152,19 +152,14 @@ def delete_upload(work_id):
     return redirect(url_for("get_works"))
 
 
+# artists page
 @app.route("/get_artists")
 def get_artists():
     artists = list(mongo.db.artists.find().sort("artist_name", 1))
     return render_template("artists.html", artists=artists)
 
 
-@app.route("/delete_artist/<artist_id>")
-def delete_artist(artist_id):
-    mongo.db.artists.remove({"_id": ObjectId(artist_id)})
-    flash("Artist Successfully Deleted!")
-    return redirect(url_for("get_artists"))
-
-
+# add artist page
 @app.route("/add_artist", methods=["GET", "POST"])
 def add_artist():
     if request.method == "POST":
@@ -176,6 +171,29 @@ def add_artist():
         return redirect(url_for("get_artists"))
 
     return render_template("add_artist.html")
+
+
+# edit artist page
+@app.route("/edit_artist/<artist_id>", methods=["GET", "POST"])
+def edit_artist(artist_id):
+    if request.method == "POST":
+        update_artist = {
+            "artist_name": request.form.get("artist_name")
+        }
+        mongo.db.artists.update_one({"_id": ObjectId(artist_id)}, {"$set": update_artist})
+        flash("Artist Successfully Updated!")
+        return redirect(url_for("get_artists"))
+
+    artist = mongo.db.artists.find_one({"_id": ObjectId(artist_id)})
+    return render_template("edit_artist.html", artist=artist)
+
+
+# delete artist route
+@app.route("/delete_artist/<artist_id>")
+def delete_artist(artist_id):
+    mongo.db.artists.remove({"_id": ObjectId(artist_id)})
+    flash("Artist Successfully Deleted!")
+    return redirect(url_for("get_artists"))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="light-blue-text text-darken-4 text-center">Edit Artist</h3>
+
+    <div class="row">
+        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_artist', artist_id=artist._id) }}">
+            <div class="card">
+                <div class="card-body">
+                    <!-- artist name -->
+                    <div class="row">
+                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
+                            <i class="fas fa-user-ninja input-prefix"></i>
+                            <input type="text" id="artist_name" name="artist_name" value="{{ artist.artist_name }}"
+                                minlength="3" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control" required>
+                            <label for="artist_name">Artist Name</label>
+                        </div>
+                    </div>
+                    <br>
+                    <!-- submit button -->
+                    <div class="row" style="justify-content: center;">
+                        <a href="{{ url_for('get_artists') }}" class="btn btn-mdb-color text-shadow">
+                            Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>
+                        <button type="submit" class="col-sm-4 btn-elegant">
+                            Update Artist <i class="fas fa-edit" style="font-size: 90%;"></i>
+                        </button>
+                    </div>
+                </div>      
+            </div>     
+        </form>
+    </div>
+
+{% endblock %}
