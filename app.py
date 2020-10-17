@@ -250,6 +250,13 @@ def delete_crew(crew_id):
     return redirect(url_for("get_crews"))
 
 
+# styles page
+@app.route("/get_styles")
+def get_styles():
+    styles = list(mongo.db.styles.find().sort("style_type", 1))
+    return render_template("styles.html", styles=styles)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
