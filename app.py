@@ -226,6 +226,21 @@ def add_crew():
     return render_template("add_crew.html")
 
 
+# edit crew page
+@app.route("/edit_crew/<crew_id>", methods=["GET", "POST"])
+def edit_crew(crew_id):
+    if request.method == "POST":
+        update_crew = {
+            "crew_name": request.form.get("crew_name")
+        }
+        mongo.db.crews.update_one({"_id": ObjectId(crew_id)}, {"$set": update_crew})
+        flash("Crew Successfully Updated!")
+        return redirect(url_for("get_crews"))
+
+    crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
+    return render_template("edit_crew.html", crew=crew)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
