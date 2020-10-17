@@ -22,7 +22,8 @@
                         <h4 class="card-title"><strong>{{ style.style_type }}</strong></h4>
                         <h5 class="blue-text pb-2"><strong>#</strong></h5>
                         {% if session.user|lower == "admin"|lower %}
-
+                            <a href="{{ url_for('edit_style', style_id=style._id) }}" class="btn btn-cyan text-shadow">Edit</a>
+                            <a href="{{ url_for('delete_crew', crew_id=style._id) }}" class="btn btn-mdb-color text-shadow">Delete</a>
                         {% endif %}
                     </div>
                 </div>

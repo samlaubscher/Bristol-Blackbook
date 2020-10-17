@@ -271,6 +271,21 @@ def add_style():
     return render_template("add_style.html")
 
 
+# edit style page
+@app.route("/edit_style/<style_id>", methods=["GET", "POST"])
+def edit_style(style_id):
+    if request.method == "POST":
+        update_style = {
+            "style_type": request.form.get("style_type")
+        }
+        mongo.db.styles.update_one({"_id": ObjectId(style_id)}, {"$set": update_style})
+        flash("Style Successfully Updated!")
+        return redirect(url_for("get_styles"))
+
+    style = mongo.db.styles.find_one({"_id": ObjectId(style_id)})
+    return render_template("edit_style.html", style=style)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
