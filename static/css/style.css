@@ -33,3 +33,7 @@ button:focus {
 .top-margin {
     margin-top: 20px;
 }
+
+.card-img-top {
+    max-height: 250px;
+}
