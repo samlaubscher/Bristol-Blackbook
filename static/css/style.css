@@ -25,3 +25,7 @@ button:focus {
 .container-lg {
     margin-bottom: 50px;
 }
+
+.top-margin {
+    margin-top: 20px;
+}
