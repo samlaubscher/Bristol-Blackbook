@@ -3,12 +3,19 @@
 
     <h1 class="text-center">work</h1>
 
-    <div class="col-sm-12 text-center">
-        <img src="{{ work.image_url }}" alt="" style="max-width: 100%;">
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+        <!-- Card image -->
+        <div class="view overlay my-4">
+            <img src="{{ work.image_url }}" class="img-fluid" alt="">
+            <a href="#">
+                <div class="mask rgba-white-slight"></div>
+            </a>
+        </div>
+    
+        <h5 class="indigo-text h5 mb-4">Artist: {{ work.artist_name }}</h5>
+    
+        <p class="card-text">Style: {{ work.style_type }}<br>
+            Year Painted: {{ work.year_painted }}</p>
     </div>
-
-    <h3 class="text-center">Artist: {{ work.artist_name }}</h3>
-    <h3 class="text-center">Style: {{ work.style_type }}</h3>
-    <h3 class="text-center">Year Painted: {{ work.year_painted }}</h3>
-
 {% endblock %}

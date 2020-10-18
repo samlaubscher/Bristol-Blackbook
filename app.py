@@ -41,7 +41,6 @@ def search():
 # get work page
 @app.route("/get_work/<work_id>", methods=["GET", "POST"])
 def get_work(work_id):
-
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
     return render_template("get_work.html", work=work)
 
