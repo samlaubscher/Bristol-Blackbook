@@ -24,7 +24,7 @@
                             <div class="view view-cascade overlay">
                                 <img class="card-img-top" 
                                         src="{{ work.image_url }}" alt="Graffiti Image">
-                                <a href="#">
+                                <a href="{{ url_for('get_work', work_id=work._id) }}">
                                         <div class="mask rgba-white-slight"></div>
                                 </a>
                             </div>

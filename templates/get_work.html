@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1 class="text-center">work</h1>
+
+    <div class="col-sm-12 text-center">
+        <img src="{{ work.image_url }}" alt="" style="max-width: 100%;">
+    </div>
+
+    <h3 class="text-center">Artist: {{ work.artist_name }}</h3>
+    <h3 class="text-center">Style: {{ work.style_type }}</h3>
+    <h3 class="text-center">Year Painted: {{ work.year_painted }}</h3>
+
+{% endblock %}

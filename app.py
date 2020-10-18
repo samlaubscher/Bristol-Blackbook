@@ -26,7 +26,8 @@ mongo = PyMongo(app)
 @app.route("/get_works")
 def get_works():
     works = list(mongo.db.works.find())
-    return render_template("works.html", works=works)
+    work = mongo.db.works.find_one({"_id": ObjectId()})
+    return render_template("works.html", works=works, work=work)
 
 
 # search route
@@ -35,6 +36,14 @@ def search():
     query = request.form.get("query")
     works = list(mongo.db.works.find({"$text": {"$search": query}}))
     return render_template("works.html", works=works)
+
+
+# get work page
+@app.route("/get_work/<work_id>", methods=["GET", "POST"])
+def get_work(work_id):
+
+    work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
+    return render_template("get_work.html", work=work)
 
 
 # register page
@@ -305,6 +314,7 @@ def delete_style(style_id):
         return redirect(url_for("get_styles"))
 
     return redirect(url_for("get_styles"))
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
