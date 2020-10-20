@@ -5,21 +5,29 @@
 
     <div class="row text-center">
         <div class="card card-cascade wider" style="margin: auto;">
-            <form id="search" action="{{ url_for('search') }}" method="POST" 
-                class="form-inline d-flex justify-content-center md-form form-sm mt-0 text-center">
-                <div class="col-md-6">
-                    <div class="col-sm-12">
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                        <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
-                            name="query" id="query" minlength="3" maxlength="15" aria-label="Search">
-                            <a href="{{ url_for('get_works') }}" class="btn btn-sm btn-danger text-shadow">Reset</a>
-                            <a type="submit" onclick="document.getElementById('search').submit()" class="btn btn-sm btn-cyan text-shadow">Search</a>
-                    </div>
-                    <div class="col-sm-6">
-                        
-                    </div>
-                </div>
-            </form>
+            <div class="row">
+                <form class="col-sm-12 col-md-8 offset-md-2" method="POST" 
+                    id="search" action="{{ url_for('search') }}">
+                    <div class="card">
+                        <div class="card-body">
+                            <!-- search bar -->
+                            <div class="row">
+                                <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
+                                    <i class="fas fa-search input-prefix"></i>
+                                    <input type="text" name="query" id="query"
+                                        minlength="3" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control">
+                                    <label for="query">Search</label>
+                                </div>
+                            </div>
+                            <!-- buttons -->
+                            <div class="row" style="justify-content: center;">
+                                <a href="{{ url_for('get_works') }}" class="col-md-4 btn btn-sm btn-danger text-shadow">Reset</a>
+                                <a type="submit" onclick="document.getElementById('search').submit()" class="col-md-4 btn btn-sm btn-cyan text-shadow">Search</a>
+                            </div>
+                        </div>      
+                    </div>     
+                </form>
+            </div>
  
             <div class="row">
             {% if works|length > 0 %}
