@@ -4,11 +4,11 @@
     <h1 class="text-center">Bristol Street Art</h1>
 
     <div class="row text-center">
-        <div class="card card-cascade wider" style="margin: auto;">
+        <div class="card card-cascade wider no-shadow" style="margin: auto;">
             <div class="row">
-                <form class="col-sm-12 col-md-8 offset-md-2" method="POST" 
+                <form class="col-sm-12 col-md-8 offset-md-2 no-side-padding" method="POST" 
                     id="search" action="{{ url_for('search') }}">
-                    <div class="card">
+                    <div class="card no-shadow">
                         <div class="card-body">
                             <!-- search bar -->
                             <div class="row">
@@ -21,8 +21,8 @@
                             </div>
                             <!-- buttons -->
                             <div class="row" style="justify-content: center;">
-                                <a href="{{ url_for('get_works') }}" class="col-md-4 btn btn-sm btn-danger text-shadow">Reset</a>
-                                <a onclick="document.getElementById('search').submit()" class="col-md-4 btn btn-sm btn-cyan text-shadow">Search</a>
+                                <a href="{{ url_for('get_works') }}" class="col-md-3 btn btn-sm btn-danger text-shadow">Reset</a>
+                                <a onclick="document.getElementById('search').submit()" class="col-md-3 btn btn-sm btn-cyan text-shadow">Search</a>
                             </div>
                         </div>      
                     </div>     

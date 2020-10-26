@@ -30,10 +30,24 @@ button:focus {
     margin-bottom: 50px;
 }
 
+.row {
+    margin: 0;
+}
+
 .top-margin {
     margin-top: 20px;
 }
 
 .card-img-top {
     max-height: 250px;
+}
+
+.no-shadow {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.no-side-padding {
+    padding-left: 0;
+    padding-right: 0;
 }
