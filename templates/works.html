@@ -5,6 +5,8 @@
 
     <div class="row text-center">
         <div class="card card-cascade wider padding-bottom" style="margin: auto;">
+
+            <!-- search box -->
             <div class="row">
                 <form class="col-sm-12 col-md-8 offset-md-2 no-side-padding" method="POST" 
                     id="search" action="{{ url_for('search') }}">
@@ -24,9 +26,25 @@
                                 <a href="{{ url_for('get_works') }}" class="col-md-3 btn btn-sm btn-danger text-shadow">Reset</a>
                                 <a onclick="document.getElementById('search').submit()" class="col-md-3 btn btn-sm btn-cyan text-shadow">Search</a>
                             </div>
-                        </div>      
-                    </div>     
+                        </div>
+                    </div> 
                 </form>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                     <!-- Basic dropdown -->
+                <a class="btn btn-sm btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Sort By</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Artist</a>
+                <a class="dropdown-item" href="#">Crew</a>
+                <a class="dropdown-item" href="#">Style</a>
+            </div>
+
+                </div>
+               
             </div>
  
             <div class="row">
