@@ -45,12 +45,6 @@ def filter_artists():
     return render_template("works.html", works=works)
 
 
-@app.route("/filter_crews")
-def filter_crews():
-    works = list(mongo.db.works.find().sort("crew_name", 1))
-    return render_template("works.html", works=works)
-
-
 @app.route("/filter_styles")
 def filter_styles():
     works = list(mongo.db.works.find().sort("style_type", 1))
