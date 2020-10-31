@@ -159,8 +159,9 @@ def new_upload():
         flash("Piece Successfully Uploaded!")
         return redirect(url_for("get_works"))
 
+    artists = mongo.db.artists.find().sort("artist_name", 1)
     styles = mongo.db.styles.find().sort("style_type", 1)
-    return render_template("new_upload.html", styles=styles)
+    return render_template("new_upload.html", artists=artists, styles=styles)
 
 
 # edit upload page

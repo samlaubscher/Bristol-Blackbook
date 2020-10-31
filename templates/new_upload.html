@@ -9,12 +9,27 @@
                 <div class="card-body">
                     <!-- artist name -->
                     <div class="row">
-                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                        <class class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
                             <i class="fas fa-user-ninja input-prefix"></i>
-                            <input type="text" id="artist_name" name="artist_name" 
-                            minlength="3" maxlength="8" pattern="^[a-zA-Z]{3,8}$" class="form-control" required>
-                            <label for="artist_name">Artist Name</label>
-                        </div>
+                            <select class="form-control" name="artist_name" id="artist_name" required>
+                                <option value="" disabled selected>Artist</option>
+                                {% for artist in artists %}
+                                    <option value="{{ artist.artist_name }}">{{ artist.artist_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </class>
+                    </div>
+                    <!-- style -->
+                    <div class="row">
+                        <class class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                            <i class="fas fa-spray-can input-prefix"></i>
+                            <select class="form-control" name="style_type" id="style_type" required>
+                                <option value="" disabled selected>Style</option>
+                                {% for style in styles %}
+                                    <option value="{{ style.style_type }}">{{ style.style_type }}</option>
+                                {% endfor %}
+                            </select>
+                        </class>
                     </div>
                     <!-- year -->
                     <div class="row">
@@ -25,18 +40,6 @@
                             <label for="year_painted">Year Painted</label>
                         </div>
                     </div>
-                    <!-- style -->
-                    <div class="row">
-                        <class class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
-                            <i class="fas fa-spray-can input-prefix"></i>
-                            <select class="form-control" name="style_type" id="style_type" required>
-                                <option value="" disabled selected>Pick a style</option>
-                                {% for style in styles %}
-                                    <option value="{{ style.style_type }}">{{ style.style_type }}</option>
-                                {% endfor %}
-                            </select>
-                        </class>
-                    </div>
                     <!-- image URL -->
                     <div class="row">
                         <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
@@ -45,7 +48,8 @@
                             <label for="image_url">Image URL</label>
                         </div>
                         <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
-                            Please only use direct links to images. You can upload files elsewhere and find links using 'copy link address' when right clicking an image.
+                            Please only use direct links to images. You can upload files <a href="https://imgur.com/upload" target="_blank">here</a>.
+                            Add a title and post 'To Community', then right click the image and 'copy image address'.
                         </small>
                     </div>
                     <br>
