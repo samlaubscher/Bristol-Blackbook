@@ -16,6 +16,11 @@
         <h5 class="indigo-text h5 mb-4">Artist: {{ work.artist_name }}</h5>
     
         <p class="card-text">Style: {{ work.style_type }}<br>
-            Year Painted: {{ work.year_painted }}</p>
+            Year Painted: {{ work.year_painted }}
+        </p>
+        {% if session.user|lower == work.submitted_by|lower or session.user|lower == "admin"|lower %}
+            <a href="{{ url_for('edit_upload', work_id=work._id) }}" class="btn btn-cyan text-shadow">Edit</a>
+            <a href="{{ url_for('delete_upload', work_id=work._id) }}" class="btn btn-mdb-color text-shadow">Delete</a>
+        {% endif %}
     </div>
 {% endblock %}
