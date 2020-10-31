@@ -38,6 +38,31 @@ def search():
     return render_template("works.html", works=works)
 
 
+# filter routes
+@app.route("/filter_artists")
+def filter_artists():
+    works = list(mongo.db.works.find().sort("artist_name", 1))
+    return render_template("works.html", works=works)
+
+
+@app.route("/filter_crews")
+def filter_crews():
+    works = list(mongo.db.works.find().sort("crew_name", 1))
+    return render_template("works.html", works=works)
+
+
+@app.route("/filter_styles")
+def filter_styles():
+    works = list(mongo.db.works.find().sort("style_type", 1))
+    return render_template("works.html", works=works)
+
+
+@app.route("/filter_year")
+def filter_year():
+    works = list(mongo.db.works.find().sort("year_painted", 1))
+    return render_template("works.html", works=works)
+
+
 # get work page
 @app.route("/get_work/<work_id>", methods=["GET", "POST"])
 def get_work(work_id):

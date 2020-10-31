@@ -31,22 +31,21 @@
                 </form>
             </div>
 
+            <!-- filter dropdown -->
             <div class="row">
                 <div class="col-sm-12">
-
-                     <!-- Basic dropdown -->
-                <a class="btn btn-sm btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">Sort By</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Artist</a>
-                <a class="dropdown-item" href="#">Crew</a>
-                <a class="dropdown-item" href="#">Style</a>
-            </div>
-
+                    <a class="btn btn-sm btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">Sort By</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{ url_for('filter_artists') }}">Artist</a>
+                        <a class="dropdown-item" href="{{ url_for('filter_crews') }}">Crew</a>
+                        <a class="dropdown-item" href="{{ url_for('filter_styles') }}">Style</a>
+                        <a class="dropdown-item" href="{{ url_for('filter_year') }}">Year Painted</a>
+                    </div>
                 </div>
-               
             </div>
- 
+
+            <!-- artworks -->
             <div class="row">
             {% if works|length > 0 %}
                 {% for work in works %}
