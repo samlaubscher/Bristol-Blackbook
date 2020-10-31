@@ -52,10 +52,18 @@
                     <div class="col-sm-6 col-lg-4">
                         <div class="card card-cascade wider top-margin">
                             <div class="view view-cascade overlay">
+                                <!-- image -->
                                 <img class="card-img-top" 
                                         src="{{ work.image_url }}" alt="Graffiti Image">
                                 <a href="{{ url_for('get_work', work_id=work._id) }}">
-                                        <div class="mask rgba-white-slight"></div>
+                                    <!-- info overlay -->
+                                    <div class="mask flex-center rgba-black-strong">
+                                        <p class="white-text">
+                                            Artist: {{ work.artist_name }}
+                                            <br>Style: {{ work.style_type }}
+                                            <br>Year Painted: {{ work.year_painted }}
+                                        </p>
+                                    </div>
                                 </a>
                             </div>
                         </div>
