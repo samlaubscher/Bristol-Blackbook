@@ -20,10 +20,10 @@
                     <h3 class="text-center light-blue-text text-darken-4">
                         Your Uploaded Works
                     </h3>
-                    {% for work in works %}
-                        {% if work.submitted_by|lower == username|lower %}
-                            <div class="row">
-                                <div class="col-4">
+                    <div class="row">
+                        {% for work in works %}
+                            {% if work.submitted_by|lower == username|lower %}
+                                <div class="col-sm-6 col-lg-4">
                                     <div class="card card-cascade wider">
                                         <div class="view view-cascade overlay">
                                                 <img class="card-img-top" 
@@ -64,9 +64,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="card">
@@ -74,9 +74,9 @@
                     <h3 class="text-center light-blue-text text-darken-4">
                         Your Uploaded Artists
                     </h3>
-                    {% for artist in artists %}
-                        {% if artist.submitted_by|lower == username|lower %}
-                            <div class="row">
+                    <div class="row">
+                        {% for artist in artists %}
+                            {% if artist.submitted_by|lower == username|lower %}
                                 <div class="col-4">
                                     <div class="card card-cascade wider">
                                         <div class="card-body card-body-cascade text-center">
@@ -105,9 +105,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>    
         </div>
