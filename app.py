@@ -244,12 +244,20 @@ def get_crews():
     return render_template("crews.html", crews=crews)
 
 
+# get crew page
+@app.route("/get_crew/<crew_id>", methods=["GET", "POST"])
+def get_crew(crew_id):
+    crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
+    return render_template("get_crew.html", crew=crew)
+
+
 # add crew page
 @app.route("/add_crew", methods=["GET", "POST"])
 def add_crew():
     if request.method == "POST":
         crew = {
             "crew_name": request.form.get("crew_name"),
+            "crew_image": request.form.get("crew_image"),
             "submitted_by": session["user"]
             }
         mongo.db.crews.insert_one(crew)
