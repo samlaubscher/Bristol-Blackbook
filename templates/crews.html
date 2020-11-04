@@ -28,7 +28,26 @@
 
                         {% if session.user|lower == "admin"|lower or session.user|lower == crew.submitted_by|lower %}
                             <a href="{{ url_for('edit_crew', crew_id=crew._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
-                            <a href="{{ url_for('delete_crew', crew_id=crew._id) }}" class="btn btn-sm btn-mdb-color text-shadow">Delete</a>
+                            <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
+                                data-target="#confirm-delete-modal">Delete</button>
+                            <!-- confirm delete modal -->
+                            <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                                    <div class="modal-content text-center">
+                                        <div class="modal-header d-flex justify-content-center">
+                                            <p class="heading">Are you sure?</p>
+                                        </div>
+                                        <div class="modal-body">
+                                            <i class="fas fa-times fa-4x animated rotateIn"></i>
+                                        </div>
+                                        <div class="modal-footer flex-center">
+                                            <a href="{{ url_for('delete_crew', crew_id=crew._id) }}" class="btn btn-outline-danger">Yes</a>
+                                            <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         {% endif %}
                     </div>
                 </div>
