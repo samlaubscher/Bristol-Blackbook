@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1 class="text-center">work</h1>
-
     <div class="jumbotron text-center">
         <!-- image -->
         <div class="view overlay my-4">
@@ -31,8 +29,8 @@
                             <i class="fas fa-times fa-4x animated rotateIn"></i>
                         </div>
                         <div class="modal-footer flex-center">
-                        <a href="{{ url_for('delete_upload', work_id=work._id) }}" class="btn btn-outline-danger">Yes</a>
-                        <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
+                            <a href="{{ url_for('delete_upload', work_id=work._id) }}" class="btn btn-outline-danger">Yes</a>
+                            <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
                         </div>
                     </div>
                 </div>
