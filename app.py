@@ -252,7 +252,8 @@ def get_crews():
 def get_crew(crew_id):
     crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
     artists =  mongo.db.artists.find().sort("artist_crews", 1)
-    return render_template("get_crew.html", crew=crew, artists=artists)
+    works = list(mongo.db.works.find().sort("artist_name", 1))
+    return render_template("get_crew.html", crew=crew, artists=artists, works=works)
 
 
 # add crew page
