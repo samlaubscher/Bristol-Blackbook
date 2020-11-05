@@ -196,7 +196,8 @@ def delete_upload(work_id):
 @app.route("/get_artists")
 def get_artists():
     artists = list(mongo.db.artists.find().sort("artist_name", 1))
-    return render_template("artists.html", artists=artists)
+    crews = list(mongo.db.artists.find().sort("artist_crews", 1))
+    return render_template("artists.html", artists=artists, crews=crews)
 
 
 # add artist page
@@ -205,13 +206,15 @@ def add_artist():
     if request.method == "POST":
         artist = {
             "artist_name": request.form.get("artist_name"),
+            "artist_crews": request.form.getlist("artist_crews"),
             "submitted_by": session["user"]
             }
         mongo.db.artists.insert_one(artist)
         flash("Artist Successfully Added!")
         return redirect(url_for("get_artists"))
 
-    return render_template("add_artist.html")
+    crews = list(mongo.db.crews.find().sort("crew_name", 1))
+    return render_template("add_artist.html", crews=crews)
 
 
 # edit artist page
