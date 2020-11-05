@@ -16,6 +16,13 @@
                             <label for="artist_name">Artist Name</label>
                         </div>
                     </div>
+                    <div style="width: 70%; margin: auto; justify-self: start;">
+                        <select class="custom-select" name="artist_crews" multiple>
+                            {% for crew in crews %}
+                                <option value="{{ crew.crew_name }}">{{ crew.crew_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                     <br>
                     <!-- submit button -->
                     <div class="row" style="justify-content: center;">
