@@ -10,8 +10,8 @@
                     <!-- crew name -->
                     <div class="row">
                         <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
-                            <i class="fas fa-user-ninja input-prefix"></i>
-                            <input type="text" id="crew_name" name="crew_name"
+                            <i class="fas fa-users input-prefix"></i>
+                            <input type="text" id="crew_name" name="crew_name" value="{{ crew.crew_name }}"
                                 minlength="2" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control">
                             <label for="crew_name">Crew Name</label>
                         </div>
@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
                             <i class="fas fa-camera-retro input-prefix"></i>
-                            <input type="text" id="crew_image" name="crew_image" class="form-control">
+                            <input type="text" id="crew_image" name="crew_image" class="form-control" value="{{ crew.crew_image }}">
                             <label for="crew_image">Image URL</label>
                         </div>
                         <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
