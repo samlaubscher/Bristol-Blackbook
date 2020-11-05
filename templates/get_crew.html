@@ -2,10 +2,11 @@
 {% block content %}
 
     <div class="jumbotron text-center">
-        <!-- image -->
+        <!-- crew image -->
         <div class="view overlay my-4">
             <img src="{{ crew.crew_image }}" class="img-fluid" alt="Crew Image">
         </div>
+        <!-- crew name -->
         <h2>{{ crew.crew_name }}</h2>
         <!-- buttons -->
         {% if session.user|lower == crew.submitted_by|lower or session.user|lower == "admin"|lower %}
@@ -32,5 +33,25 @@
                 </div>
             </div>
         {% endif %}
+
+        <!-- crew artists -->
+        <div class="row">
+            {% for artist in artists %}
+                {% for artistcrew in artist.artist_crews %}
+                    {% if artistcrew|lower == crew.crew_name|lower %}
+                        <div class="col-md-3 col-sm-12">
+                            <div class="card card-cascade wider top-margin">
+                                <div class="view view-cascade overlay">
+                                    <div class="card-body card-body-cascade text-center">
+                                        <h4 class="card-title"><strong>{{ artist.artist_name }}</strong></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
     </div>
+
 {% endblock %}

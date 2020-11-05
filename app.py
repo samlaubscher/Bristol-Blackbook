@@ -251,7 +251,8 @@ def get_crews():
 @app.route("/get_crew/<crew_id>", methods=["GET", "POST"])
 def get_crew(crew_id):
     crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
-    return render_template("get_crew.html", crew=crew)
+    artists =  mongo.db.artists.find().sort("artist_crews", 1)
+    return render_template("get_crew.html", crew=crew, artists=artists)
 
 
 # add crew page
