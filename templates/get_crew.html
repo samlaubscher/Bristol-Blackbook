@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="jumbotron text-center">
-        <!-- image -->
+    <div class="jumbotron jumbotron-fluid text-center">
+        <!-- crew image -->
         <div class="view overlay my-4">
             <img src="{{ crew.crew_image }}" class="img-fluid" alt="Crew Image">
         </div>
+        <!-- crew name -->
         <h2>{{ crew.crew_name }}</h2>
         <!-- buttons -->
         {% if session.user|lower == crew.submitted_by|lower or session.user|lower == "admin"|lower %}
@@ -32,5 +33,44 @@
                 </div>
             </div>
         {% endif %}
+
+        <!-- crew artists -->
+        <div class="row">
+            {% for artist in artists %}
+                {% for artistcrew in artist.artist_crews %}
+                    {% if artistcrew|lower == crew.crew_name|lower %}
+                        <div class="jumbotron jumbotron-fluid">
+                            <h4 class="card-title"><strong>{{ artist.artist_name }}</strong></h4>
+                            <div class="row">
+                                {% for work in works %}
+                                    {% if work.artist_name|lower == artist.artist_name|lower %}
+                                    <div class="col-sm-6 col-lg-4">
+                                        <div class="card card-cascade wider top-margin">
+                                            <div class="view view-cascade overlay">
+                                                <!-- image -->
+                                                <img class="card-img-top" 
+                                                        src="{{ work.image_url }}" alt="Graffiti Image">
+                                                <a href="{{ url_for('get_work', work_id=work._id) }}">
+                                                    <!-- info overlay -->
+                                                    <div class="mask flex-center rgba-black-strong">
+                                                        <p class="white-text">
+                                                            Artist: {{ work.artist_name }}
+                                                            <br>Style: {{ work.style_type }}
+                                                            <br>Year Painted: {{ work.year_painted }}
+                                                        </p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
     </div>
+
 {% endblock %}

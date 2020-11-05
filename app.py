@@ -251,7 +251,9 @@ def get_crews():
 @app.route("/get_crew/<crew_id>", methods=["GET", "POST"])
 def get_crew(crew_id):
     crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
-    return render_template("get_crew.html", crew=crew)
+    artists =  mongo.db.artists.find().sort("artist_crews", 1)
+    works = list(mongo.db.works.find().sort("artist_name", 1))
+    return render_template("get_crew.html", crew=crew, artists=artists, works=works)
 
 
 # add crew page
@@ -275,8 +277,10 @@ def add_crew():
 def edit_crew(crew_id):
     if request.method == "POST":
         update_crew = {
-            "crew_name": request.form.get("crew_name")
-        }
+            "crew_name": request.form.get("crew_name"),
+            "crew_image": request.form.get("crew_image"),
+            "submitted_by": session["user"]
+            }
         mongo.db.crews.update_one({"_id": ObjectId(crew_id)}, {"$set": update_crew})
         flash("Crew Successfully Updated!")
         return redirect(url_for("get_crews"))
