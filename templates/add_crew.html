@@ -7,7 +7,7 @@
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('add_crew') }}">
             <div class="card">
                 <div class="card-body">
-                    <!-- artist name -->
+                    <!-- crew name -->
                     <div class="row">
                         <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
                             <i class="fas fa-user-ninja input-prefix"></i>
@@ -15,6 +15,18 @@
                                 minlength="2" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control">
                             <label for="crew_name">Crew Name</label>
                         </div>
+                    </div>
+                    <!-- crew image -->
+                    <div class="row">
+                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
+                            <i class="fas fa-camera-retro input-prefix"></i>
+                            <input type="text" id="crew_image" name="crew_image" class="form-control">
+                            <label for="crew_image">Image URL</label>
+                        </div>
+                        <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
+                            Please only use direct links to images. You can upload files <a href="https://imgur.com/upload" target="_blank">here</a>.
+                            Add a title and post 'To Community', then right click the image and 'copy image address'.
+                        </small>
                     </div>
                     <br>
                     <!-- submit button -->
