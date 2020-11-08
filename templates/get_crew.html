@@ -39,7 +39,7 @@
             {% for artist in artists %}
                 {% for artistcrew in artist.artist_crews %}
                     {% if artistcrew|lower == crew.crew_name|lower %}
-                        <div class="jumbotron jumbotron-fluid">
+                        <div class="jumbotron jumbotron-fluid text-center">
                             <h4 class="card-title"><strong>{{ artist.artist_name }}</strong></h4>
                             <div class="row">
                                 {% for work in works %}
