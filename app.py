@@ -312,6 +312,14 @@ def get_styles():
     return render_template("styles.html", styles=styles)
 
 
+# get style page
+@app.route("/get_style/<style_id>", methods=["GET", "POST"])
+def get_style(style_id):
+    style = mongo.db.styles.find_one({"_id": ObjectId(style_id)})
+    works = list(mongo.db.works.find().sort("style_type", 1))
+    return render_template("get_style.html", style=style, works=works)
+
+
 # add style page
 @app.route("/add_style", methods=["GET", "POST"])
 def add_style():
