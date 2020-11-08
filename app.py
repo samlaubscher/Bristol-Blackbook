@@ -200,6 +200,14 @@ def get_artists():
     return render_template("artists.html", artists=artists, crews=crews)
 
 
+# get artist page
+@app.route("/get_artist/<artist_id>", methods=["GET", "POST"])
+def get_artist(artist_id):
+    artist = mongo.db.artists.find_one({"_id": ObjectId(artist_id)})
+    works = list(mongo.db.works.find().sort("artist_name", 1))
+    return render_template("get_artist.html", artist=artist, works=works)
+
+
 # add artist page
 @app.route("/add_artist", methods=["GET", "POST"])
 def add_artist():
