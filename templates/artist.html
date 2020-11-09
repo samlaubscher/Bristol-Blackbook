@@ -6,7 +6,7 @@
         <h2>{{ artist.artist_name }}</h2>
         <!-- buttons -->
         {% if session.user|lower == artist.submitted_by|lower or session.user|lower == "admin"|lower %}
-            <a href="#" class="btn btn-sm btn-cyan text-shadow">Edit</a>
+            <a href="{{ url_for('edit_artist', artist_name=artist.artist_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
             <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
                 data-target="#confirm-delete-modal">Delete</button>
             
