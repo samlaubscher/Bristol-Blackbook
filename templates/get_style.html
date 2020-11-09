@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="jumbotron jumbotron-fluid text-center">
+        <!-- crew name -->
+        <h2>{{ style.style_type }}</h2>
+        <!-- buttons -->
+ 
+
+        <!-- works -->
+        <div class="row">
+            {% for work in works %}
+                {% if work.style_type|lower == style.style_type|lower %}
+                bang
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
