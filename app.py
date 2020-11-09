@@ -23,8 +23,8 @@ mongo = PyMongo(app)
 
 # main page
 @app.route("/")
-@app.route("/get_works")
-def get_works():
+@app.route("/works")
+def works():
     works = list(mongo.db.works.find())
     return render_template("works.html", works=works)
 
@@ -45,10 +45,10 @@ def filter(filter_type):
 
 
 # get work page
-@app.route("/get_work/<work_id>")
-def get_work(work_id):
+@app.route("/work/<work_id>")
+def work(work_id):
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
-    return render_template("get_work.html", work=work)
+    return render_template("work.html", work=work)
 
 
 # register page
@@ -143,7 +143,7 @@ def new_upload():
             }
         mongo.db.works.insert_one(work)
         flash("Piece Successfully Uploaded!")
-        return redirect(url_for("get_works"))
+        return redirect(url_for("works"))
 
     artists = mongo.db.artists.find().sort("artist_name", 1)
     styles = mongo.db.styles.find().sort("style_type", 1)
@@ -175,7 +175,7 @@ def edit_upload(work_id):
 def delete_upload(work_id):
     mongo.db.works.remove({"_id": ObjectId(work_id)})
     flash("Piece Successfully Deleted!")
-    return redirect(url_for("get_works"))
+    return redirect(url_for("works"))
 
 
 # artists page
@@ -235,19 +235,19 @@ def delete_artist(artist_name):
 
 
 # crews page
-@app.route("/get_crews")
-def get_crews():
+@app.route("/crews")
+def crews():
     crews = list(mongo.db.crews.find().sort("crew_name", 1))
     return render_template("crews.html", crews=crews)
 
 
 # get crew page
-@app.route("/get_crew/<crew_name>")
-def get_crew(crew_name):
+@app.route("/crew/<crew_name>")
+def crew(crew_name):
     crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
     artists = mongo.db.artists.find({"artist_crews": str(crew_name)})
     works = list(mongo.db.works.find().sort("artist_name", 1))
-    return render_template("get_crew.html", crew=crew, artists=artists, works=works)
+    return render_template("crew.html", crew=crew, artists=artists, works=works)
 
 
 # add crew page
@@ -261,7 +261,7 @@ def add_crew():
             }
         mongo.db.crews.insert_one(crew)
         flash("Crew Successfully Added!")
-        return redirect(url_for("get_crews"))
+        return redirect(url_for("crews"))
 
     return render_template("add_crew.html")
 
@@ -277,7 +277,7 @@ def edit_crew(crew_name):
             }
         mongo.db.crews.update_one({"crew_name": str(crew_name)}, {"$set": update_crew})
         flash("Crew Successfully Updated!")
-        return redirect(url_for("get_crews"))
+        return redirect(url_for("crews"))
 
     crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
     return render_template("edit_crew.html", crew=crew)
@@ -288,22 +288,22 @@ def edit_crew(crew_name):
 def delete_crew(crew_name):
     mongo.db.crews.remove({"crew_name": str(crew_name)})
     flash("Crew Successfully Deleted!")
-    return redirect(url_for("get_crews"))
+    return redirect(url_for("crews"))
 
 
 # styles page
-@app.route("/get_styles")
-def get_styles():
+@app.route("/styles")
+def styles():
     styles = list(mongo.db.styles.find().sort("style_type", 1))
     return render_template("styles.html", styles=styles)
 
 
 # get style page
-@app.route("/get_style/<style_type>")
-def get_style(style_type):
+@app.route("/style/<style_type>")
+def style(style_type):
     style = mongo.db.styles.find_one({"style_type": str(style_type)})
     works = mongo.db.works.find({"style_type": str(style_type)})
-    return render_template("get_style.html", style=style, works=works)
+    return render_template("style.html", style=style, works=works)
 
 
 # add style page
@@ -316,11 +316,11 @@ def add_style():
                 }
             mongo.db.styles.insert_one(style)
             flash("Style Successfully Added!")
-            return redirect(url_for("get_styles"))
+            return redirect(url_for("styles"))
 
         return render_template("add_style.html")
 
-    return redirect(url_for("get_styles"))
+    return redirect(url_for("styles"))
 
 
 # edit style page
@@ -333,12 +333,12 @@ def edit_style(style_type):
             }
             mongo.db.styles.update_one({"style_type": str(style_type)}, {"$set": update_style})
             flash("Style Successfully Updated!")
-            return redirect(url_for("get_styles"))
+            return redirect(url_for("styles"))
 
         style = mongo.db.styles.find_one({"style_type": str(style_type)})
         return render_template("edit_style.html", style=style)
     
-    return redirect(url_for("get_styles"))
+    return redirect(url_for("styles"))
 
 
 # delete style route
@@ -347,9 +347,9 @@ def delete_style(style_type):
     if session["user"] == "admin":
         mongo.db.styles.remove({"style_type": str(style_type)})
         flash("Style Successfully Deleted!")
-        return redirect(url_for("get_styles"))
+        return redirect(url_for("styles"))
 
-    return redirect(url_for("get_styles"))
+    return redirect(url_for("styles"))
 
 
 if __name__ == "__main__":

@@ -21,7 +21,7 @@
                             </div>
                             <!-- buttons -->
                             <div class="row" style="justify-content: center;">
-                                <a href="{{ url_for('get_works') }}" class="col-md-3 btn btn-sm btn-danger text-shadow">Reset</a>
+                                <a href="{{ url_for('works') }}" class="col-md-3 btn btn-sm btn-danger text-shadow">Reset</a>
                                 <a onclick="document.getElementById('search').submit()" class="col-md-3 btn btn-sm btn-cyan text-shadow">Search</a>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                         <a class="dropdown-item" href="{{ url_for('filter', filter_type='artist_name') }}">Artist</a>
                         <a class="dropdown-item" href="{{ url_for('filter', filter_type='style_type') }}">Style</a>
                         <a class="dropdown-item" href="{{ url_for('filter', filter_type='year_painted') }}">Year Painted</a>
-                        <a class="dropdown-item" href="{{ url_for('get_works') }}">Date Uploaded</a>
+                        <a class="dropdown-item" href="{{ url_for('works') }}">Date Uploaded</a>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                                 <!-- image -->
                                 <img class="card-img-top" 
                                         src="{{ work.image_url }}" alt="Graffiti Image">
-                                <a href="{{ url_for('get_work', work_id=work._id) }}">
+                                <a href="{{ url_for('work', work_id=work._id) }}">
                                     <!-- info overlay -->
                                     <div class="mask flex-center rgba-black-strong">
                                         <p class="white-text">
