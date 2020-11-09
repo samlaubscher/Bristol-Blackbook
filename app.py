@@ -26,8 +26,7 @@ mongo = PyMongo(app)
 @app.route("/get_works")
 def get_works():
     works = list(mongo.db.works.find())
-    work = mongo.db.works.find_one({"_id": ObjectId()})
-    return render_template("works.html", works=works, work=work)
+    return render_template("works.html", works=works)
 
 
 # search route
