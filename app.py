@@ -130,9 +130,9 @@ def logout():
     return redirect(url_for("login"))
 
 
-# new upload page
-@app.route("/new_upload", methods=["GET", "POST"])
-def new_upload():
+# new work page
+@app.route("/new_work", methods=["GET", "POST"])
+def new_work():
     if request.method == "POST":
         work = {
             "artist_name": request.form.get("artist_name"),
@@ -142,39 +142,39 @@ def new_upload():
             "submitted_by": session["user"],
             }
         mongo.db.works.insert_one(work)
-        flash("Piece Successfully Uploaded!")
+        flash("Work Successfully Uploaded!")
         return redirect(url_for("works"))
 
     artists = mongo.db.artists.find().sort("artist_name", 1)
     styles = mongo.db.styles.find().sort("style_type", 1)
-    return render_template("new_upload.html", artists=artists, styles=styles)
+    return render_template("new_work.html", artists=artists, styles=styles)
 
 
-# edit upload page
-@app.route("/edit_upload/<work_id>", methods=["GET", "POST"])
-def edit_upload(work_id):
+# edit work page
+@app.route("/edit_work/<work_id>", methods=["GET", "POST"])
+def edit_work(work_id):
     if request.method == "POST":
-        update_upload = {
+        update_work = {
             "artist_name": request.form.get("artist_name"),
             "year_painted": request.form.get("year_painted"),
             "style_type": request.form.get("style_type"),
             "image_url": request.form.get("image_url"),
             "submitted_by": session["user"],
             }
-        mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update_upload})
-        flash("Piece Successfully Updated!")
+        mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update_work})
+        flash("Work Successfully Updated!")
 
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
     artists =  mongo.db.artists.find().sort("artist_name", 1)
     styles = mongo.db.styles.find().sort("style_type", 1)
-    return render_template("edit_upload.html", work=work, artists=artists, styles=styles)
+    return render_template("edit_work.html", work=work, artists=artists, styles=styles)
 
 
-# delete upload
-@app.route("/delete_upload/<work_id>")
-def delete_upload(work_id):
+# delete work
+@app.route("/delete_work/<work_id>")
+def delete_work(work_id):
     mongo.db.works.remove({"_id": ObjectId(work_id)})
-    flash("Piece Successfully Deleted!")
+    flash("Work Successfully Deleted!")
     return redirect(url_for("works"))
 
 

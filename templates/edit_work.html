@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 text-center">Edit Upload</h3>
+    <h3 class="light-blue-text text-darken-4 text-center">Edit Work</h3>
 
     <div class="row">
-        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_upload', work_id=work._id) }}">
+        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_work', work_id=work._id) }}">
             <div class="card">
                 <div class="card-body">
                     <!-- artist name -->
