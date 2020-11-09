@@ -179,19 +179,19 @@ def delete_upload(work_id):
 
 
 # artists page
-@app.route("/get_artists")
-def get_artists():
-    artists = list(mongo.db.artists.find().sort("artist_name", 1))
-    crews = list(mongo.db.artists.find().sort("artist_crews", 1))
+@app.route("/artists")
+def artists():
+    artists = mongo.db.artists.find().sort("artist_name", 1)
+    crews = mongo.db.artists.find().sort("artist_crews", 1)
     return render_template("artists.html", artists=artists, crews=crews)
 
 
 # get artist page
-@app.route("/get_artist/<artist_id>")
-def get_artist(artist_id):
-    artist = mongo.db.artists.find_one({"_id": ObjectId(artist_id)})
-    works = list(mongo.db.works.find().sort("artist_name", 1))
-    return render_template("get_artist.html", artist=artist, works=works)
+@app.route("/artist/<artist_name>")
+def artist(artist_name):
+    artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
+    works = mongo.db.works.find({"artist_name": str(artist_name)})
+    return render_template("artist.html", artist=artist, works=works)
 
 
 # add artist page
@@ -205,33 +205,33 @@ def add_artist():
             }
         mongo.db.artists.insert_one(artist)
         flash("Artist Successfully Added!")
-        return redirect(url_for("get_artists"))
+        return redirect(url_for("artists"))
 
     crews = list(mongo.db.crews.find().sort("crew_name", 1))
     return render_template("add_artist.html", crews=crews)
 
 
 # edit artist page
-@app.route("/edit_artist/<artist_id>", methods=["GET", "POST"])
-def edit_artist(artist_id):
+@app.route("/edit_artist/<artist_name>", methods=["GET", "POST"])
+def edit_artist(artist_name):
     if request.method == "POST":
         update_artist = {
             "artist_name": request.form.get("artist_name")
         }
-        mongo.db.artists.update_one({"_id": ObjectId(artist_id)}, {"$set": update_artist})
+        mongo.db.artists.update_one({"artist_name": str(artist_name)}, {"$set": update_artist})
         flash("Artist Successfully Updated!")
-        return redirect(url_for("get_artists"))
+        return redirect(url_for("artists"))
 
-    artist = mongo.db.artists.find_one({"_id": ObjectId(artist_id)})
+    artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
     return render_template("edit_artist.html", artist=artist)
 
 
 # delete artist route
-@app.route("/delete_artist/<artist_id>")
-def delete_artist(artist_id):
-    mongo.db.artists.remove({"_id": ObjectId(artist_id)})
+@app.route("/delete_artist/<artist_name>")
+def delete_artist(artist_name):
+    mongo.db.artists.remove({"artist_name": str(artist_name)})
     flash("Artist Successfully Deleted!")
-    return redirect(url_for("get_artists"))
+    return redirect(url_for("artists"))
 
 
 # crews page

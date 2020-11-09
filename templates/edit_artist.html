@@ -4,7 +4,7 @@
     <h3 class="light-blue-text text-darken-4 text-center">Edit Artist</h3>
 
     <div class="row">
-        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_artist', artist_id=artist._id) }}">
+        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_artist', artist_name=artist.artist_name) }}">
             <div class="card">
                 <div class="card-body">
                     <!-- artist name -->
@@ -19,7 +19,7 @@
                     <br>
                     <!-- submit button -->
                     <div class="row" style="justify-content: center;">
-                        <a href="{{ url_for('get_artists') }}" class="btn btn-mdb-color text-shadow">
+                        <a href="{{ url_for('artists') }}" class="btn btn-mdb-color text-shadow">
                             Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>
                         <button type="submit" class="col-sm-4 btn-elegant">
                             Update Artist <i class="fas fa-edit" style="font-size: 90%;"></i>
