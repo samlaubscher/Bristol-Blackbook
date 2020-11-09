@@ -45,7 +45,7 @@ def filter(filter_type):
 
 
 # get work page
-@app.route("/get_work/<work_id>", methods=["GET", "POST"])
+@app.route("/get_work/<work_id>")
 def get_work(work_id):
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
     return render_template("get_work.html", work=work)
@@ -77,7 +77,7 @@ def register():
     return render_template("register.html")
 
 
-# register page
+# login page
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -107,20 +107,19 @@ def login():
 
 
 # profile page
-@app.route("/profile/<username>", methods=["GET", "POST"])
+@app.route("/profile/<username>")
 def profile(username):
-    # get session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    works = list(mongo.db.works.find())
-    artists = list(mongo.db.artists.find())
-
     if session["user"]:
+        # get session user's username from db
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        works = list(mongo.db.works.find())
+        artists = list(mongo.db.artists.find())
         return render_template(
             "profile.html", username=username, works=works, artists=artists)
-
+    
     return redirect(url_for("login"))
-
+    
 
 # logout route
 @app.route("/logout")
