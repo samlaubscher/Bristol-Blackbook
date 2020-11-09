@@ -4,7 +4,7 @@
     <h3 class="light-blue-text text-darken-4 text-center">Edit Crew</h3>
 
     <div class="row">
-        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_crew', crew_id=crew._id) }}">
+        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_crew', crew_name=crew.crew_name) }}">
             <div class="card">
                 <div class="card-body">
                     <!-- crew name -->

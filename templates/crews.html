@@ -18,7 +18,7 @@
                     <div class="view view-cascade overlay">
                         <div class="card-body card-body-cascade text-center">
                             <div class="view view-cascade overlay">
-                                <a href="{{ url_for('get_crew', crew_id=crew._id) }}">
+                                <a href="{{ url_for('get_crew', crew_name=crew.crew_name) }}">
                                     <!-- image -->
                                     <img class="card-img-top" 
                                         src="{{ crew.crew_image }}" alt="Crew Image">
@@ -27,7 +27,7 @@
                             </div>
 
                             {% if session.user|lower == "admin"|lower or session.user|lower == crew.submitted_by|lower %}
-                                <a href="{{ url_for('edit_crew', crew_id=crew._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
+                                <a href="{{ url_for('edit_crew', crew_name=crew.crew_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
                                 <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
                                     data-target="#confirm-delete-modal">Delete</button>
                                 <!-- confirm delete modal -->
@@ -42,7 +42,7 @@
                                                 <i class="fas fa-times fa-4x animated rotateIn"></i>
                                             </div>
                                             <div class="modal-footer flex-center">
-                                                <a href="{{ url_for('delete_crew', crew_id=crew._id) }}" class="btn btn-outline-danger">Yes</a>
+                                                <a href="{{ url_for('delete_crew', crew_name=crew.crew_name) }}" class="btn btn-outline-danger">Yes</a>
                                                 <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
                                             </div>
                                         </div>
@@ -55,21 +55,4 @@
             </div>
         {% endfor %}
     </div>
-
-    <!-- Disqus comments section -->
-    <div id="disqus_thread"></div>
-    <script>
-        var disqus_config = function () {
-            this.page.url = "{{ request.url }}";
-            this.page.identifier = "crews";
-        };
-        
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://bristol-blackbook.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endblock %}

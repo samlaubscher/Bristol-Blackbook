@@ -187,7 +187,7 @@ def get_artists():
 
 
 # get artist page
-@app.route("/get_artist/<artist_id>", methods=["GET", "POST"])
+@app.route("/get_artist/<artist_id>")
 def get_artist(artist_id):
     artist = mongo.db.artists.find_one({"_id": ObjectId(artist_id)})
     works = list(mongo.db.works.find().sort("artist_name", 1))
@@ -242,10 +242,10 @@ def get_crews():
 
 
 # get crew page
-@app.route("/get_crew/<crew_id>", methods=["GET", "POST"])
-def get_crew(crew_id):
-    crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
-    artists =  mongo.db.artists.find().sort("artist_crews", 1)
+@app.route("/get_crew/<crew_name>")
+def get_crew(crew_name):
+    crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
+    artists = mongo.db.artists.find({"artist_crews": str(crew_name)})
     works = list(mongo.db.works.find().sort("artist_name", 1))
     return render_template("get_crew.html", crew=crew, artists=artists, works=works)
 
@@ -267,26 +267,26 @@ def add_crew():
 
 
 # edit crew page
-@app.route("/edit_crew/<crew_id>", methods=["GET", "POST"])
-def edit_crew(crew_id):
+@app.route("/edit_crew/<crew_name>", methods=["GET", "POST"])
+def edit_crew(crew_name):
     if request.method == "POST":
         update_crew = {
             "crew_name": request.form.get("crew_name"),
             "crew_image": request.form.get("crew_image"),
             "submitted_by": session["user"]
             }
-        mongo.db.crews.update_one({"_id": ObjectId(crew_id)}, {"$set": update_crew})
+        mongo.db.crews.update_one({"crew_name": str(crew_name)}, {"$set": update_crew})
         flash("Crew Successfully Updated!")
         return redirect(url_for("get_crews"))
 
-    crew = mongo.db.crews.find_one({"_id": ObjectId(crew_id)})
+    crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
     return render_template("edit_crew.html", crew=crew)
 
 
 # delete crew route
-@app.route("/delete_crew/<crew_id>")
-def delete_crew(crew_id):
-    mongo.db.crews.remove({"_id": ObjectId(crew_id)})
+@app.route("/delete_crew/<crew_name>")
+def delete_crew(crew_name):
+    mongo.db.crews.remove({"crew_name": str(crew_name)})
     flash("Crew Successfully Deleted!")
     return redirect(url_for("get_crews"))
 
