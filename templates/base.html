@@ -19,33 +19,35 @@
 </head>
 <body>
     <header>
-        <!-- navbar from Bootsptrap -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-shadow">
-            <a class="navbar-brand" href="{{ url_for('get_works') }}"> <i class="fas fa-paint-roller" style="font-size: 80%;"></i> Bristol Style File</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" 
-                data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarToggler">
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('get_works') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('get_artists') }}">Artists</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('get_crews') }}">Crews</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('get_styles') }}">Styles</a></li>
-                    {% if session.user %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('new_upload') }}">New Upload</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('add_artist') }}">Add Artist</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Log Out</a></li>
-                    {% else %}
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Log In</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
+        <div id="cover">
+            <!-- navbar from Bootsptrap -->
+            <nav class="navbar navbar-expand-lg navbar-dark text-shadow">
+                <a class="navbar-brand" href="{{ url_for('get_works') }}"> <i class="fas fa-paint-roller" style="font-size: 80%;"></i> Bristol Blackbook</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                    data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('get_works') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('get_artists') }}">Artists</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('get_crews') }}">Crews</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('get_styles') }}">Styles</a></li>
+                        {% if session.user %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('new_upload') }}">New Upload</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('add_artist') }}">Add Artist</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Log Out</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Log In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </header>
-  
+
     <section>
         <!-- flash message -->
         {% with messages = get_flashed_messages() %}
