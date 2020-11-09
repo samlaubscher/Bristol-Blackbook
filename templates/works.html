@@ -35,9 +35,9 @@
                     <a class="btn btn-sm btn-primary dropdown-toggle mr-4 filter-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Sort By</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ url_for('filter_artists') }}">Artist</a>
-                        <a class="dropdown-item" href="{{ url_for('filter_styles') }}">Style</a>
-                        <a class="dropdown-item" href="{{ url_for('filter_year') }}">Year Painted</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='artist_name') }}">Artist</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='style_type') }}">Style</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='year_painted') }}">Year Painted</a>
                         <a class="dropdown-item" href="{{ url_for('get_works') }}">Date Uploaded</a>
                     </div>
                 </div>
