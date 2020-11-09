@@ -299,10 +299,10 @@ def get_styles():
 
 
 # get style page
-@app.route("/get_style/<style_id>", methods=["GET", "POST"])
-def get_style(style_id):
-    style = mongo.db.styles.find_one({"_id": ObjectId(style_id)})
-    works = list(mongo.db.works.find().sort("style_type", 1))
+@app.route("/get_style/<style_type>")
+def get_style(style_type):
+    style = mongo.db.styles.find_one({"style_type": str(style_type)})
+    works = mongo.db.works.find({"style_type": str(style_type)})
     return render_template("get_style.html", style=style, works=works)
 
 
@@ -324,28 +324,28 @@ def add_style():
 
 
 # edit style page
-@app.route("/edit_style/<style_id>", methods=["GET", "POST"])
-def edit_style(style_id):
+@app.route("/edit_style/<style_type>", methods=["GET", "POST"])
+def edit_style(style_type):
     if session["user"] == "admin":
         if request.method == "POST":
             update_style = {
                 "style_type": request.form.get("style_type")
             }
-            mongo.db.styles.update_one({"_id": ObjectId(style_id)}, {"$set": update_style})
+            mongo.db.styles.update_one({"style_type": str(style_type)}, {"$set": update_style})
             flash("Style Successfully Updated!")
             return redirect(url_for("get_styles"))
 
-        styles = mongo.db.styles.find_one({"_id": ObjectId(style_id)})
-        return render_template("edit_style.html", styles=styles)
+        style = mongo.db.styles.find_one({"style_type": str(style_type)})
+        return render_template("edit_style.html", style=style)
     
     return redirect(url_for("get_styles"))
 
 
 # delete style route
-@app.route("/delete_style/<style_id>")
-def delete_style(style_id):
+@app.route("/delete_style/<style_type>")
+def delete_style(style_type):
     if session["user"] == "admin":
-        mongo.db.styles.remove({"_id": ObjectId(style_id)})
+        mongo.db.styles.remove({"style_type": str(style_type)})
         flash("Style Successfully Deleted!")
         return redirect(url_for("get_styles"))
 
