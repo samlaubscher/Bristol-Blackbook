@@ -81,7 +81,7 @@
                                     <div class="card card-cascade wider">
                                         <div class="card-body card-body-cascade text-center">
                                             <h4 class="card-title"><strong>{{ artist.artist_name }}</strong></h4>
-                                            <a href="{{ url_for('edit_artist', artist_id=artist._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
+                                            <a href="{{ url_for('edit_artist', artist_name=artist.artist_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
                                             <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal"
                                                 data-target="#confirm-delete-artist-modal">Delete</button>
                                             <!-- confirm delete modal -->
@@ -96,7 +96,7 @@
                                                             <i class="fas fa-times fa-4x animated rotateIn"></i>
                                                         </div>
                                                         <div class="modal-footer flex-center">
-                                                            <a href="{{ url_for('delete_artist', artist_id=artist._id) }}" class="btn btn-outline-danger">Yes</a>
+                                                            <a href="{{ url_for('delete_artist', artist_name=artist.artist_name) }}" class="btn btn-outline-danger">Yes</a>
                                                             <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
                                                         </div>
                                                     </div>
