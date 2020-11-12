@@ -6,6 +6,7 @@ from flask import (
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 if os.path.exists("env.py"):
     import env
@@ -25,7 +26,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/works")
 def works():
-    works = list(mongo.db.works.find())
+    works = list(mongo.db.works.find().sort("date_submitted", -1))
     return render_template("works.html", works=works)
 
 
@@ -140,6 +141,7 @@ def new_work():
             "style_type": request.form.get("style_type"),
             "image_url": request.form.get("image_url"),
             "submitted_by": session["user"],
+            "date_submitted": datetime.now()
             }
         mongo.db.works.insert_one(work)
         flash("Work Successfully Uploaded!")
