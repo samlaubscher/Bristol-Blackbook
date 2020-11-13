@@ -39,9 +39,13 @@ def search():
 
 
 # filter route
-@app.route("/filter/<filter_type>")
-def filter(filter_type):
-    works = list(mongo.db.works.find().sort(filter_type, 1))
+@app.route("/filter/<filter_type>/<direction>")
+def filter(filter_type, direction):
+    if direction == 'ascending':
+        works = list(mongo.db.works.find().sort(filter_type, 1))
+        return render_template("works.html", works=works)
+
+    works = list(mongo.db.works.find().sort(filter_type, -1))   
     return render_template("works.html", works=works)
 
 

@@ -35,10 +35,12 @@
                     <a class="btn btn-sm btn-primary dropdown-toggle mr-4 filter-btn" type="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">Sort By</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='artist_name') }}">Artist</a>
-                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='style_type') }}">Style</a>
-                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='year_painted') }}">Year Painted</a>
-                        <a class="dropdown-item" href="{{ url_for('works') }}">Date Uploaded</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='date_submitted', direction='descending') }}">Date Uploaded: Latest</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='date_submitted', direction='ascending') }}">Date Uploaded: Oldest</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='year_painted', direction='descending') }}">Year Painted: Latest</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='year_painted', direction='ascending') }}">Year Painted: Oldest</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='artist_name', direction='ascending') }}">Artists: A-Z</a>
+                        <a class="dropdown-item" href="{{ url_for('filter', filter_type='artist_name', direction='descending') }}">Artists: Z-A</a>
                     </div>
                 </div>
             </div>
