@@ -138,22 +138,25 @@ def logout():
 # new work page
 @app.route("/new_work", methods=["GET", "POST"])
 def new_work():
-    if request.method == "POST":
-        work = {
-            "artist_name": request.form.get("artist_name"),
-            "year_painted": request.form.get("year_painted"),
-            "style_type": request.form.get("style_type"),
-            "image_url": request.form.get("image_url"),
-            "submitted_by": session["user"],
-            "date_submitted": datetime.now()
-            }
-        mongo.db.works.insert_one(work)
-        flash("Work Successfully Uploaded!")
-        return redirect(url_for("works"))
+    if session["user"]:
+        if request.method == "POST":
+            work = {
+                "artist_name": request.form.get("artist_name"),
+                "year_painted": request.form.get("year_painted"),
+                "style_type": request.form.get("style_type"),
+                "image_url": request.form.get("image_url"),
+                "submitted_by": session["user"],
+                "date_submitted": datetime.now()
+                }
+            mongo.db.works.insert_one(work)
+            flash("Work Successfully Uploaded!")
+            return redirect(url_for("works"))
 
-    artists = mongo.db.artists.find().sort("artist_name", 1)
-    styles = mongo.db.styles.find().sort("style_type", 1)
-    return render_template("new_work.html", artists=artists, styles=styles)
+        artists = mongo.db.artists.find().sort("artist_name", 1)
+        styles = mongo.db.styles.find().sort("style_type", 1)
+        return render_template("new_work.html", artists=artists, styles=styles)
+
+    return redirect(url_for("login"))
 
 
 # edit work page
