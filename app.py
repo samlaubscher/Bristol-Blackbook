@@ -195,7 +195,7 @@ def profile(username):
     *   Login page if user does not exist.
     """
 
-    if session["user"]:
+    if 'user' in session:
         # get session user's username from db
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
@@ -242,7 +242,7 @@ def new_work():
     *   Creates new work object in works db collection.
     """
 
-    if session["user"]:
+    if 'user' in session:
         if request.method == "POST":
             work = {
                 "artist_name": request.form.get("artist_name"),
@@ -277,21 +277,24 @@ def edit_work(work_id):
     *   Updates selected object data in collection.
     """
 
-    if request.method == "POST":
-        update_work = {
-            "artist_name": request.form.get("artist_name"),
-            "year_painted": request.form.get("year_painted"),
-            "style_type": request.form.get("style_type"),
-            "image_url": request.form.get("image_url"),
-            "submitted_by": session["user"],
-            }
-        mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update_work})
-        flash("Work Successfully Updated!")
+    if 'user' in session:
+        if request.method == "POST":
+            update_work = {
+                "artist_name": request.form.get("artist_name"),
+                "year_painted": request.form.get("year_painted"),
+                "style_type": request.form.get("style_type"),
+                "image_url": request.form.get("image_url"),
+                "submitted_by": session["user"],
+                }
+            mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update_work})
+            flash("Work Successfully Updated!")
 
-    work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
-    artists =  mongo.db.artists.find().sort("artist_name", 1)
-    styles = mongo.db.styles.find().sort("style_type", 1)
-    return render_template("edit_work.html", work=work, artists=artists, styles=styles)
+        work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
+        artists =  mongo.db.artists.find().sort("artist_name", 1)
+        styles = mongo.db.styles.find().sort("style_type", 1)
+        return render_template("edit_work.html", work=work, artists=artists, styles=styles)
+
+    return redirect(url_for("login"))
 
 
 @app.route("/delete_work/<work_id>")
@@ -308,9 +311,10 @@ def delete_work(work_id):
     *   Removes object from db collection.
     """
 
-    mongo.db.works.remove({"_id": ObjectId(work_id)})
-    flash("Work Successfully Deleted!")
-    return redirect(url_for("works"))
+    if 'user' in session:
+        mongo.db.works.remove({"_id": ObjectId(work_id)})
+        flash("Work Successfully Deleted!")
+        return redirect(url_for("works"))
 
 
 @app.route("/artists")
@@ -369,18 +373,21 @@ def add_artist():
     *   Creates new artist object in artists db collection.
     """
 
-    if request.method == "POST":
-        artist = {
-            "artist_name": request.form.get("artist_name"),
-            "artist_crews": request.form.getlist("artist_crews"),
-            "submitted_by": session["user"]
-            }
-        mongo.db.artists.insert_one(artist)
-        flash("Artist Successfully Added!")
-        return redirect(url_for("artists"))
+    if 'user' in session:
+        if request.method == "POST":
+            artist = {
+                "artist_name": request.form.get("artist_name"),
+                "artist_crews": request.form.getlist("artist_crews"),
+                "submitted_by": session["user"]
+                }
+            mongo.db.artists.insert_one(artist)
+            flash("Artist Successfully Added!")
+            return redirect(url_for("artists"))
 
-    crews = list(mongo.db.crews.find().sort("crew_name", 1))
-    return render_template("add_artist.html", crews=crews)
+        crews = list(mongo.db.crews.find().sort("crew_name", 1))
+        return render_template("add_artist.html", crews=crews)
+    
+    return redirect(url_for("login"))
 
 
 @app.route("/edit_artist/<artist_name>", methods=["GET", "POST"])
@@ -397,16 +404,19 @@ def edit_artist(artist_name):
     *   Updates selected artist object data in collection.
     """
 
-    if request.method == "POST":
-        update_artist = {
-            "artist_name": request.form.get("artist_name")
-        }
-        mongo.db.artists.update_one({"artist_name": str(artist_name)}, {"$set": update_artist})
-        flash("Artist Successfully Updated!")
-        return redirect(url_for("artists"))
+    if 'user' in session:
+        if request.method == "POST":
+            update_artist = {
+                "artist_name": request.form.get("artist_name")
+            }
+            mongo.db.artists.update_one({"artist_name": str(artist_name)}, {"$set": update_artist})
+            flash("Artist Successfully Updated!")
+            return redirect(url_for("artists"))
 
-    artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
-    return render_template("edit_artist.html", artist=artist)
+        artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
+        return render_template("edit_artist.html", artist=artist)
+
+    return redirect(url_for("login"))
 
 
 @app.route("/delete_artist/<artist_name>")
@@ -423,9 +433,12 @@ def delete_artist(artist_name):
     *   Removes object from db collection.
     """
 
-    mongo.db.artists.remove({"artist_name": str(artist_name)})
-    flash("Artist Successfully Deleted!")
-    return redirect(url_for("artists"))
+    if 'user' in session:
+        mongo.db.artists.remove({"artist_name": str(artist_name)})
+        flash("Artist Successfully Deleted!")
+        return redirect(url_for("artists"))
+
+    return redirect(url_for("login"))
 
 
 @app.route("/crews")
@@ -482,17 +495,20 @@ def add_crew():
     *   Creates new crew object in crews db collection.
     """
 
-    if request.method == "POST":
-        crew = {
-            "crew_name": request.form.get("crew_name"),
-            "crew_image": request.form.get("crew_image"),
-            "submitted_by": session["user"]
-            }
-        mongo.db.crews.insert_one(crew)
-        flash("Crew Successfully Added!")
-        return redirect(url_for("crews"))
+    if 'user' in session:
+        if request.method == "POST":
+            crew = {
+                "crew_name": request.form.get("crew_name"),
+                "crew_image": request.form.get("crew_image"),
+                "submitted_by": session["user"]
+                }
+            mongo.db.crews.insert_one(crew)
+            flash("Crew Successfully Added!")
+            return redirect(url_for("crews"))
 
-    return render_template("add_crew.html")
+        return render_template("add_crew.html")
+    
+    return redirect(url_for("login"))
 
 
 @app.route("/edit_crew/<crew_name>", methods=["GET", "POST"])
@@ -509,18 +525,21 @@ def edit_crew(crew_name):
     *   Updates selected artist object data in collection.
     """
 
-    if request.method == "POST":
-        update_crew = {
-            "crew_name": request.form.get("crew_name"),
-            "crew_image": request.form.get("crew_image"),
-            "submitted_by": session["user"]
-            }
-        mongo.db.crews.update_one({"crew_name": str(crew_name)}, {"$set": update_crew})
-        flash("Crew Successfully Updated!")
-        return redirect(url_for("crews"))
+    if 'user' in session:
+        if request.method == "POST":
+            update_crew = {
+                "crew_name": request.form.get("crew_name"),
+                "crew_image": request.form.get("crew_image"),
+                "submitted_by": session["user"]
+                }
+            mongo.db.crews.update_one({"crew_name": str(crew_name)}, {"$set": update_crew})
+            flash("Crew Successfully Updated!")
+            return redirect(url_for("crews"))
 
-    crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
-    return render_template("edit_crew.html", crew=crew)
+        crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
+        return render_template("edit_crew.html", crew=crew)
+    
+    return redirect(url_for("login"))
 
 
 @app.route("/delete_crew/<crew_name>")
@@ -537,9 +556,12 @@ def delete_crew(crew_name):
     *   Removes object from db collection.
     """
 
-    mongo.db.crews.remove({"crew_name": str(crew_name)})
-    flash("Crew Successfully Deleted!")
-    return redirect(url_for("crews"))
+    if 'user' in session:
+        mongo.db.crews.remove({"crew_name": str(crew_name)})
+        flash("Crew Successfully Deleted!")
+        return redirect(url_for("crews"))
+
+    return redirect(url_for("login"))
 
 
 @app.route("/styles")
@@ -595,18 +617,21 @@ def add_style():
     *   Creates new style object in styles db collection.
     """
 
-    if session["user"] == "admin":
-        if request.method == "POST":
-            style = {
-                "style_type": request.form.get("style_type")
-                }
-            mongo.db.styles.insert_one(style)
-            flash("Style Successfully Added!")
-            return redirect(url_for("styles"))
+    if 'user' in session:
+        if session["user"] == "admin":
+            if request.method == "POST":
+                style = {
+                    "style_type": request.form.get("style_type")
+                    }
+                mongo.db.styles.insert_one(style)
+                flash("Style Successfully Added!")
+                return redirect(url_for("styles"))
 
-        return render_template("add_style.html")
+            return render_template("add_style.html")
 
-    return redirect(url_for("styles"))
+        return redirect(url_for("styles"))
+    
+    return redirect(url_for("login"))
 
 
 @app.route("/edit_style/<style_type>", methods=["GET", "POST"])
@@ -623,19 +648,22 @@ def edit_style(style_type):
     *   Updates selected style object data in collection.
     """
 
-    if session["user"] == "admin":
-        if request.method == "POST":
-            update_style = {
-                "style_type": request.form.get("style_type")
-            }
-            mongo.db.styles.update_one({"style_type": str(style_type)}, {"$set": update_style})
-            flash("Style Successfully Updated!")
-            return redirect(url_for("styles"))
+    if 'user' in session:
+        if session["user"] == "admin":
+            if request.method == "POST":
+                update_style = {
+                    "style_type": request.form.get("style_type")
+                }
+                mongo.db.styles.update_one({"style_type": str(style_type)}, {"$set": update_style})
+                flash("Style Successfully Updated!")
+                return redirect(url_for("styles"))
 
-        style = mongo.db.styles.find_one({"style_type": str(style_type)})
-        return render_template("edit_style.html", style=style)
+            style = mongo.db.styles.find_one({"style_type": str(style_type)})
+            return render_template("edit_style.html", style=style)
+        
+        return redirect(url_for("styles"))
     
-    return redirect(url_for("styles"))
+    return redirect(url_for("login"))
 
 
 @app.route("/delete_style/<style_type>")
@@ -652,12 +680,15 @@ def delete_style(style_type):
     *   Removes object from db collection.
     """
 
-    if session["user"] == "admin":
-        mongo.db.styles.remove({"style_type": str(style_type)})
-        flash("Style Successfully Deleted!")
-        return redirect(url_for("styles"))
+    if 'user' in session:
+        if session["user"] == "admin":
+            mongo.db.styles.remove({"style_type": str(style_type)})
+            flash("Style Successfully Deleted!")
+            return redirect(url_for("styles"))
 
-    return redirect(url_for("styles"))
+        return redirect(url_for("styles"))
+    
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
