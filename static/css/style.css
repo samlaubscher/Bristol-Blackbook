@@ -5,8 +5,8 @@ body {
 
 #cover {
     width: 100%;
-    height: 300px;
-    background-image:  linear-gradient(rgba(0,0,0, 0.4) 0%,rgba(0,0,0, 1) 100%), url("https://c.files.bbci.co.uk/17CD/production/_84439060_carriageworks.jpg");
+    height: 75px;
+    background-image:  linear-gradient(rgba(0,0,0, 0.4) 0%,rgba(0,0,0, 1) 100%), url('/static/css/main-cover.jpg');
     background-size: cover;
 }
 
