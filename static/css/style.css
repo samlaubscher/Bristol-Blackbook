@@ -30,6 +30,16 @@ h2 {
 
 .navbar-collapse {
     text-align: center;
+    z-index: 9;
+}
+
+.collapse:not(.show) {
+    background-color: transparent;
+}
+
+.collapse,
+.collapsing {
+    background-color: black;
 }
 
 .nav-link {
