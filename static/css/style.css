@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Sprayerz";
+    src: url("/static/fonts/Sprayerz.otf");
+}
+
 body {
     font-family: 'Kanit', sans-serif;
     background-color: black;
@@ -5,8 +10,8 @@ body {
 
 #cover {
     width: 100%;
-    height: 75px;
-    background-image:  linear-gradient(rgba(0,0,0, 0.4) 0%,rgba(0,0,0, 1) 100%), url('/static/images/main-cover.jpg');
+    height: 300px;
+    background-image:  linear-gradient(rgba(0,0,0, 0.4) 0%,rgba(0,0,0, 1) 100%), url("/static/images/cover-image.jpg");
     background-size: cover;
 }
 
@@ -19,7 +24,7 @@ h2 {
 }
 
 .navbar {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.7);
     box-shadow: none;
     -webkit-box-shadow: none;
 }
@@ -46,6 +51,10 @@ h2 {
     margin: 0 5px;
 }
 
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link:hover {
+    color: rgba(255, 255, 255, 0.4);
+}
+
 button:focus {
     outline: none;
 }
@@ -60,6 +69,28 @@ button:focus {
 
 .row {
     margin: 0;
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px #fff;
+    border-image: linear-gradient(to top left, #d8d8d8 , #000000);
+    border-image-slice: 1;
+    color: #fff;
+    background-color: #000;
+    height: 100px;
+    width: 300px;
+    margin: 60px auto;
+}
+
+#title {
+    font-size: 27px;
+    font-family: 'Sprayerz';
+    border-bottom: solid 2px #fff;
+    border-image: linear-gradient(to right, #d8d8d8 , #000000);
+    border-image-slice: 1;
 }
 
 .top-margin {
