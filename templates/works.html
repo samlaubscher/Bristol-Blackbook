@@ -2,13 +2,13 @@
 {% block content %}
 
     <div class="row text-center">
-        <div class="card card-cascade wider padding-bottom" style="margin: auto;">
+        <div class="padding-bottom" style="margin: auto;">
 
             <!-- search box -->
             <div class="row">
                 <form class="col-sm-12 col-md-8 offset-md-2 no-side-padding" method="POST" 
                     id="search" action="{{ url_for('search') }}">
-                    <div class="card no-shadow">
+                    <div class="card">
                         <div class="card-body">
                             <!-- search bar -->
                             <div class="row">
@@ -49,11 +49,11 @@
             <div class="row">
             {% if works|length > 0 %}
                 {% for work in works %}
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="card card-cascade wider top-margin">
+                    <div class="col-sm-6 col-lg-4 art-panel">
+                        <div class="card card-cascade wider">
                             <div class="view view-cascade overlay">
                                 <!-- image -->
-                                <img class="card-img-top" 
+                                <img class="card-img-top"
                                         src="{{ work.image_url }}" alt="Graffiti Image">
                                 <a href="{{ url_for('work', work_id=work._id) }}">
                                     <!-- info overlay -->
