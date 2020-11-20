@@ -89,8 +89,72 @@ button:focus {
     font-size: 27px;
     font-family: 'Sprayerz';
     border-bottom: solid 2px #fff;
-    border-image: linear-gradient(to right, #d8d8d8 , #000000);
+    border-image: linear-gradient(40deg, #ff6ec4, #7873f5);
     border-image-slice: 1;
+}
+
+.md-form .input-prefix {
+    color: #fff;
+}
+
+.md-form.input-with-pre-icon label {
+    color: #fff;
+}
+
+.search-container {
+    position: relative;
+    border: solid 2px #fff;
+    border-image: linear-gradient(to bottom, #d8d8d8 , #000000);
+    border-image-slice: 1;
+    margin: 30px 5px 5px 5px;
+}
+
+.bottom-pagination-container {
+    height: 60px;
+    border: solid 2px #fff;
+    border-image: linear-gradient(to top, #d8d8d8 , #000000);
+    border-image-slice: 1;
+    margin: 10px 5px;
+}
+
+#search {
+    margin: 20px 0;
+}
+
+.search {
+    margin: 0 10px;
+}
+
+#query {
+    border-bottom: 1px solid #fe6ec5;
+}
+
+#search-btns {
+    margin: 0 2px;
+    box-shadow: 0 0 6px 0px #ffffff7a;
+}
+
+.btn-outline-secondary {
+    color: #ffffffeb !important;
+    border: 2px solid #d86fd2 !important;
+}
+
+.btn-outline-purple {
+    color: #ffffffeb !important;
+    border: 2px solid #8b72ee !important;
+}
+
+.no-results {
+    margin: 30px auto;
+}
+
+#filter {
+    float: right;
+    margin-right: 0;
+}
+
+.center-content {
+    justify-content: center;
 }
 
 .top-margin {
