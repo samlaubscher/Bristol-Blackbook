@@ -196,6 +196,19 @@ button:focus {
     margin-bottom: 5px;
 }
 
+/* footer */
+
+.social-links {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 10px;
+}
+
+.social-links a i {
+    color: rgba(255, 255, 255, 0.603);
+    padding: 0 20px;
+}
+
 /* preloader - https://bootsnipp.com/snippets/GaeVl */
 
 .preloader1,
