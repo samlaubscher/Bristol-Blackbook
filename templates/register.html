@@ -1,42 +1,37 @@
-
 {% extends "base.html" %}
 {% block content %}
 
-<h2 class="text-center">Register</h2>
+<h2 class="page-title text-center">Register An Account</h2>
 
-<div class="row">
-    <form class="col-sm-12 col-md-8 offset-2" method="POST" action="{{ url_for('register') }}">
-        <div class="card">
-            <div class="card-body">
-                <!-- username -->
-                <div class="md-form" style="max-width: 60%; margin: auto;">
-                    <i class="fas fa-user-plus prefix"></i>
-                    <input type="text" name="username" id="username" minlength="3"
-                        maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control validate" required>
-                    <label for="username">Username</label>
-                </div>
-                <!-- password -->
-                <div class="md-form" style="max-width: 60%; margin: auto;">
-                    <i class="fas fa-user-lock prefix"></i>
-                    <input type="password" name="password" id="password" minlength="3" 
-                        maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control validate" required>
-                    <label for="password" data-error="wrong" data-success="right">Type your password</label>
-                </div>
-                <!-- register -->
-                <div class="row" style="justify-content: center;">
-                    <button type="submit" class="col-sm-4 btn-elegant">
-                        Register <i class="fas fa-sign-in-alt"></i>
-                    </button>
-                </div>
-            </div>
-        </div>        
+<div class="row border-container">
+    <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('register') }}">
+        <!-- username -->
+        <div class="md-form">
+            <i class="fas fa-user-plus prefix"></i>
+            <input type="text" name="username" id="username" minlength="3"
+                maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control validate" required>
+            <label for="username">Username</label>
+        </div>
+        <!-- password -->
+        <div class="md-form">
+            <i class="fas fa-user-lock prefix"></i>
+            <input type="password" name="password" id="password" minlength="3" 
+                maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control validate" required>
+            <label for="password" data-error="wrong" data-success="right">Type your password</label>
+        </div>
+        <!-- register -->
+        <div class="row" style="justify-content: center;">
+            <button type="submit" class="col-sm-4 btn-elegant">
+                Register <i class="fas fa-sign-in-alt"></i>
+            </button>
+        </div>
     </form>
 </div>
 
 <div class="row">
-    <div class="col-12">
+    <div class="col-12 white-text">
         <div class="text-center">
-            Need to create an account? <a href="{{ url_for('register') }}" class="light-blue-text text-darken-4">Register Here</a>
+            Aready have an account? <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">Login Here</a>
         </div>
     </div>
 </div>
