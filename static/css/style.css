@@ -6,6 +6,7 @@
 body {
     font-family: 'Kanit', sans-serif;
     background-color: black;
+    height: 100%;
 }
 
 #cover {
@@ -15,7 +16,9 @@ body {
     background-size: cover;
 }
 
-h2 {
+
+.page-title {
+    margin: 30px;
     color: aliceblue;
 }
 
@@ -93,11 +96,18 @@ button:focus {
     border-image-slice: 1;
 }
 
-.md-form .input-prefix {
+.form-control,
+.form-control:focus {
     color: #fff;
 }
 
-.md-form.input-with-pre-icon label {
+.md-form .input-prefix,
+.md-form .prefix {
+    color: #fff;
+}
+
+.md-form.input-with-pre-icon label,
+.md-form label {
     color: #fff;
 }
 
@@ -115,6 +125,13 @@ button:focus {
     border-image: linear-gradient(to top, #d8d8d8 , #000000);
     border-image-slice: 1;
     margin: 10px 5px;
+}
+
+.border-container {
+    border: solid 2px #fff;
+    border-image: linear-gradient(to bottom, #d8d8d8 , #000000);
+    border-image-slice: 1;
+    margin: 30px 5px 5px 5px;
 }
 
 #search {
