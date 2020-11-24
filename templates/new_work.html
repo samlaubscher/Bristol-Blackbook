@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h2 class="light-blue-text text-darken-4 text-center">Upload New Work</h2>
+    <h2 class="page-title text-center">Upload New Work</h2>
 
-    <div class="row">
+    <div class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('new_work') }}">
-            <div class="card">
-                <div class="card-body">
                     <!-- artist name -->
                     <div class="row">
-                        <class class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                        <class class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
                             <i class="fas fa-user-ninja input-prefix"></i>
                             <select class="form-control" name="artist_name" id="artist_name" required>
                                 <option value="" disabled selected>Artist</option>
@@ -21,7 +19,7 @@
                     </div>
                     <!-- style -->
                     <div class="row">
-                        <class class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                        <class class="md-form input-with-pre-icon upload-field">
                             <i class="fas fa-spray-can input-prefix"></i>
                             <select class="form-control" name="style_type" id="style_type" required>
                                 <option value="" disabled selected>Style</option>
@@ -33,7 +31,7 @@
                     </div>
                     <!-- year -->
                     <div class="row">
-                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                        <div class="md-form input-with-pre-icon upload-field">
                             <i class="fas fa-calendar-alt input-prefix"></i>
                             <input type="text" id="year_painted" name="year_painted" 
                             minlength="4" maxlength="4" pattern="^[0-9]{4,4}$" class="form-control" required>
@@ -42,7 +40,7 @@
                     </div>
                     <!-- image URL -->
                     <div class="row">
-                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
+                        <div class="md-form input-with-pre-icon upload-field" style="width: 70%; margin: auto; justify-self: start;">
                             <i class="fas fa-camera-retro input-prefix"></i>
                             <input type="text" id="image_url" name="image_url" class="form-control">
                             <label for="image_url">Image URL</label>
@@ -59,8 +57,6 @@
                             Upload Work <i class="fas fa-plus-circle" style="font-size: 90%;"></i>
                         </button>
                     </div>
-                </div>      
-            </div>     
         </form>
     </div>
 
