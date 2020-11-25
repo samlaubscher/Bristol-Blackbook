@@ -7,7 +7,7 @@
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('new_work') }}">
                     <!-- artist name -->
                     <div class="row">
-                        <class class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
+                        <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
                             <i class="fas fa-user-ninja input-prefix"></i>
                             <select class="form-control" name="artist_name" id="artist_name" required>
                                 <option value="" disabled selected>Artist</option>
@@ -15,11 +15,11 @@
                                     <option value="{{ artist.artist_name }}">{{ artist.artist_name }}</option>
                                 {% endfor %}
                             </select>
-                        </class>
+                        </div>
                     </div>
                     <!-- style -->
                     <div class="row">
-                        <class class="md-form input-with-pre-icon upload-field">
+                        <div class="md-form input-with-pre-icon upload-field">
                             <i class="fas fa-spray-can input-prefix"></i>
                             <select class="form-control" name="style_type" id="style_type" required>
                                 <option value="" disabled selected>Style</option>
@@ -27,7 +27,7 @@
                                     <option value="{{ style.style_type }}">{{ style.style_type }}</option>
                                 {% endfor %}
                             </select>
-                        </class>
+                        </div>
                     </div>
                     <!-- year -->
                     <div class="row">
