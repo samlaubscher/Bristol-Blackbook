@@ -5,7 +5,7 @@
 
 body {
     font-family: 'Kanit', sans-serif;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     height: 100%;
 }
 
@@ -19,6 +19,9 @@ body {
 h2, .page-title {
     margin: 30px;
     color: aliceblue;
+    font-family: Anton;
+    font-size: 45px;
+    letter-spacing: 2px;
 }
 
 .text-shadow {
@@ -108,6 +111,10 @@ button:focus {
     color:#c571da;
 }
 
+.form-control.option:selected {
+    color:#c01919;
+}
+
 .md-form .input-prefix,
 .md-form .prefix {
     color: #fff;
@@ -116,6 +123,10 @@ button:focus {
 .md-form.input-with-pre-icon label,
 .md-form label {
     color: #fff;
+}
+
+.md-form.input-with-pre-icon .input-prefix {
+    left: 14px;
 }
 
 .text-muted {
