@@ -209,6 +209,10 @@ button:focus {
     margin: 60px auto;
 }
 
+.heading:hover {
+    color: #fff;
+}
+
 #title {
     font-size: 27px;
     font-family: 'Sprayerz';
