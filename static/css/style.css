@@ -43,6 +43,12 @@ h2,
 .artists-box {
     height: 75px;
     width: 200px;
+    transition: all 0.25s ease 0s;
+}
+
+.artists-box:hover {
+    color: #c571da;
+    border-color: #c571da;
 }
 
 .artist-box {
