@@ -91,6 +91,13 @@ h2,
     text-transform: uppercase;
     font-family: 'Archivo Black', sans-serif;
     letter-spacing: 2px;
+    padding: 25px 45px;
+}
+
+#hover-fx:hover {
+    color: rgb(255 255 255 / 78%);
+    text-shadow: 0px 0px 12px #fb00ff;
+    font-family: 'Sprayerz';
 }
 
 .artist-info {
