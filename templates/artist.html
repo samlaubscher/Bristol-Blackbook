@@ -1,15 +1,75 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="jumbotron jumbotron-fluid text-center">
-        <!-- crew name -->
-        <h2>{{ artist.artist_name }}</h2>
-        <!-- buttons -->
+    <div class="text-center">
+        <!-- Artists Name -->
+        <div class="border-container">
+            <div class="col-sm-8 center-margin">
+                <div class="artist-box">
+                    <div class="border-mask-top"></div>
+                        <h2 class="artist-info text-center">Artist Name: </h2>
+                        <h2 class="artist-direct-info">{{ artist.artist_name|upper }}</h2>
+                    <div class="border-mask-bottom"></div>
+                </div>
+            </div>
+            <!-- Artists Crews -->
+            <div class="col-sm-8 center-margin">
+                <div class="crew-box">
+                    <h2 class="artist-info text-center">Associated Crews:</h2>
+                    <div class="artist-crews">
+                        <div class="row">
+                            {% for crew in artist.artist_crews %}
+                                <div class="col-sm-6">
+                                    <a href="{{ url_for('crew', crew_name=crew) }}">
+                                        <div class="center-margin">
+                                            <div class="artists-box">
+                                                <div class="border-mask-top-l"></div>
+                                                <h3 class="artist-name">{{ crew }}</h3>
+                                                <div class="border-mask-bottom-r"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <!-- Artists Works -->
+            <div class="row">
+            {% for work in works %}
+            <div class="col-sm-6 col-lg-4 art-panel">
+                <div class="card card-cascade wider">
+                    <div class="view view-cascade overlay">
+                        <!-- image -->
+                        <img class="card-img-top"
+                                src="{{ work.image_url }}" alt="Graffiti Image">
+                        <a href="{{ url_for('work', work_id=work._id) }}">
+                            <!-- info overlay -->
+                            <div class="mask flex-center rgba-black-strong">
+                                <p class="white-text">
+                                    Artist: {{ work.artist_name }}
+                                    <br>Style: {{ work.style_type }}
+                                    <br>Year Painted: {{ work.year_painted }}
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+
+        <!-- Admin Buttons -->
         {% if session.user|lower == artist.submitted_by|lower or session.user|lower == "admin"|lower %}
+            <hr style="width: 70%;">
+            <h3 class="white-text">EDIT ARTIST</h3>
             <a href="{{ url_for('edit_artist', artist_name=artist.artist_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
             <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
                 data-target="#confirm-delete-modal">Delete</button>
-            
+            <hr style="width: 70%;">
             <!-- confirm delete modal -->
             <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
                 aria-hidden="true">
@@ -29,29 +89,6 @@
                 </div>
             </div>
         {% endif %}
-
-        <!-- works -->
-        <div class="row">
-            {% for work in works %}
-                bang
-            {% endfor %}
-        </div>
     </div>
 
-    <!-- Disqus comments section -->
-    <div id="disqus_thread"></div>
-    <script>
-        var disqus_config = function () {
-            this.page.url = "{{ request.url }}";
-            this.page.identifier = "{{ artist._id }}";
-        };
-        
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://bristol-blackbook.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endblock %}
