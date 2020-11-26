@@ -245,7 +245,7 @@ def new_work():
     if 'user' in session:
         if request.method == "POST":
             work = {
-                "artist_name": request.form.get("artist_name"),
+                "artist_name": request.form.get("name"),
                 "year_painted": request.form.get("year_painted"),
                 "style_type": request.form.get("style_type"),
                 "image_url": request.form.get("image_url"),
@@ -257,8 +257,10 @@ def new_work():
             return redirect(url_for("works"))
 
         artists = mongo.db.artists.find().sort("artist_name", 1)
-        styles = mongo.db.styles.find().sort("style_type", 1)
-        return render_template("new_work.html", artists=artists, styles=styles)
+        crews = mongo.db.crews.find().sort("crew_name", 1)
+        artiststyles = mongo.db.styles.find().sort("style_type", 1)
+        crewstyles = mongo.db.styles.find().sort("style_type", 1)
+        return render_template("new_work.html", artists=artists, crews=crews, artiststyles=artiststyles, crewstyles=crewstyles)
 
     return redirect(url_for("login"))
 
