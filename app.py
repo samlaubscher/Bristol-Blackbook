@@ -409,14 +409,17 @@ def edit_artist(artist_name):
     if 'user' in session:
         if request.method == "POST":
             update_artist = {
-                "artist_name": request.form.get("artist_name")
-            }
+                "artist_name": request.form.get("artist_name"),
+                "artist_crews": request.form.getlist("artist_crews"),
+                "submitted_by": session["user"]
+                }
             mongo.db.artists.update_one({"artist_name": str(artist_name)}, {"$set": update_artist})
             flash("Artist Successfully Updated!")
             return redirect(url_for("artists"))
 
         artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
-        return render_template("edit_artist.html", artist=artist)
+        crews = list(mongo.db.crews.find().sort("crew_name", 1))
+        return render_template("edit_artist.html", artist=artist, crews=crews)
 
     return redirect(url_for("login"))
 

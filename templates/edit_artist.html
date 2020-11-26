@@ -1,33 +1,44 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 text-center">Edit Artist</h3>
+<h2 class="page-title text-center">Edit Artist</h2>
 
-    <div class="row">
-        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_artist', artist_name=artist.artist_name) }}">
-            <div class="card">
-                <div class="card-body">
-                    <!-- artist name -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
-                            <i class="fas fa-user-ninja input-prefix"></i>
-                            <input type="text" id="artist_name" name="artist_name" value="{{ artist.artist_name }}"
-                                minlength="3" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control" required>
-                            <label for="artist_name">Artist Name</label>
-                        </div>
-                    </div>
-                    <br>
-                    <!-- submit button -->
-                    <div class="row" style="justify-content: center;">
-                        <a href="{{ url_for('artists') }}" class="btn btn-mdb-color text-shadow">
-                            Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>
-                        <button type="submit" class="col-sm-4 btn-elegant">
-                            Update Artist <i class="fas fa-edit" style="font-size: 90%;"></i>
-                        </button>
-                    </div>
-                </div>      
-            </div>     
-        </form>
-    </div>
+<div class="row border-container">
+    <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_artist', artist_name=artist.artist_name) }}">
+        <!-- artist name -->
+        <div class="row">
+            <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
+                <i class="fas fa-user-ninja input-prefix"></i>
+                <input type="text" id="artist_name" name="artist_name" value="{{ artist.artist_name }}"
+                    minlength="3" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control" required>
+                <label for="artist_name">Artist Name</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="md-form input-with-pre-icon upload-field">
+                <i class="fas fa-users input-prefix"></i>
+                <select class="form-control" name="artist_crews" id="artist_crews" multiple required>
+                    <option selected disabled>Select Crews</option>
+                    {% for crew in crews %}
+                        <option value="{{ crew.crew_name }}">{{ crew.crew_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <small id="crew-select-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
+            You can select multiple crews by holding CTRL on your keyboard.
+        </small>
+        <br>
+        <!-- submit button -->
+        <div class="row" style="justify-content: center;">
+            <a href="{{ url_for('artists') }}" class="btn btn-outline-secondary text-shadow" id="neon-upload-btn">
+                Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>
+        <div class="row" style="justify-content: center;">
+            <button type="submit" class="btn btn-outline-purple text-shadow" id="neon-upload-btn">
+                Update Artist <i class="fas fa-edit" style="font-size: 90%;"></i>
+            </button>
+        </div>  
+    </form>
+</div>
 
 {% endblock %}
