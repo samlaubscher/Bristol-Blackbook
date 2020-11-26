@@ -2,15 +2,15 @@
 {% block content %}
 
     <h2 class="text-center">Artists</h2>
-
-    <div class="row" style="justify-content: center;">
-        <div class="col-sm12 text-center">
-            <a href="{{ url_for('add_artist') }}" class="btn btn-sm btn-mdb-color text-shadow">
+    
+    <div class="row border-container">
+        <!-- add artist button -->
+        <div class="col-sm-12 add-btn text-center">
+            <a href="{{ url_for('add_artist') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
                 Add Artist  <i class="fas fa-plus"></i>
             </a>
         </div>
-    </div>
-    <div class="row border-container">
+        <!-- artists -->
         {% for artist in artists %}
             <div class="col-md-3 col-sm-8">
                 <a href="{{ url_for('artist', artist_name=artist.artist_name) }}">
