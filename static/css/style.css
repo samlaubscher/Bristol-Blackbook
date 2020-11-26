@@ -16,14 +16,104 @@ body {
     background-size: cover;
 }
 
-h2, .page-title {
+h2, 
+.page-title,
+.artist-info {
     margin: 30px;
     color: aliceblue;
-    font-family: Anton;
+    font-family: 'Anton', sans-serif;
     font-size: 45px;
     letter-spacing: 2px;
     text-align: center;
+}
+
+.artists-box,
+.artist-box,
+.artist-info {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px #fff;
+    color: #fff;
+    background-color: #000;
+    margin: 30px auto;
+}
+
+.artists-box {
+    height: 75px;
+    width: 200px;
+}
+
+.artist-box {
+    margin: 30px auto 75px auto;
+}
+
+.crew-box {
+    display: block;
+}
+
+.border-mask-top,
+.border-mask-top-l {
+    position: absolute;
+    top: -4px;
+    width: 30%;
+    height: 5px;
+    background-color: #000;
+}
+
+.border-mask-bottom,
+.border-mask-bottom-r {
+    position: absolute;
+    bottom: -4px;
+    width: 30%;
+    height: 5px;
+    background-color: #000;
+}
+
+.border-mask-bottom,
+.border-mask-top-l {
+    left: 10px;
+}
+
+.border-mask-top,
+.border-mask-bottom-r {
+    right: 10px;
+}
+
+.artist-name {
     text-transform: uppercase;
+    font-family: 'Archivo Black', sans-serif;
+    letter-spacing: 2px;
+}
+
+.artist-info {
+    display: inline-block;
+    font-size: 30px;
+    margin: 30px 10px;
+    border: none;
+}
+
+.artist-direct-info,
+.artist-crew-info {
+    display: inline-block;
+    font-size: 80px;
+    letter-spacing: 3px;
+    margin: 10px;
+}
+
+.artist-crew-info {
+    font-size: 30px;
+}
+
+.artist-crews {
+    margin: 0 auto 30px auto;
+    display: flex;
+}
+
+.center-margin {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h6 {
