@@ -22,6 +22,22 @@ h2, .page-title {
     font-family: Anton;
     font-size: 45px;
     letter-spacing: 2px;
+    text-align: center;
+}
+
+h6 {
+    text-align: center;
+    color: #b3acac99;
+    font-size: 12px;
+}
+
+hr {
+    border-color: rgb(255 255 255 / 65%);
+}
+
+.upload-header {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .text-shadow {
@@ -168,9 +184,14 @@ button:focus {
     border-bottom: 1px solid #fe6ec5;
 }
 
-#search-btns {
+#neon-btn,
+#neon-upload-btn {
     margin: 0 2px;
     box-shadow: 0 0 6px 0px #ffffff7a;
+}
+
+#neon-upload-btn {
+    margin: 30px;
 }
 
 .btn-outline-secondary {
@@ -190,6 +211,16 @@ button:focus {
 #filter {
     float: right;
     margin-right: 0;
+}
+
+.upload-selector-btns {
+    margin: 30px auto;
+    justify-content: center;
+}
+
+.submit-btn {
+    justify-content: center;
+    margin-bottom: 30px;
 }
 
 .center-content {
