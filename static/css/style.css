@@ -29,7 +29,8 @@ h2,
 
 .artists-box,
 .artist-box,
-.artist-info {
+.artist-info,
+.crews-box {
     position: relative;
     display: flex;
     justify-content: center;
@@ -55,8 +56,18 @@ h2,
     margin: 30px auto 15px auto;
 }
 
-.crew-box {
+.crews-box {
+    height: 400px;
     display: block;
+    text-align: center;
+    border: solid 3px #ffffff42;
+}
+
+.crews-box:hover {
+    color: #c571da;
+    border-color: #c571da;
+    text-shadow: 0px 0px 12px #fb00ff1c;
+    box-shadow: 0px 0px 12px #fb00ff1a;
 }
 
 .border-mask-top,
@@ -87,17 +98,38 @@ h2,
     right: 10px;
 }
 
-.artist-name {
-    text-transform: uppercase;
+.artist-name,
+.crew-name {
     font-family: 'Archivo Black', sans-serif;
     letter-spacing: 2px;
-    padding: 25px 45px;
 }
 
-#hover-fx:hover {
-    color: rgb(255 255 255 / 78%);
-    text-shadow: 0px 0px 12px #fb00ff;
-    font-family: 'Sprayerz';
+.crew-name {
+    font-size: 50px;
+    padding: 8px 0;
+    letter-spacing: 0px;
+    color: #fff;
+}
+
+#crew-panel-image:hover {
+	animation-name: image-zoom;
+	animation-duration: 0.5s;
+	animation-fill-mode: both;
+}
+
+.crew-image {
+    margin-top: 15px;
+    max-width: 90%;
+    height: auto;
+}
+
+@keyframes image-zoom {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(1.02);
+	}
 }
 
 .artist-info {
@@ -379,6 +411,11 @@ button:focus {
     padding-right: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+#crew-panel-image {
+    height: 300px;
+    padding: 15px;
 }
 
 /* footer */

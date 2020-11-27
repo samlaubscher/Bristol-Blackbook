@@ -2,57 +2,30 @@
 {% block content %}
 
     <h2 class="text-center">Crews</h2>
-
-    <div class="row" style="justify-content: center;">
-        <div class="col-sm12 text-center">
-            <a href="{{ url_for('add_crew') }}" class="btn btn-mdb-color text-shadow">
+    
+    <div class="row border-container">
+        <!-- add artist button -->
+        <div class="col-sm-12 add-btn text-center">
+            <a href="{{ url_for('add_crew') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
                 Add Crew  <i class="fas fa-plus"></i>
             </a>
         </div>
-    </div>
 
-    <div class="row">
-        {% for crew in crews %}
-            <div class="col-md-3 col-sm-12">
-                <div class="card card-cascade wider top-margin">
-                    <div class="view view-cascade overlay">
-                        <div class="card-body card-body-cascade text-center">
-                            <div class="view view-cascade overlay">
-                                <a href="{{ url_for('crew', crew_name=crew.crew_name) }}">
-                                    <!-- image -->
-                                    <img class="card-img-top" 
-                                        src="{{ crew.crew_image }}" alt="Crew Image">
-                                    <h4 class="card-title"><strong>{{ crew.crew_name }}</strong></h4>
-                                </a>
-                            </div>
-
-                            {% if session.user|lower == "admin"|lower or session.user|lower == crew.submitted_by|lower %}
-                                <a href="{{ url_for('edit_crew', crew_name=crew.crew_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
-                                <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
-                                    data-target="#confirm-delete-modal">Delete</button>
-                                <!-- confirm delete modal -->
-                                <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-                                        <div class="modal-content text-center">
-                                            <div class="modal-header d-flex justify-content-center">
-                                                <p class="heading">Are you sure?</p>
-                                            </div>
-                                            <div class="modal-body">
-                                                <i class="fas fa-times fa-4x animated rotateIn"></i>
-                                            </div>
-                                            <div class="modal-footer flex-center">
-                                                <a href="{{ url_for('delete_crew', crew_name=crew.crew_name) }}" class="btn btn-outline-danger">Yes</a>
-                                                <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
+        <div class="row">
+            {% for crew in crews %}
+                <div class="col-sm-12 col-md-6">
+                    <div class="card card-cascade wider crews-box">
+                        <div class="view view-cascade">
+                            <a href="{{ url_for('crew', crew_name=crew.crew_name) }}">
+                            <!-- image -->
+                            <img class="card-img-top" id="crew-panel-image"
+                                    src="{{ crew.crew_image }}" alt="Graffiti Image">
+                                <h3 class="crew-name">{{ crew.crew_name }}</h3>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
