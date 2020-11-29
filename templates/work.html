@@ -1,16 +1,57 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="jumbotron text-center">
-        <!-- image -->
-        <div class="view overlay my-4">
-            <img src="{{ work.image_url }}" class="img-fluid" alt="Graffiti Image">
+    <div class="text-center">
+        <div class="border-container">
+           
+            <!-- piece Image -->
+            <img src="{{ work.image_url }}" class="crew-image" alt="Crew Image">
+            
+            <div class="col-sm-8 center-margin">
+                <!-- Crew Name -->
+                <div class="artist-box">
+                    <div class="border-mask-top"></div>
+                        <h2 class="artist-info text-center">Artist: </h2>
+                        <a href="{{ url_for('artist', artist_name=work.artist_name) }}">
+                        <h2 class="artist-direct-info">{{ work.artist_name|upper }}</h2>
+                        </a>
+                    <div class="border-mask-bottom"></div>
+                </div>
+            </div>
+            <!-- Line Break -->
+            <div class="col-sm-8 center-margin">
+                <hr>
+            </div>
+            <div class="row">
+                {% for artistwork in works %}
+                    {% if work.artist_name == artistwork.artist_name %}
+                    <div class="col-sm-6 col-lg-4 art-panel">
+                        <div class="card card-cascade wider">
+                            <div class="view view-cascade overlay">
+                                <!-- image -->
+                                <img class="card-img-top"
+                                        src="{{ artistwork.image_url }}" alt="Graffiti Image">
+                                <a href="{{ url_for('work', work_id=artistwork._id) }}">
+                                    <!-- info overlay -->
+                                    <div class="mask flex-center rgba-black-strong">
+                                        <p class="white-text">
+                                            <br>Style: {{ artistwork.style_name }}
+                                            <br>Year Painted: {{ artistwork.year_painted }}
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <!-- Line Break -->
+            <div class="col-sm-8 center-margin">
+                <hr>
+            </div>
         </div>
-        <!-- image info -->
-        <h5 class="indigo-text h5 mb-4">Artist: {{ work.artist_name }}</h5>
-        <p class="card-text">Style: {{ work.style_type }}<br>
-            Year Painted: {{ work.year_painted }}
-        </p>
         <!-- buttons -->
         {% if session.user|lower == work.submitted_by|lower or session.user|lower == "admin"|lower %}
             <a href="{{ url_for('edit_work', work_id=work._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
@@ -38,20 +79,4 @@
         {% endif %}
     </div>
 
-    <!-- Disqus comments section -->
-    <div id="disqus_thread"></div>
-    <script>
-        var disqus_config = function () {
-            this.page.url = "{{ request.url }}";
-            this.page.identifier = "{{ work._id }}";
-        };
-        
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://bristol-blackbook.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endblock %}
