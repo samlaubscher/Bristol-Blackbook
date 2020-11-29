@@ -659,7 +659,8 @@ def edit_style(style_name):
         if session["user"] == "admin":
             if request.method == "POST":
                 update_style = {
-                    "style_name": request.form.get("style_name")
+                    "style_name": request.form.get("style_name"),
+                        "style_image": request.form.get("image_url")
                 }
                 mongo.db.styles.update_one({"style_name": str(style_name)}, {"$set": update_style})
                 flash("Style Successfully Updated!")
