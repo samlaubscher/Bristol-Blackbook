@@ -30,7 +30,8 @@ h2,
 .artists-box,
 .artist-box,
 .artist-info,
-.crews-box {
+.crews-box,
+.style-box {
     position: relative;
     display: flex;
     justify-content: center;
@@ -99,7 +100,8 @@ h2,
 }
 
 .artist-name,
-.crew-name {
+.crew-name,
+.username {
     font-family: 'Archivo Black', sans-serif;
     letter-spacing: 2px;
 }
@@ -130,6 +132,19 @@ h2,
 	to {
 		transform: scale(1.02);
 	}
+}
+
+.admin-banner {
+    width: 100%;
+    height: 55px;
+    background-color: #af00009c;
+    text-align: center;
+    color: #fff;
+}
+
+.username {
+    color: #fff;
+    
 }
 
 .artist-info {
