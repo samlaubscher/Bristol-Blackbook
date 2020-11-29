@@ -248,6 +248,7 @@ def new_work():
                 "artist_name": request.form.get("name"),
                 "year_painted": request.form.get("year_painted"),
                 "style_name": request.form.get("style_name"),
+                "type_name": request.form.get("type_name"),
                 "image_url": request.form.get("image_url"),
                 "submitted_by": session["user"],
                 "date_submitted": datetime.now()
@@ -260,7 +261,10 @@ def new_work():
         crews = mongo.db.crews.find().sort("crew_name", 1)
         artiststyles = mongo.db.styles.find().sort("style_name", 1)
         crewstyles = mongo.db.styles.find().sort("style_name", 1)
-        return render_template("new_work.html", artists=artists, crews=crews, artiststyles=artiststyles, crewstyles=crewstyles)
+        artisttypes = mongo.db.types.find().sort("type_name", 1)
+        crewtypes = mongo.db.types.find().sort("type_name", 1)
+        return render_template("new_work.html", artists=artists, crews=crews, 
+            artiststyles=artiststyles, crewstyles=crewstyles, artisttypes=artisttypes, crewtypes=crewtypes)
 
     return redirect(url_for("login"))
 
@@ -294,7 +298,8 @@ def edit_work(work_id):
         work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
         artists =  mongo.db.artists.find().sort("artist_name", 1)
         styles = mongo.db.styles.find().sort("style_name", 1)
-        return render_template("edit_work.html", work=work, artists=artists, styles=styles)
+        types = mongo.db.types.find().sort("type_name", 1)
+        return render_template("edit_work.html", work=work, artists=artists, styles=styles, types=types)
 
     return redirect(url_for("login"))
 
@@ -776,7 +781,7 @@ def delete_type(type_name):
 
     if 'user' in session:
         if session["user"] == "admin":
-            mongo.db.styles.remove({"type_name": str(type_name)})
+            mongo.db.types.remove({"type_name": str(type_name)})
             flash("type Successfully Deleted!")
             return redirect(url_for("types"))
 

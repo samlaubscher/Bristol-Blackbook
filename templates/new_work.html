@@ -16,129 +16,145 @@
                 </button>
             </div>
         </div>
-            <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('new_work') }}">
-              <div class="collapse" id="artistPiece">
-                  <h2 class="upload-header">ARTIST WORK</h2>
-                    <!-- artist name -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
-                            <i class="fas fa-user-ninja input-prefix"></i>
-                            <select class="form-control" name="name" id="name" required>
-                                <option value="" disabled selected>Artist</option>
-                                {% for artist in artists %}
-                                    <option value="{{ artist.artist_name }}">{{ artist.artist_name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <!-- style -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field">
-                            <i class="fas fa-spray-can input-prefix"></i>
-                            <select class="form-control" name="style_type" id="style_type" required>
-                                <option value="" disabled selected>Style</option>
-                                {% for astyle in artiststyles %}
-                                    <option value="{{ astyle.style_type }}">{{ astyle.style_type }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <!-- year -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field">
-                            <i class="fas fa-calendar-alt input-prefix"></i>
-                            <input type="text" id="year_painted" name="year_painted" 
-                            minlength="4" maxlength="4" pattern="^[0-9]{4,4}$" class="form-control" required>
-                            <label for="year_painted">Year Painted</label>
-                        </div>
-                    </div>
-                    <!-- image URL -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field" style="width: 70%; margin: auto; justify-self: start;">
-                            <i class="fas fa-camera-retro input-prefix"></i>
-                            <input type="text" id="image_url" name="image_url" class="form-control">
-                            <label for="image_url">Image URL</label>
-                        </div>
-                        <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
-                            Only use direct links to images by right clicking and pressing 'copy image address'. You can use images from any external site such as <a href="https://imgur.com/upload" target="_blank">Imgur</a>.
-                            If uploading, please note you must 'Add a title' then post 'To Community' before you right click the image and 'copy image address'.
-                        </small>
-                    </div>
-                    <br>
-                    <!-- submit button -->
-                    <div class="row submit-btn">
-                        <button type="submit" class="col-sm-4 btn-elegant">
-                            Upload Artist Work <i class="fas fa-plus-circle" style="font-size: 90%;"></i>
-                        </button>
-                    </div>
-                    <hr>
-                </div>
-            </form>
 
-
-            <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('new_work') }}">
-                <div class="collapse" id="crewPiece">
-                    <h2 class="upload-header">CREW WORK</h2>
-                    <!-- crew name -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
-                            <i class="fa fa-users input-prefix"></i>
-                            <select class="form-control" name="name" id="name" required>
-                                <option value="" disabled selected>Crew</option>
-                                {% for crew in crews %}
-                                    <option value="{{ crew.crew_name }}">{{ crew.crew_name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+        <!-- Artist Work Input -->
+        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('new_work') }}">
+            <div class="collapse" id="artistPiece">
+                <h2 class="upload-header">ARTIST WORK</h2>
+                <!-- artist name -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
+                        <i class="fas fa-user-ninja input-prefix"></i>
+                        <select class="form-control" name="name" id="name" required>
+                            <option value="" disabled selected>Artist</option>
+                            {% for artist in artists %}
+                                <option value="{{ artist.artist_name }}">{{ artist.artist_name }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
-                    <!-- style -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field">
-                            <i class="fas fa-spray-can input-prefix"></i>
-                            <select class="form-control" name="style_type" id="style_type" required>
-                                <option value="" disabled selected>Style</option>
-                                {% for cstyle in crewstyles %}
-                                    <option value="{{ cstyle.style_type }}">{{ cstyle.style_type }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <!-- year -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field">
-                            <i class="fas fa-calendar-alt input-prefix"></i>
-                            <input type="text" id="year_painted" name="year_painted" 
-                            minlength="4" maxlength="4" pattern="^[0-9]{4,4}$" class="form-control" required>
-                            <label for="year_painted">Year Painted</label>
-                        </div>
-                    </div>
-                    <!-- image URL -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field" style="width: 70%; margin: auto; justify-self: start;">
-                            <i class="fas fa-camera-retro input-prefix"></i>
-                            <input type="text" id="image_url" name="image_url" class="form-control">
-                            <label for="image_url">Image URL</label>
-                        </div>
-                        <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
-                            Only use direct links to images by right clicking and pressing 'copy image address'. You can use images from any external site such as <a href="https://imgur.com/upload" target="_blank">Imgur</a>.
-                            If uploading, please note you must 'Add a title' then post 'To Community' before you right click the image and 'copy image address'.
-                        </small>
-                    </div>
-                    <br>
-                    <!-- submit button -->
-                    <div class="row submit-btn">
-                        <button type="submit" class="col-sm-4 btn-elegant">
-                            Upload Crew Work <i class="fas fa-plus-circle" style="font-size: 90%;"></i>
-                        </button>
-                    </div>
-                    <hr>
                 </div>
-            </form>
-            <div class="col-sm-12 col-md-8 offset-md-2">
+                <!-- style -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field">
+                        <i class="fas fa-spray-can input-prefix"></i>
+                        <select class="form-control" name="style_name" id="style_name" required>
+                            <option value="" disabled selected>Style</option>
+                            {% for astyle in artiststyles %}
+                                <option value="{{ astyle.style_name }}">{{ astyle.style_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- type -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field">
+                        <i class="fas fa-map-marked-alt input-prefix"></i>
+                        <select class="form-control" name="type_name" id="type_name" required>
+                            <option value="" disabled selected>Type</option>
+                            {% for atype in artisttypes %}
+                                <option value="{{ atype.type_name }}">{{ atype.type_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- year -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field">
+                        <i class="fas fa-calendar-alt input-prefix"></i>
+                        <input type="text" id="year_painted" name="year_painted" 
+                        minlength="4" maxlength="4" pattern="^[0-9]{4,4}$" class="form-control" required>
+                        <label for="year_painted">Year Painted</label>
+                    </div>
+                </div>
+                <!-- image URL -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field" style="width: 70%; margin: auto; justify-self: start;">
+                        <i class="fas fa-camera-retro input-prefix"></i>
+                        <input type="text" id="image_url" name="image_url" class="form-control">
+                        <label for="image_url">Image URL</label>
+                    </div>
+                    <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
+                        Only use direct links to images by right clicking and pressing 'copy image address'. You can use images from any external site such as <a href="https://imgur.com/upload" target="_blank">Imgur</a>.
+                        If uploading, please note you must 'Add a title' then post 'To Community' before you right click the image and 'copy image address'.
+                    </small>
+                </div>
+                <br>
+                <!-- submit button -->
+                <div class="row submit-btn">
+                    <button type="submit" class="col-sm-4 btn-elegant">
+                        Upload Artist Work <i class="fas fa-plus-circle" style="font-size: 90%;"></i>
+                    </button>
+                </div>
+                <hr>
+            </div>
+        </form>
+
+        <!-- Crew Work Input -->
+        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('new_work') }}">
+            <div class="collapse" id="crewPiece">
+                <h2 class="upload-header">CREW WORK</h2>
+                <!-- crew name -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
+                        <i class="fa fa-users input-prefix"></i>
+                        <select class="form-control" name="name" id="name" required>
+                            <option value="" disabled selected>Crew</option>
+                            {% for crew in crews %}
+                                <option value="{{ crew.crew_name }}">{{ crew.crew_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- style -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field">
+                        <i class="fas fa-spray-can input-prefix"></i>
+                        <select class="form-control" name="style_name" id="style_name" required>
+                            <option value="" disabled selected>Style</option>
+                            {% for cstyle in crewstyles %}
+                                <option value="{{ cstyle.style_name }}">{{ cstyle.style_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- type -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field">
+                        <i class="fas fa-map-marked-alt input-prefix"></i>
+                        <select class="form-control" name="type_name" id="type_name" required>
+                            <option value="" disabled selected>Type</option>
+                            {% for ctype in crewtypes %}
+                                <option value="{{ ctype.type_name }}">{{ ctype.type_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <!-- image URL -->
+                <div class="row">
+                    <div class="md-form input-with-pre-icon upload-field" style="width: 70%; margin: auto; justify-self: start;">
+                        <i class="fas fa-camera-retro input-prefix"></i>
+                        <input type="text" id="image_url" name="image_url" class="form-control">
+                        <label for="image_url">Image URL</label>
+                    </div>
+                    <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
+                        Only use direct links to images by right clicking and pressing 'copy image address'. You can use images from any external site such as <a href="https://imgur.com/upload" target="_blank">Imgur</a>.
+                        If uploading, please note you must 'Add a title' then post 'To Community' before you right click the image and 'copy image address'.
+                    </small>
+                </div>
+                <br>
+                <!-- submit button -->
+                <div class="row submit-btn">
+                    <button type="submit" class="col-sm-4 btn-elegant">
+                        Upload Crew Work <i class="fas fa-plus-circle" style="font-size: 90%;"></i>
+                    </button>
+                </div>
+                <hr>
+            </div>
+        </form>
+        <div class="col-sm-12 col-md-8 offset-md-2">
             <h6>Please note: Offensive content will be removed by the admin, resulting in your account being banned</h6>
             <hr>
-            </div>
-        
+        </div>
     </div>
 
 {% endblock %}
