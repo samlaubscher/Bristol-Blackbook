@@ -247,7 +247,7 @@ def new_work():
             work = {
                 "artist_name": request.form.get("name"),
                 "year_painted": request.form.get("year_painted"),
-                "style_type": request.form.get("style_type"),
+                "style_name": request.form.get("style_name"),
                 "image_url": request.form.get("image_url"),
                 "submitted_by": session["user"],
                 "date_submitted": datetime.now()
@@ -258,8 +258,8 @@ def new_work():
 
         artists = mongo.db.artists.find().sort("artist_name", 1)
         crews = mongo.db.crews.find().sort("crew_name", 1)
-        artiststyles = mongo.db.styles.find().sort("style_type", 1)
-        crewstyles = mongo.db.styles.find().sort("style_type", 1)
+        artiststyles = mongo.db.styles.find().sort("style_name", 1)
+        crewstyles = mongo.db.styles.find().sort("style_name", 1)
         return render_template("new_work.html", artists=artists, crews=crews, artiststyles=artiststyles, crewstyles=crewstyles)
 
     return redirect(url_for("login"))
@@ -284,7 +284,7 @@ def edit_work(work_id):
             update_work = {
                 "artist_name": request.form.get("artist_name"),
                 "year_painted": request.form.get("year_painted"),
-                "style_type": request.form.get("style_type"),
+                "style_name": request.form.get("style_name"),
                 "image_url": request.form.get("image_url"),
                 "submitted_by": session["user"],
                 }
@@ -293,7 +293,7 @@ def edit_work(work_id):
 
         work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
         artists =  mongo.db.artists.find().sort("artist_name", 1)
-        styles = mongo.db.styles.find().sort("style_type", 1)
+        styles = mongo.db.styles.find().sort("style_name", 1)
         return render_template("edit_work.html", work=work, artists=artists, styles=styles)
 
     return redirect(url_for("login"))
@@ -574,22 +574,22 @@ def delete_crew(crew_name):
 def styles():
     """styles:
     
-    * Fetches all style types from db.
-    * Displays all styles by style type.
+    * Fetches all style names from db.
+    * Displays all styles by style name.
     
     \n Args:
     *   None.
     
     \n Returns:
-    *   Template displaying style types in ascending order.
+    *   Template displaying style names in ascending order.
     """
 
-    styles = list(mongo.db.styles.find().sort("style_type", 1))
+    styles = list(mongo.db.styles.find().sort("style_name", 1))
     return render_template("styles.html", styles=styles)
 
 
-@app.route("/style/<style_type>")
-def style(style_type):
+@app.route("/style/<style_name>")
+def style(style_name):
     """style:
     
     * Fetches selected style data from db collection.
@@ -597,14 +597,14 @@ def style(style_type):
     * Passes data to template for style page.
     
     \n Args:
-    1.  style_type(str): type of style in db collection.
+    1.  style_name(str): name of style in db collection.
     
     \n Returns: 
     *   Template to diplay all content of individual style object from collection.
     """
 
-    style = mongo.db.styles.find_one({"style_type": str(style_type)})
-    works = mongo.db.works.find({"style_type": str(style_type)})
+    style = mongo.db.styles.find_one({"style_name": str(style_name)})
+    works = mongo.db.works.find({"style_name": str(style_name)})
     return render_template("style.html", style=style, works=works)
 
 
@@ -627,7 +627,8 @@ def add_style():
         if session["user"] == "admin":
             if request.method == "POST":
                 style = {
-                    "style_type": request.form.get("style_type")
+                    "style_name": request.form.get("style_name"),
+                    "style_image": request.form.get("image_url")
                     }
                 mongo.db.styles.insert_one(style)
                 flash("Style Successfully Added!")
@@ -640,15 +641,15 @@ def add_style():
     return redirect(url_for("login"))
 
 
-@app.route("/edit_style/<style_type>", methods=["GET", "POST"])
-def edit_style(style_type):
+@app.route("/edit_style/<style_name>", methods=["GET", "POST"])
+def edit_style(style_name):
     """edit_style:
     
     * Loads existing style data from db.
     * Updates data for style in db when method is POST.
     
     \n Args:
-    *   style_type(str): type of style in db collection.
+    *   style_name(str): name of style in db collection.
     
     \n Returns:
     *   Updates selected style object data in collection.
@@ -658,13 +659,13 @@ def edit_style(style_type):
         if session["user"] == "admin":
             if request.method == "POST":
                 update_style = {
-                    "style_type": request.form.get("style_type")
+                    "style_name": request.form.get("style_name")
                 }
-                mongo.db.styles.update_one({"style_type": str(style_type)}, {"$set": update_style})
+                mongo.db.styles.update_one({"style_name": str(style_name)}, {"$set": update_style})
                 flash("Style Successfully Updated!")
                 return redirect(url_for("styles"))
 
-            style = mongo.db.styles.find_one({"style_type": str(style_type)})
+            style = mongo.db.styles.find_one({"style_name": str(style_name)})
             return render_template("edit_style.html", style=style)
         
         return redirect(url_for("styles"))
@@ -672,15 +673,15 @@ def edit_style(style_type):
     return redirect(url_for("login"))
 
 
-@app.route("/delete_style/<style_type>")
-def delete_style(style_type):
+@app.route("/delete_style/<style_name>")
+def delete_style(style_name):
     """delete_style:
     
     * Removes style object from db collection.
     * Returns styles page with flash displaying success.
     
     \n Args:
-    *   style_type(str): type of style in db collection.
+    *   style_name(str): name of style in db collection.
     
     \n Returns:
     *   Removes object from db collection.
@@ -688,13 +689,41 @@ def delete_style(style_type):
 
     if 'user' in session:
         if session["user"] == "admin":
-            mongo.db.styles.remove({"style_type": str(style_type)})
+            mongo.db.styles.remove({"style_name": str(style_name)})
             flash("Style Successfully Deleted!")
             return redirect(url_for("styles"))
 
         return redirect(url_for("styles"))
     
     return redirect(url_for("login"))
+
+
+@app.route("/admin_panel")
+def admin_panel():
+    if 'user' in session:
+        if session["user"] == "admin":
+            users = list(mongo.db.users.find().sort("username", 1))
+            return render_template("admin-panel.html", users=users)
+
+        return redirect(url_for("works"))
+    
+    return redirect(url_for("login"))
+
+
+@app.route("/delete_user/<username>")
+def delete_user(username):
+    if 'user' in session:
+        if session["user"] == "admin":
+            mongo.db.users.remove({"username": str(username)})
+            flash("User Deleted!")
+            return redirect(url_for("admin_panel"))
+
+        return redirect(url_for("works"))
+    
+    return redirect(url_for("login"))
+
+
+
 
 
 if __name__ == "__main__":
