@@ -96,7 +96,8 @@ def work(work_id):
     *   Template to diplay all content of individual object from collection.
     """
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
-    return render_template("work.html", work=work)
+    works = list(mongo.db.works.find())
+    return render_template("work.html", work=work, works=works)
 
 
 @app.route("/register", methods=["GET", "POST"])

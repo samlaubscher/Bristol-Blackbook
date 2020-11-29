@@ -48,7 +48,7 @@
             {% if session.user|lower == "admin"|lower %}
                 <hr style="width: 70%;">
                 <h3 class="white-text">EDIT CREW</h3>
-                <a href="{{ url_for('edit_style', style_type=style.style_type) }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">Edit</a>
+                <a href="{{ url_for('edit_style', style_name=style.style_name) }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">Edit</a>
                 <button type="button" class="btn btn-outline-purple text-shadow" id="neon-btn" data-toggle="modal" 
                     data-target="#confirm-delete-modal">Delete</button>
                 <hr style="width: 70%;">
@@ -65,7 +65,7 @@
                                 <i class="fas fa-times fa-4x animated rotateIn"></i>
                             </div>
                             <div class="modal-footer flex-center">
-                                <a href="{{ url_for('delete_style', style_type=style.style_type) }}" class="btn btn-outline-danger">Yes</a>
+                                <a href="{{ url_for('delete_style', style_name=style.style_name) }}" class="btn btn-outline-danger">Yes</a>
                                 <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
                             </div>
                         </div>
