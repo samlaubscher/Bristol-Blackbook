@@ -25,19 +25,31 @@
                     </div>
                     <!-- style -->
                     <div class="row">
-                        <class class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                        <div class="md-form input-with-pre-icon upload-field">
                             <i class="fas fa-spray-can input-prefix"></i>
-                            <select class="form-control" name="style_type" id="style_type" required>
-                                <option value="" disabled>Pick a style</option>
+                            <select class="form-control" name="style_name" id="style_name" required>
+                                <option value="" disabled selected>Style</option>
                                 {% for style in styles %}
-                                    {% if work.style_type == style.style_type %}
-                                        <option value="{{ style.style_type }}" selected>{{ style.style_type }}</option>
+                                    {% if work.style_name == style.style_name %}
+                                        <option value="{{ style.style_name }}" selected>{{ style.style_name }}</option>
                                     {% else %}
-                                        <option value="{{ style.style_type }}">{{ style.style_type }}</option>
+                                        <option value="{{ style.style_name }}">{{ style.style_name }}</option>
                                     {% endif %}
                                 {% endfor %}
                             </select>
-                        </class>
+                        </div>
+                    </div>
+                    <!-- type -->
+                    <div class="row">
+                        <div class="md-form input-with-pre-icon upload-field">
+                            <i class="fas fa-map-marked-alt input-prefix"></i>
+                            <select class="form-control" name="type_name" id="type_name" required>
+                                <option value="" disabled selected>Type</option>
+                                {% for type in types %}
+                                    <option value="{{ type.type_name }}">{{ type.type_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
                     </div>
                     <!-- year -->
                     <div class="row">
