@@ -698,6 +698,92 @@ def delete_style(style_name):
     return redirect(url_for("login"))
 
 
+@app.route("/types")
+def types():
+    """
+    """
+
+    types = list(mongo.db.types.find().sort("type_name", 1))
+    return render_template("types.html", types=types)
+
+
+@app.route("/type/<type_name>")
+def type(type_name):
+    """style:
+    
+   
+    """
+
+    type = mongo.db.types.find_one({"type_name": str(type_name)})
+    works = mongo.db.works.find({"type_name": str(type_name)})
+    return render_template("type.html", type=type, works=works)
+
+
+@app.route("/add_type", methods=["GET", "POST"])
+def add_type():
+
+
+    if 'user' in session:
+        if session["user"] == "admin":
+            if request.method == "POST":
+                style = {
+                    "type_name": request.form.get("type_name"),
+                    "type_image": request.form.get("image_url")
+                    }
+                mongo.db.types.insert_one(style)
+                flash("Style Successfully Added!")
+                return redirect(url_for("types"))
+
+            return render_template("add_type.html")
+
+        return redirect(url_for("types"))
+    
+    return redirect(url_for("login"))
+
+
+@app.route("/edit_type/<type_name>", methods=["GET", "POST"])
+def edit_type(type_name):
+    """edit_style:
+    
+    *   Updates selected style object data in collection.
+    """
+
+    if 'user' in session:
+        if session["user"] == "admin":
+            if request.method == "POST":
+                update_type = {
+                    "type_name": request.form.get("type_name"),
+                    "type_image": request.form.get("image_url")
+                }
+                mongo.db.types.update_one({"type_name": str(type_name)}, {"$set": update_type})
+                flash("Type Successfully Updated!")
+                return redirect(url_for("types"))
+
+            type = mongo.db.types.find_one({"type_name": str(type_name)})
+            return render_template("edit_type.html", type=type)
+        
+        return redirect(url_for("types"))
+    
+    return redirect(url_for("login"))
+
+
+@app.route("/delete_type/<type_name>")
+def delete_type(type_name):
+    """delete_type:
+    
+    """
+
+    if 'user' in session:
+        if session["user"] == "admin":
+            mongo.db.styles.remove({"type_name": str(type_name)})
+            flash("type Successfully Deleted!")
+            return redirect(url_for("types"))
+
+        return redirect(url_for("types"))
+    
+    return redirect(url_for("login"))
+
+
 @app.route("/admin_panel")
 def admin_panel():
     if 'user' in session:

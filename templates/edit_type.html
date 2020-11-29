@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="admin-banner text-shadow"><h3>ADMIN PANEL</h3></div>
+
+    <h2 class="page-title text-center">Edit Type</h2>
+
+    <div class="row border-container">
+        <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_type', type_name=type.type_name) }}">
+            <!-- Type Name -->
+            <div class="md-form">
+                <i class="fas fa-user-ninja prefix"></i>
+                <input type="text" name="type_name" id="type_name" minlength="3" value="{{ type.type_name }}"
+                    maxlength="15" pattern="^[a-zA-Z0-9\xe0-\xef\x80-\xbf._-]+\s*{3,15}$" class="form-control validate" required>
+                <label for="type_name">Type Name</label>
+            </div>
+            <!-- Type Image -->
+            <div class="md-form">
+                <i class="fas fa-camera-retro prefix"></i>
+                <input type="text" name="image_url" id="image_url" minlength="3" value="{{ type.type_image }}"
+                    maxlength="500" class="form-control validate" required>
+                <label for="image_url">Image URL</label>
+            </div>
+            
+            <!-- Submit -->
+            <div class="row" style="justify-content: center;">
+                <button type="submit" class="col-sm-4 btn-elegant">
+                    Edit type <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
