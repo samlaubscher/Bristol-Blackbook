@@ -1,55 +1,38 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h2 class="text-center">Styles</h2>
+    <!-- Page Title -->
+    <h2 class="page-title text-center">All Styles</h2>
 
-    {% if session.user|lower == "admin"|lower %}
-        <div class="row" style="justify-content: center;">
-            <div class="col-sm12 text-center">
-                <a href="{{ url_for('add_style') }}" class="btn btn-mdb-color text-shadow">
-                    Add Style  <i class="fas fa-plus"></i>
-                </a>
-            </div>
-        </div>
-    {% endif %}
+    <!-- Admin Buttons -->
+    <div class="row border-container">
+        {% if session.user|lower == "admin"|lower %}
+                <div class="col-sm-12 add-btn text-center">
+                    <a href="{{ url_for('add_style') }}" class="btn btn-outline-secondary top-margin" id="neon-btn">
+                        Add Style  <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+        {% endif %}
 
-    <div class="row">
+        <!-- Artists -->
         {% for style in styles %}
-                <div class="col-md-3 col-sm-12">
-                    <div class="card card-cascade wider top-margin">
-                        <div class="view view-cascade overlay">
-                        <div class="card-body card-body-cascade text-center">
-                            <a href="{{ url_for('style', style_type=style.style_type) }}">
-                                <h4 class="card-title"><strong>{{ style.style_type }}</strong></h4>
-                                <h5 class="blue-text pb-2"><strong>#</strong></h5>
-                                {% if session.user|lower == "admin"|lower %}
-                                    <a href="{{ url_for('edit_style', style_type=style.style_type) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
-                                    <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
-                                        data-target="#confirm-delete-modal">Delete</button>
-                                    <!-- confirm delete modal -->
-                                    <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
-                                        aria-hidden="true">
-                                        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-                                            <div class="modal-content text-center">
-                                                <div class="modal-header d-flex justify-content-center">
-                                                    <p class="heading">Are you sure?</p>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <i class="fas fa-times fa-4x animated rotateIn"></i>
-                                                </div>
-                                                <div class="modal-footer flex-center">
-                                                    <a href="{{ url_for('delete_style', style_type=style.style_type) }}" class="btn btn-outline-danger">Yes</a>
-                                                    <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endif %}
+            <div class="col-md-4 col-sm-8">
+                <a href="{{ url_for('style', style_name=style.style_name) }}">
+                    <div class="center-margin">
+                        <div class="style-box">
+                            <div class="border-mask-top"></div>
+                            <!-- Style Name -->
+                            <a href="{{ url_for('style', style_name=style.style_name) }}">
+                            <!-- Style mage -->
+                            <img class="card-img-top" id="crew-panel-image"
+                                    src="{{ style.style_image }}" alt="Style Image">
+                                    <h3 class="style-name">{{ style.style_name }}</h3>
                             </a>
+                            <div class="border-mask-bottom"></div>
                         </div>
                     </div>
-                    </div>
-                </div>
+                </a>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}

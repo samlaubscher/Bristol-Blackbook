@@ -1,18 +1,79 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="jumbotron jumbotron-fluid text-center">
-        <!-- crew name -->
-        <h2>{{ style.style_type }}</h2>
-        <!-- buttons -->
- 
-
-        <!-- works -->
+<div class="text-center">
+    <div class="border-container">
+        <div class="col-sm-8 center-margin">
+            <!-- Style Name -->
+            <div class="artist-box">
+                <div class="border-mask-top"></div>
+                    <h2 class="artist-info text-center">Style: </h2>
+                    <h2 class="artist-direct-info">{{ style.style_name|upper }}</h2>
+                <div class="border-mask-bottom"></div>
+            </div>
+        </div>
+        <!-- Crew Image -->
+        <img src="{{ style.style_image }}" class="crew-image" alt="Crew Image">
+        
+        <!-- Line Break -->
+        <div class="col-sm-8 center-margin"><hr></div>
+        
+        <!-- Crew Pieces -->
         <div class="row">
-            {% for work in works %}
-                bang
+            {% for style in styles %}
+                <div class="col-sm-6 col-lg-4 art-panel">
+                    <div class="card card-cascade wider">
+                        <div class="view view-cascade overlay">
+                            <!-- image -->
+                            <img class="card-img-top"
+                                    src="{{ cwork.image_url }}" alt="Graffiti Image">
+                            <a href="{{ url_for('work', work_id=cwork._id) }}">
+                                <!-- info overlay -->
+                                <div class="mask flex-center rgba-black-strong">
+                                    <p class="white-text">
+                                        <br>Style: {{ cwork.style_name }}
+                                        <br>Year Painted: {{ cwork.year_painted }}
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
         </div>
+     
+        <!-- Edit Buttons -->
+        <div class="col-sm-8 center-margin">
+            <hr>
+            {% if session.user|lower == "admin"|lower %}
+                <hr style="width: 70%;">
+                <h3 class="white-text">EDIT CREW</h3>
+                <a href="{{ url_for('edit_style', style_type=style.style_type) }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">Edit</a>
+                <button type="button" class="btn btn-outline-purple text-shadow" id="neon-btn" data-toggle="modal" 
+                    data-target="#confirm-delete-modal">Delete</button>
+                <hr style="width: 70%;">
+
+                <!-- confirm delete modal -->
+                <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header d-flex justify-content-center">
+                                <p class="heading">Are you sure?</p>
+                            </div>
+                            <div class="modal-body">
+                                <i class="fas fa-times fa-4x animated rotateIn"></i>
+                            </div>
+                            <div class="modal-footer flex-center">
+                                <a href="{{ url_for('delete_style', style_type=style.style_type) }}" class="btn btn-outline-danger">Yes</a>
+                                <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
     </div>
+</div>
 
 {% endblock %}
