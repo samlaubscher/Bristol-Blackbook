@@ -1,30 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 text-center">New Style</h3>
+    <div class="admin-banner text-shadow"><h3>ADMIN PANEL</h3></div>
+    
+    <h2 class="page-title text-center">Add Style</h2>
 
-    <div class="row">
+    <div class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('add_style') }}">
-            <div class="card">
-                <div class="card-body">
-                    <!-- style name -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
-                            <i class="fas fa-user-ninja input-prefix"></i>
-                            <input type="text" id="style_type" name="style_type"
-                                minlength="3" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control">
-                            <label for="style_type">Style Type</label>
-                        </div>
-                    </div>
-                    <br>
-                    <!-- submit button -->
-                    <div class="row" style="justify-content: center;">
-                        <button type="submit" class="col-sm-4 btn-elegant">
-                            Add Style <i class="fas fa-plus-circle" style="font-size: 90%;"></i>
-                        </button>
-                    </div>
-                </div>      
-            </div>     
+            <!-- Style Name -->
+            <div class="md-form">
+                <i class="fas fa-user-ninja prefix"></i>
+                <input type="text" name="style_name" id="style_name" minlength="3"
+                    maxlength="15" pattern="^[a-zA-Z0-9\xe0-\xef\x80-\xbf._-]+\s*{3,15}$" class="form-control validate" required>
+                <label for="style_name">Style Name</label>
+            </div>
+            <!-- Style Image -->
+            <div class="md-form">
+                <i class="fas fa-camera-retro prefix"></i>
+                <input type="text" name="image_url" id="image_url" minlength="3"
+                    maxlength="500" class="form-control validate" required>
+                <label for="image_url">Image URL</label>
+            </div>
+            <!-- Submit -->
+            <div class="row" style="justify-content: center;">
+                <button type="submit" class="col-sm-4 btn-elegant">
+                    Add Style <i class="fas fa-plus-circle"></i>
+                </button>
+            </div>
         </form>
     </div>
 
