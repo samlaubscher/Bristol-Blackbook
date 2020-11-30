@@ -811,6 +811,9 @@ def delete_user(username):
             flash("User Deleted!")
             return redirect(url_for("admin_panel"))
 
+        mongo.db.users.remove({"username": str(username)})
+        session.pop("user")
+        flash("User Deleted!")
         return redirect(url_for("works"))
     
     return redirect(url_for("login"))

@@ -1,115 +1,126 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="row">
-        <div class="col-sm-12 col-md-8 offset-2">
-            <div class="card">
-                <div class="card-body">
-                    <h2 class="text-center light-blue-text text-darken-4">
-                        {{ username|capitalize }}'s User Panel
-                    </h2>
-                </div>
-            </div>        
-        </div>
-    </div>
+    <h2 class="page-title text-center">{{ username|upper }}'s User Panel</h2>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="text-center light-blue-text text-darken-4">
-                        Your Uploaded Works
-                    </h3>
-                    <div class="row">
-                        {% for work in works %}
-                            {% if work.submitted_by|lower == username|lower %}
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="card card-cascade wider">
-                                        <div class="view view-cascade overlay">
-                                                <img class="card-img-top" 
-                                                    src="{{ work.image_url }}" alt="Graffiti Image">
-                                            <a href="#!">
-                                                <div class="mask rgba-white-slight"></div>
-                                            </a>
-                                        </div>
-                                        <div class="card-body card-body-cascade text-center">
-                                            <h4 class="card-title"><strong>{{ work.artist_name }}</strong></h4>
-                                            <h5 class="blue-text pb-2"><strong>Year: {{ work.year_painted }}</strong></h5>
-                                            <h5 class="blue-text pb-2"><strong>Style: {{ work.style_type }}</strong></h5>
-                                            <p class="card-text">
-                                                Uploaded by: {{ work.submitted_by }}<br>
-                                                Date uploaded: {{ work.submission_date }}<br>
-                                            </p>
-                                            <a href="{{ url_for('edit_work', work_id=work._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
-                                            <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
-                                                data-target="#confirm-delete-work-modal">Delete</button>
-                                            <!-- confirm delete modal -->
-                                            <div class="modal fade" id="confirm-delete-work-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-work-modal"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-                                                    <div class="modal-content text-center">
-                                                        <div class="modal-header d-flex justify-content-center">
-                                                            <p class="heading">Are you sure?</p>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <i class="fas fa-times fa-4x animated rotateIn"></i>
-                                                        </div>
-                                                        <div class="modal-footer flex-center">
-                                                            <a href="{{ url_for('delete_work', work_id=work._id) }}" class="btn btn-outline-danger">Yes</a>
-                                                            <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+
+    <div class="row border-container">
+        <div class="col-sm-12 col-md-8 offset-md-2">
+            <!-- Delete Account -->
+            <div class="col-sm-12 add-btn text-center">
+                <button type="button" class="btn btn-outline-secondary text-shadow" id="neon-btn" data-toggle="modal"
+                    data-target="#confirm-delete-artist-modal">Delete Account <i class="fas fa-ban"></i></button>
+                <!-- confirm delete modal -->
+                <div class="modal fade" id="confirm-delete-artist-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-artist-modal"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header d-flex justify-content-center">
+                                <p class="heading">Are you sure?</p>
+                            </div>
+                            <div class="modal-body">
+                                <i class="fas fa-times fa-4x animated rotateIn"></i>
+                            </div>
+                            <div class="modal-footer flex-center">
+                                <a href="{{ url_for('delete_user', username=username) }}" class="btn btn-outline-danger">Yes</a>
+                                <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="text-center light-blue-text text-darken-4">
-                        Your Uploaded Artists
-                    </h3>
-                    <div class="row">
-                        {% for artist in artists %}
-                            {% if artist.submitted_by|lower == username|lower %}
-                                <div class="col-4">
-                                    <div class="card card-cascade wider">
-                                        <div class="card-body card-body-cascade text-center">
-                                            <h4 class="card-title"><strong>{{ artist.artist_name }}</strong></h4>
-                                            <a href="{{ url_for('edit_artist', artist_name=artist.artist_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
-                                            <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal"
-                                                data-target="#confirm-delete-artist-modal">Delete</button>
-                                            <!-- confirm delete modal -->
-                                            <div class="modal fade" id="confirm-delete-artist-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-artist-modal"
-                                                aria-hidden="true">
-                                                <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-                                                    <div class="modal-content text-center">
-                                                        <div class="modal-header d-flex justify-content-center">
-                                                            <p class="heading">Are you sure?</p>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <i class="fas fa-times fa-4x animated rotateIn"></i>
-                                                        </div>
-                                                        <div class="modal-footer flex-center">
-                                                            <a href="{{ url_for('delete_artist', artist_name=artist.artist_name) }}" class="btn btn-outline-danger">Yes</a>
-                                                            <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
-                                                        </div>
-                                                    </div>
+            <hr>
+            <h2 class="upload-header">YOUR UPLOADS</h2>
+            <div class="row">
+                {% for work in works %}
+                    {% if work.submitted_by|lower == username|lower %}
+                        
+                        <div class="col-sm-6 col-lg-4 art-panel">
+                            <div class="card card-cascade wider">
+                                <div class="view view-cascade overlay">
+                                    <!-- image -->
+                                    <img class="card-img-top"
+                                            src="{{ work.image_url }}" alt="Graffiti Image">
+                                    <a href="{{ url_for('work', work_id=work._id) }}">
+                                        <!-- info overlay -->
+                                        <div class="mask flex-center rgba-black-strong">
+                                            <p class="white-text">
+                                                Artist: {{ work.artist_name }}
+                                                <br>Style: {{ work.style_name }}
+                                                <br>Type: {{ work.type_name }}
+                                                <br>Year Painted: {{ work.year_painted }}
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="row center-content">
+                                <a href="{{ url_for('edit_work', work_id=work._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
+                                <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
+                                    data-target="#confirm-delete-work-modal">Delete</button>
+                                <!-- confirm delete modal -->
+                                <div class="modal fade" id="confirm-delete-work-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-work-modal"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                                        <div class="modal-content text-center">
+                                            <div class="modal-header d-flex justify-content-center">
+                                                <p class="heading">Are you sure?</p>
+                                            </div>
+                                            <div class="modal-body">
+                                                <i class="fas fa-times fa-4x animated rotateIn"></i>
+                                            </div>
+                                            <div class="modal-footer flex-center">
+                                                <a href="{{ url_for('delete_work', work_id=work._id) }}" class="btn btn-outline-danger">Yes</a>
+                                                <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-8 offset-md-2">
+            <hr>
+            <h2 class="upload-header">YOUR UPLOADED ARTISTS</h2>
+            <div class="row">
+                {% for artist in artists %}
+                    {% if artist.submitted_by|lower == username|lower %}
+                        <div class="col-4 top-margin">
+                            <div>
+                                <div class="text-center">
+                                    <h4 class="card-title white-text"><strong>{{ artist.artist_name }}</strong></h4>
+                                    <a href="{{ url_for('edit_artist', artist_name=artist.artist_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
+                                    <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal"
+                                        data-target="#confirm-delete-artist-modal">Delete</button>
+                                    <!-- confirm delete modal -->
+                                    <div class="modal fade" id="confirm-delete-artist-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-artist-modal"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                                            <div class="modal-content text-center">
+                                                <div class="modal-header d-flex justify-content-center">
+                                                    <p class="heading">Are you sure?</p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <i class="fas fa-times fa-4x animated rotateIn"></i>
+                                                </div>
+                                                <div class="modal-footer flex-center">
+                                                    <a href="{{ url_for('delete_artist', artist_name=artist.artist_name) }}" class="btn btn-outline-danger">Yes</a>
+                                                    <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>    
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        <hr>
         </div>
     </div>
 {% endblock %}
