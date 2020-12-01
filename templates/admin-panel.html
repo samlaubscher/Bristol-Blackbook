@@ -5,61 +5,59 @@
 
     <div class="row border-container">
         <div class="col-sm-12">
-        <h2 class="text-center">Users:</h2>
-        <div class="row">
-            {% for user in users %}
-                <div class="center-margin">
-                    <div class="username">
-                        <h3 class="username">{{ user.username }}</h3>
-                        <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
-                        data-target="#confirm-delete-modal-{{ user.username }}">Delete</button>
+            <h2 class="text-center">Users:</h2>
+            <div class="row">
+                {% for user in users %}
+                    <div class="center-margin">
+                        <div class="username">
+                            <h3 class="username">{{ user.username }}</h3>
+                            <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
+                            data-target="#confirm-delete-modal-{{ user.username }}">Delete</button>
 
-                        <!-- confirm delete modal -->
-                        <div class="modal fade" id="confirm-delete-modal-{{ user.username }}" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-                                <div class="modal-content text-center">
-                                    <div class="modal-header d-flex justify-content-center">
-                                        <p class="heading">Are you sure?</p>
-                                    </div>
-                                    <div class="modal-body">
-                                        <i class="fas fa-times fa-4x animated rotateIn"></i>
-                                    </div>
-                                    <div class="modal-footer flex-center">
-                                        <a href="{{ url_for('delete_user', username=user.username) }}" class="btn btn-outline-danger">Yes</a>
-                                        <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
+                            <!-- confirm delete modal -->
+                            <div class="modal fade" id="confirm-delete-modal-{{ user.username }}" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                                    <div class="modal-content text-center">
+                                        <div class="modal-header d-flex justify-content-center">
+                                            <p class="heading">Are you sure?</p>
+                                        </div>
+                                        <div class="modal-body">
+                                            <i class="fas fa-times fa-4x animated rotateIn"></i>
+                                        </div>
+                                        <div class="modal-footer flex-center">
+                                            <a href="{{ url_for('delete_user', username=user.username) }}" class="btn btn-outline-danger">Yes</a>
+                                            <a type="button" class="btn  btn-danger waves-effect" data-dismiss="modal">No</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                {% endfor %}
+            </div>
+
+            <!-- Add buttons -->
+            <div class="col-sm-8 center-margin">
+                <hr>
+                <h2 class="text-center">Add Items</h2>
+                <div class="row padding-bottom">
+                    <!-- Add Style Button -->
+                    <div class="col-sm-12 text-center">
+                        <a href="{{ url_for('add_artist') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
+                            Add Style  <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                    <!-- Add Type Button -->
+                    <div class="col-sm-12 add-btn text-center">
+                        <a href="{{ url_for('add_artist') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
+                            Add Type  <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
                 </div>
-            {% endfor %}
-        </div>
-
-        <!-- Line Break -->
-        <div class="col-sm-8 center-margin">
-            <hr>
-            <h2 class="text-center">Add A Style</h2>
-        </div>
-
-        <div class="row">
-            <!-- add artist button -->
-            <div class="col-sm-12 add-btn text-center">
-                <a href="{{ url_for('add_artist') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
-                    Add Style  <i class="fas fa-plus"></i>
-                </a>
+                <hr>
             </div>
         </div>
-
-
     </div>
-</div>
-
 
 {% endblock %}
-
-
-
-
-                                    
