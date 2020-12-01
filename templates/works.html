@@ -7,6 +7,12 @@
         <div>
             <!-- search box -->
             <div class="row search-container">
+                <!-- Add Work Button -->
+                <div class="col-sm-12 add-btn text-center">
+                    <a href="{{ url_for('new_work') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
+                        Add Work  <i class="fas fa-plus"></i>
+                    </a>
+                </div>
                 <form class="form-inline col-sm-12 center-content" method="POST"
                     id="search" action="{{ url_for('search') }}">
                     <!-- search bar -->
