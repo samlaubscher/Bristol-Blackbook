@@ -275,11 +275,13 @@ hr {
 .artist-name,
 .crew-name,
 .style-name,
+.type,
 .username {
     font-family: 'Archivo Black', sans-serif;
     letter-spacing: 2px;
     margin-top: .5rem;
     margin-bottom: .5rem;
+    text-align: center;
 }
 
 .crew-name {
