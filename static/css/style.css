@@ -25,7 +25,7 @@ body {
 }
 
 .top-margin {
-    margin-top: 20px;
+    margin-top: 1rem;
 }
 
 .padding-bottom {
@@ -237,6 +237,25 @@ hr {
 
 /* Text */
 
+.welcome-text {
+    color: #fff;
+    text-align: center;
+}
+
+.welcome-info-top,
+.welcome-info {
+    color: rgb(156, 156, 156);
+    text-align: center;
+}
+
+.welcome-info-top {
+    font-size: 25px;
+    margin: 30px 5px;}
+
+.welcome-info {
+    font-size: 22px;
+}
+
 .artist-name,
 .crew-name,
 .style-name,
@@ -252,6 +271,12 @@ hr {
     padding: 8px 0;
     letter-spacing: 0px;
     color: #fff;
+}
+
+/* Welcome Page */
+
+.welcome-info-panel {
+    margin: 30px 5px;
 }
 
 /* Main page */

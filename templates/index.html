@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="page-title text-center">WELCOME!</h2>
+
+
+<hr>
+<h3 class="welcome-text text-center text-uppercase">Documenting Bristol's thriving underground Graffiti scene.</h3>
+<hr>
+
+<div class="border-container">
+
+<div class="welcome-info-panel text-center">
+    <h3 class="welcome-info-top">Bristol has one of the most prolific and active graffiti scenes in the UK. </h3>
+
+    <p class="welcome-info">The Bristol Blackbook serves to allow users to witness the styles seen on the streets of Bristol, most of which get erased within hours or days, never to be seen again... 
+        Whether you are a part of the local culture or not, everyone should be given access to appreciate this city's underground urban artform, as well as the skill of all Bristol writers and crews putting in the work and getting up...</p>
+
+    <div class="col-sm-12">
+        <a class="btn purple-gradient" href="{{ url_for('works') }}">ENTER</a>
+    </div>
+
+    <p class="welcome-info top-margin">To easily add new works, Artists or Crews, you need to create an anonymous account.</p>
+
+</div>
+
+</div>
+
+<div class="col-sm-12 col-md-8 offset-md-2">
+    <hr>
+    <h6>Please note: Offensive content will be removed by the admin, resulting in your account being banned</h6>
+    <hr>
+</div>
+
+
+{% endblock %}
