@@ -3,25 +3,39 @@
 
     <div class="text-center">
         <div class="border-container">
-           
-            <!-- piece Image -->
+
+            <!-- Work Image -->
             <img src="{{ work.image_url }}" class="crew-image" alt="Crew Image">
             
+            <!-- Artist Name -->
             <div class="col-sm-8 center-margin">
-                <!-- Crew Name -->
                 <div class="artist-box">
                     <div class="border-mask-top"></div>
                         <h2 class="artist-info text-center">Artist: </h2>
-                        <a href="{{ url_for('artist', artist_name=work.artist_name) }}">
-                        <h2 class="artist-direct-info">{{ work.artist_name|upper }}</h2>
-                        </a>
+                        <!-- Artist Page Route -->
+                        {% for artist in artists %}
+                            {% if artist.artist_name|lower == work.artist_name|lower %}
+                                <a href="{{ url_for('artist', artist_name=work.artist_name) }}">
+                                <h2 class="artist-direct-info">{{ work.artist_name|upper }}</h2>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
+                        <!-- Crew Page Route -->
+                        {% for crew in crews %}
+                            {% if crew.crew_name|upper == work.artist_name|upper %}
+                                <a href="{{ url_for('crew', crew_name=work.artist_name) }}">
+                                <h2 class="artist-direct-info">{{ work.artist_name|upper }}</h2>
+                                </a>
+                            {% endif %}
+                        {% endfor %}
                     <div class="border-mask-bottom"></div>
                 </div>
             </div>
+
             <!-- Line Break -->
-            <div class="col-sm-8 center-margin">
-                <hr>
-            </div>
+            <div class="col-sm-8 center-margin"><hr></div>
+
+            <!-- Artist's Other Works -->
             <div class="row">
                 {% for artistwork in works %}
                     {% if work.artist_name == artistwork.artist_name %}
@@ -48,11 +62,10 @@
             </div>
 
             <!-- Line Break -->
-            <div class="col-sm-8 center-margin">
-                <hr>
-            </div>
+            <div class="col-sm-8 center-margin"><hr></div>
         </div>
-        <!-- buttons -->
+
+        <!-- Buttons -->
         {% if session.user|lower == work.submitted_by|lower or session.user|lower == "admin"|lower %}
             <a href="{{ url_for('edit_work', work_id=work._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
             <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
