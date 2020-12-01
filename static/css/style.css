@@ -49,6 +49,10 @@ body {
     background-size: cover;
 }
 
+.nav-logo {
+    max-width: 26px;
+}
+
 .navbar {
     background-color: rgba(0, 0, 0, 0.7);
     box-shadow: none;
@@ -89,6 +93,11 @@ button:focus {
 
 .flashes h4 {
     line-height: 2;
+}
+
+.logo {
+    margin-top: 30px;
+    max-width: 125px;
 }
 
 .heading {
@@ -256,6 +265,11 @@ hr {
     font-size: 22px;
     margin-left: 5px;
     margin-right: 5px;
+}
+
+.login-text {
+    color: #fff;
+    margin: 30px 0;
 }
 
 .artist-name,
