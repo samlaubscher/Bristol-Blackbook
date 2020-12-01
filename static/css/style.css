@@ -243,6 +243,8 @@ hr {
 .username {
     font-family: 'Archivo Black', sans-serif;
     letter-spacing: 2px;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
 .crew-name {
@@ -309,6 +311,12 @@ hr {
 
 /* Crew Pages */
 
+#crew-panel-image {
+    height: 300px;
+    padding: 15px;
+    padding-bottom: 0;
+}
+
 #crew-panel-image:hover {
 	animation-name: image-zoom;
 	animation-duration: 0.5s;
@@ -369,13 +377,6 @@ hr {
     margin: 0 auto;
     display: flex;
     justify-content: center;
-}
-
-/* Crew Pages */ 
-
-#crew-panel-image {
-    height: 300px;
-    padding: 15px;
 }
 
 /* Forms */
