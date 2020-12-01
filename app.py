@@ -97,7 +97,9 @@ def work(work_id):
     """
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
     works = list(mongo.db.works.find())
-    return render_template("work.html", work=work, works=works)
+    artists = list(mongo.db.artists.find())
+    crews = list(mongo.db.crews.find())
+    return render_template("work.html", work=work, works=works, artists=artists, crews=crews)
 
 
 @app.route("/register", methods=["GET", "POST"])
