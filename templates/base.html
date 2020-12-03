@@ -36,13 +36,15 @@
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('crews') }}">Crews</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('styles') }}">Styles</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ url_for('types') }}">Types</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('new_work') }}">New Upload</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('add_artist') }}">Add Artist</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ url_for('add_crew') }}">Add Crew</a></li>
+                        {% if session.user %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('new_work') }}">New Upload</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('add_artist') }}">Add Artist</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('add_crew') }}">Add Crew</a></li>
+                        {% endif %}
                     </ul>
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         {% if session.user %}
-                        {% if session.user|lower == "admin"|lower %}
+                            {% if session.user|lower == "admin"|lower %}
                                 <li class="nav-item"><a class="nav-link" href="{{ url_for('admin_panel', username=session['user']) }}">Admin Panel</a></li>
                             {% endif %}
                             <li class="nav-item"><a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
