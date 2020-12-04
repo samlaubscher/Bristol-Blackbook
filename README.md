@@ -1,7 +1,18 @@
+<div align="center">
+
+<img src=# alt="Main Logo">
+
 # Bristol Blackbook
 
-### A Full Stack website allowing users to manage a common dataset documenting Bristol Street Art. This project utilises the Flask, Python, JavaScript, MongoDB & MD Bootstrap technologies.
+#### A Full Stack website allowing users to manage a common dataset documenting the underground Bristol Graffiti Scene.
 
+Bristol has one of the most prolific and active graffiti scenes in the UK. The Bristol Blackbook serves to allow users to witness the styles seen on the streets of Bristol, most of which get erased within a matter of days, never to be seen again... Whether you are a part of the local culture or not, everyone should be given access to appreciate this city's underground urban artform, as well as the skill of all Bristol writers and crews putting in the work and getting up...
+
+[**Click here to visit the Bristol Blackbook**](https://bristol-blackbook.herokuapp.com/)
+
+##### This project was developed for my Data Centric Development project on my Full Stack Software Development course.
+
+</div>
 
 ---
 
@@ -21,9 +32,9 @@
 - [**2 Features**](#2-features)
 
   - [**2.1 Existing Features**](#21-existing-features)
-    - 
+    - Login 
   - [**2.2 Features Left to Implement**](#22-Features-left-to-impliment)
-    - 
+    - local
 
 - [**3 Technologies Used**](#3-technologies-used)
   - [**3.1 Languages**](#31-languages)
@@ -66,3 +77,28 @@
 ## 1 UX
 
 ### 1.1 Overview
+
+
+### 1.2 Project Goals
+
+
+### 1.3 User Stories
+
+### 1.4 Design Process
+
+### **Colour scheme**
+
+### **Typography**
+
+### **Wireframes**
+
+### **Development Stages**
+
+
+[Back to Table Of Contents](#table-of-contents)
+
+---
+
+## 2 Features
+
+### 2.1 Existing Features
