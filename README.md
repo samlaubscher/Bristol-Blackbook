@@ -4,7 +4,7 @@
 
 # Bristol Blackbook
 
-#### A Full Stack website allowing users to manage a common dataset documenting the underground Bristol Graffiti Scene.
+#### A Full Stack website allowing users to manage a common dataset documenting Bristol's underground Graffiti Scene.
 
 Bristol has one of the most prolific and active graffiti scenes in the UK. The Bristol Blackbook serves to allow users to witness the styles seen on the streets of Bristol, most of which get erased within a matter of days, never to be seen again... Whether you are a part of the local culture or not, everyone should be given access to appreciate this city's underground urban artform, as well as the skill of all Bristol writers and crews putting in the work and getting up...
 
@@ -78,19 +78,50 @@ Bristol has one of the most prolific and active graffiti scenes in the UK. The B
 
 ### 1.1 Overview
 
+Bristol Blackbook was built off the idea of creating a database to document the urban artform of graffiti found on the streets of Bristol city. Often most artists upload these images to Instagram under private accounts, restricted for anonymity. This means most people cannot see them, so I wanted to create a website that maintained this idea of user privacy and was not associated with any social media platforms. This allows users to anonymously view and contribute to the content.
 
 ### 1.2 Project Goals
 
+visually pleaseing 
+easy for users to navigate
+explains its purpose
+
+- The site must clearly display its purpose.
+- Display images effectively.
+- Categorise works by artist.
+- Artists assigned to crews
 
 ### 1.3 User Stories
 
+- As a developer, I want my site to have a clearly defined purpose so users are aware of the sites functinality, maintaining a good user experience.
+- As a designer, I want users to register for an account so that I can personalise their experience.
+- As a developer, I want users to register for an account so that I can implement user authentication, preventing unauthorised editing and deletion of data.
+- As a designer, I want users to be able to clearly find works via artist, style, year and type.
+- As a developer, I want each of my features to have effective functionality so that users are not given an unpleasent experience.
+- 
+
+
 ### 1.4 Design Process
+
+
 
 ### **Colour scheme**
 
 ### **Typography**
 
 ### **Wireframes**
+
+<details>
+<summary><b>Desktop & Mobile Wireframes</b> - (click to expand)</summary>
+
+- 
+
+<div align="center">
+
+<img src=# alt="Wireframe 1" width="500">
+</div>
+
+</details>
 
 ### **Development Stages**
 
