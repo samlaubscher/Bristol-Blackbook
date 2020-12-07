@@ -93,16 +93,34 @@ explains its purpose
 
 ### 1.3 User Stories
 
-- As a developer, I want my site to have a clearly defined purpose so users are aware of the sites functinality, maintaining a good user experience.
-- As a designer, I want users to register for an account so that I can personalise their experience.
-- As a developer, I want users to register for an account so that I can implement user authentication, preventing unauthorised editing and deletion of data.
-- As a designer, I want users to be able to clearly find works via artist, style, year and type.
-- As a developer, I want each of my features to have effective functionality so that users are not given an unpleasent experience.
-- 
+When creating my user stories, I tried to implement the principles of Bill Wake's INVEST nmemomic for each one.
+- Independant
+- Negotiable
+- Valuable
+- Estimatable
+- Small
+- Testable
+
+**User Stories**
+
+When necessary, I wanted to break stories down into smaller related epics.
+
+- UX
+    - As a developer, I want my site to have a clearly defined purpose so users are aware of the sites functionality, maintaining a good user experience.
+    - As a developer, I want each of my features to have effective functionality so that users are not given an unpleasent experience.
+
+- User Accounts:
+    - As a designer, I want users to register for an account so that I can personalise their experience.
+    - As a developer, I want users to register for an account so that I can implement user authentication, preventing unauthorised editing and deletion of data.
+    - As a registered user, I want control over my account, so that I can easily choose to delete the account or any content I have uploaded to the website.
+
+- Database Content
+    - As a designer, I want each work to display correct info, so that users to be able to clearly find the artist, style, year and type.
+    - As a designer, I want to display all content relating to each artist, crew, style or type, so that users are able to easily navigate and view this content.
+    - As a user, I want to see how to add content, so that I can easily contribute to the database.
 
 
 ### 1.4 Design Process
-
 
 
 ### **Colour scheme**
@@ -125,6 +143,8 @@ explains its purpose
 
 ### **Development Stages**
 
+This project was designed using an agile approach, utilisng a Kanban board to track my development progress throughout the build. You can view the board I created using Trello [here](https://trello.com/b/mH8fpkjQ/milestone-project-3).
+
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -133,3 +153,109 @@ explains its purpose
 ## 2 Features
 
 ### 2.1 Existing Features
+
+### [**Home Page**]()
+
+
+[Back to Table Of Contents](#table-of-contents)
+
+---
+
+## 3 Technologies Used
+
+### 3.1 Languages
+
+### [**HTML/HTML 5**](https://html.com/html5/)
+
+HTML5 is a Hyper Text Markup Language. Roughly 16% of my code was the HTML file [index.html](index.html) as it was used to create the structured content and elements essential to build the game.
+
+### [**CSS/CSS3**](https://www.w3.org/Style/CSS/Overview.en.html)
+
+CSS is a Cascading Style Sheet and was implemented via the [styles.css](assets\css\styles.css) file. All of the visible HTML content was positioned and styled using this language, making up roughly 24% of the entire code.
+
+### [**JavaScript ES6**](https://www.w3schools.com/Js/js_es6.asp)
+
+ECMAScript 6 - ECMAScript 2015, otherwise known as JavaScript 6, was used to write all of the functionality and game mechanics within this project. Around 60% of the entire code was JavaScript, which was used heavily with the Canvas API.
+
+### [**Python**](https://www.python.org/)
+
+### 3.2 Libraries
+
+### [**Flask**]()
+### [**PyMongo**]()
+### [**Jinja**]()
+### [**BSON**]()
+### [**Werkzeug Security**]()
+### [**MongoDB Atlas**]()
+### [**MD Bootstrap**]()
+### [**Font Awesome**](https://fontawesome.com/)
+
+Font Awesome 4.7.0 was used for the GitHub social and audio mute icons.
+
+### [**Google Fonts API**](https://fonts.google.com/)
+
+All of the fonts used within this project were provided by the Google Fonts API. The fonts used were 'Audiowide' 'Oxanium', and 'Orbitron'.
+
+### 3.3 Tools
+
+### [**VSCode**](https://code.visualstudio.com/)
+
+Visual Studio Code was the Integrated Development Environment (IDE) used to write the code for this project.
+
+### [**Chrome DevTools**](https://developers.google.com/web/tools/chrome-devtools/)
+
+The Chrome DevTools were used a lot in the development of this project to live preview edits and diagnose problems. I also ran lots of auditing and testing using built in tools such as Sources, Lighthouse and Coverage.
+
+### [**Git**](https://git-scm.com/)
+
+Git was used for version control with GitHub - commiting each development stage to the GitHub repository.
+
+### [**Github**](https://github.com/)
+
+GitHub was used to host the repository.
+
+### [**GNU Image Manipulation Program**](https://www.gimp.org/)
+
+GNU Image Manipulation Program (GIMP) was used to create the favicon website icon.
+
+[Back to Table Of Contents](#table-of-contents)
+
+---
+
+## 4 Testing
+
+### 4.1 Completed
+
+### **Manual Testing**
+
+### **Automatic Testing**
+
+### 4.2 Bugs
+
+### **Fixed**
+
+### **Still Existing**
+
+[Back to Table Of Contents](#table-of-contents)
+
+## 5 Deployment
+
+### 5.1 MongoDB Atlas
+
+### 5.2 Locally
+
+To read more about cloning repositories, you can read [Cloning a repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
+
+[Back to Table Of Contents](#table-of-contents)
+
+## 6 Credits
+
+### 6.1 Content and code
+
+### 6.2 Media
+
+### 6.3 Acknowledgements
+
+### 6.4 References
+
+[Back to Table Of Contents](#table-of-contents)
