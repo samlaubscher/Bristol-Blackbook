@@ -82,10 +82,12 @@ Bristol Blackbook was built off the idea of creating a database to document the 
 
 ### 1.2 Project Goals
 
-visually pleaseing 
-easy for users to navigate
-explains its purpose
-
+The purpose and goals of this project are:
+- Create a full stack site that allows users to manage a common dataset about the domain of Bristol street art (graffiti).
+- Implement CRUD functionality.
+- Allow all users to read data from the database on the site.
+- Users are able to first create an accounts, and then create, update and delete their own data.
+- The sites content functionality will change for visitors and registered users.
 - The site must clearly display its purpose.
 - Display images effectively.
 - Categorise works by artist.
@@ -101,31 +103,30 @@ When creating my user stories, I tried to implement the principles of Bill Wake'
 - Small
 - Testable
 
-**User Stories**
-
 When necessary, I wanted to break stories down into smaller related epics.
 
-- UX
-    - As a developer, I want my site to have a clearly defined purpose so users are aware of the sites functionality, maintaining a good user experience.
-    - As a developer, I want each of my features to have effective functionality so that users are not given an unpleasent experience.
+- As a developer, I want my site to have a clearly defined purpose so users are aware of the sites functionality, maintaining a good user experience.
+- As a developer, I want each of my features to have effective functionality so that users are not given an unpleasent experience.
+- As a designer, I want users to register for an account so that I can personalise their experience.
+- As a developer, I want users to register for an account so that I can implement user authentication, preventing unauthorised editing and deletion of data.
+- As a designer, I want each work to display correct info, so that users to be able to clearly find the artist, style, year and type.
+- As a designer, I want to display all content relating to each artist, crew, style or type, so that users are able to easily navigate and view this content.
+- As a user, I want to see how to add content, so that I can easily contribute to the database.
+- As a user, I want to 
+- As a registered user, I want control over my account, so that I can easily choose to delete the account or any content I have uploaded to the website.
 
-- User Accounts:
-    - As a designer, I want users to register for an account so that I can personalise their experience.
-    - As a developer, I want users to register for an account so that I can implement user authentication, preventing unauthorised editing and deletion of data.
-    - As a registered user, I want control over my account, so that I can easily choose to delete the account or any content I have uploaded to the website.
-
-- Database Content
-    - As a designer, I want each work to display correct info, so that users to be able to clearly find the artist, style, year and type.
-    - As a designer, I want to display all content relating to each artist, crew, style or type, so that users are able to easily navigate and view this content.
-    - As a user, I want to see how to add content, so that I can easily contribute to the database.
 
 
 ### 1.4 Design Process
 
-
 ### **Colour scheme**
 
 ### **Typography**
+
+For the main title font used within this project, I imported a free font named 'Sprayerz' from the font folder within static/. The font I used for the main site body including the navbar was 'Kanit', supplied by Google Fonts.
+
+The font is one of the most important aspects of the design process, so the title and text font has to fit the space theme. I used 'Audiowide' for the main title and layered multiple h2 elements offset to create a 3d drop shadow with a neon glow above. The main body text font is 'Oxanium' which is a really nice squared font that works with the digital look. 'Orbitron' is used for the score counter, the font works well with the black background as the styled line through the letters stops the font being too visually stimulating, maintaining focus on the centre of the screen.
+
 
 ### **Wireframes**
 
@@ -171,30 +172,53 @@ HTML5 is a Hyper Text Markup Language. Roughly 16% of my code was the HTML file 
 
 ### [**CSS/CSS3**](https://www.w3.org/Style/CSS/Overview.en.html)
 
-CSS is a Cascading Style Sheet and was implemented via the [styles.css](assets\css\styles.css) file. All of the visible HTML content was positioned and styled using this language, making up roughly 24% of the entire code.
+CSS is a Cascading Style Sheet and was implemented via the [styles.css](static\css\styles.css) file. All of the visible HTML content was positioned and styled using this language, making up roughly 24% of the entire code.
 
 ### [**JavaScript ES6**](https://www.w3schools.com/Js/js_es6.asp)
 
-ECMAScript 6 - ECMAScript 2015, otherwise known as JavaScript 6, was used to write all of the functionality and game mechanics within this project. Around 60% of the entire code was JavaScript, which was used heavily with the Canvas API.
+ECMAScript 6 - ECMAScript 2015, otherwise known as JavaScript 6, was used to hide the preloader upon page load.
 
 ### [**Python**](https://www.python.org/)
 
-### 3.2 Libraries
+Python is a programming language that was used to build the functionality of this project.
 
-### [**Flask**]()
-### [**PyMongo**]()
-### [**Jinja**]()
-### [**BSON**]()
-### [**Werkzeug Security**]()
-### [**MongoDB Atlas**]()
-### [**MD Bootstrap**]()
+### 3.2 Frameworks & Libraries
+
+### [**Flask**](https://palletsprojects.com/p/flask/)
+
+Flask is a Python microframework, used to create routes and template interactivity with Jinja.
+
+### [**Jinja2**](https://palletsprojects.com/p/jinja/)
+
+Jinja is a templating engine for Python used with Flask to render all HTML data and content within this project.
+
+### [**Werkzeug Security**](https://palletsprojects.com/p/werkzeug/)
+
+Werkzeug is used with Flask to secure user authentication through password hashing.
+
+### [**MongoDB Atlas**](https://www.mongodb.com/cloud/atlas)
+
+Atlas is the cloud hosted version of MongoDB's database service. This was used as my database for the project.
+
+### [**PyMongo**](https://pypi.org/project/pymongo/)
+
+PyMongo is a distribution of Python used to interact with the MongoDB database.
+
+### [**BSON ObjectID**]()
+
+This was used to create and parse ObjectID's from the MongoDB database.
+
+### [**MD Bootstrap**](https://mdbootstrap.com/)
+
+Material Design Bootstrap is a free open source CSS framework, combining styles from Material Design with the main functionality of Bootsptrap. I used MDB to fill the site with boilerplate content when building the functionality, but it was also used to create responsiveness.
+
 ### [**Font Awesome**](https://fontawesome.com/)
 
-Font Awesome 4.7.0 was used for the GitHub social and audio mute icons.
+Font Awesome 5.8.2 was used for icons across the site.
 
 ### [**Google Fonts API**](https://fonts.google.com/)
 
-All of the fonts used within this project were provided by the Google Fonts API. The fonts used were 'Audiowide' 'Oxanium', and 'Orbitron'.
+Most of the fonts used within this project were provided by the Google Fonts API. The fonts used were 'Anton' 'Kanit', and 'Archivo Black'.
 
 ### 3.3 Tools
 
@@ -204,19 +228,27 @@ Visual Studio Code was the Integrated Development Environment (IDE) used to writ
 
 ### [**Chrome DevTools**](https://developers.google.com/web/tools/chrome-devtools/)
 
-The Chrome DevTools were used a lot in the development of this project to live preview edits and diagnose problems. I also ran lots of auditing and testing using built in tools such as Sources, Lighthouse and Coverage.
+The Chrome DevTools was used for live editing and diagnosing problems. I also ran lots of auditing and testing using built in tools such as Sources, Lighthouse and Coverage.
 
 ### [**Git**](https://git-scm.com/)
 
-Git was used for version control with GitHub - commiting each development stage to the GitHub repository.
+The version control used in this project was Git, alongside GitHub.
 
 ### [**Github**](https://github.com/)
 
-GitHub was used to host the repository.
+This repository was hosted using GitHub with Git version control.
 
 ### [**GNU Image Manipulation Program**](https://www.gimp.org/)
 
-GNU Image Manipulation Program (GIMP) was used to create the favicon website icon.
+GNU Image Manipulation Program (GIMP) was used to create the logo and favicon website icon.
+
+### [**Heroku**](https://www.heroku.com/)
+
+My web application was deployed online using Heroku.
+
+### [**Balsamiq**](https://balsamiq.com/)
+
+Used to create the wireframes for this project
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -240,9 +272,71 @@ GNU Image Manipulation Program (GIMP) was used to create the favicon website ico
 
 ## 5 Deployment
 
-### 5.1 MongoDB Atlas
+### 5.1 Heroku
+
+This project was automatically deployed to Heroku from my GitHub repository. To do this, first I created my repository containing my ***.gitignore*** file set to ignore my virtual environment and ***env.py*** files, then followed these steps:
+
+- Within the IDE's terminal window, create a requirements.txt file by typing ***pip3 freeze --local > requirements.txt***, and similarly create a Procfile by typing ***python app.py > Procfile***.
+
+- Login or sign up for a new account on [Heroku](https://id.heroku.com/login), then click ***New > Create New App*** from your dashboard.
+
+- Enter a name for your app and select the correct region before pressing ***Create App***.
+
+- Select the ***Deploy*** tab and then click on the ***GitHub*** button under ***Deployment method***.
+
+- Type your repository name in the search box next to the dropdown box displaying your GitHub account name. When the repository appears, click ***Connect***.
+
+- In the ***Settings*** tab, under the ***Config Vars*** section, click the ***Reveal Config Vars*** button.
+
+- Enter the key value pairs as found in your env.py file as such:
+    - IP: 0.0.0.0
+    - PORT: 5000
+    - SECRET_KEY: YOURSECRETKEY
+    - MONGO_DBNAME: YOUR-DATABASE-NAME
+    - MONGO_URI: mongodb+srv://root:YOURPASSWORD@YOUR-CLUSTER-NAME.2qobt.mongodb.net/YOUR-DATABASE-NAME?retryWrites=true&w=majority
+    - DEBUG: FALSE
+
+- Select the ***Deploy*** tabe again and click ***Enable Automatic Deploys*** under the ***Automatic Deploys*** section. Below this is the ***Manual Deploy*** section. Select your ***Master*** branch and click ***Deploy Branch***.
+
+- Your app will now be built, and when its completed you should see the message ***"Your app was successfully deployed"***. You can click ***View*** to launch the deployed app.
 
 ### 5.2 Locally
+
+If you would like to run this code locally on your own machine, follow these steps:
+
+- Follow this link to the repository for [Bristol Blackbook](https://github.com/samlaubscher/Bristol-Blackbook).
+
+- In the top corner next to the ***About*** section, click the ***Code*** button with the downwards facing arrow icons.
+
+- Under the ***Clone*** section, make sure the HTTPS tab is highlighted, and copy the link displayed to your clipboard. It should look like this:
+    > https://github.com/samlaubscher/Bristol-Blackbook.git
+
+- Open ***Git Bash*** in your IDE.
+
+- First navigate to the working directory you want the files to be cloned into.
+
+- Then type into the terminal window ***git clone {URL}*** and replace the ***{URL}*** with the link copied from the repository page.
+
+- Upon hitting ***Enter*** the repository will be cloned into your current working directory.
+
+- To then remove the origin link to this repository from your IDE, type ***git remote rm origin***.
+
+- Alternatively, you can download the repository directly as a compressed ZIP folder from the ***Code*** dropdown box, underneath the ***Clone*** section. Unpack this ZIP folder into your desired location.
+
+- When the project is successfully cloned or downloaded and opened in the correct directory, you need to install any dependancies and requirements by typing ***pip3 install -r requirements.txt*** into your IDE's terminal window.
+
+- You next need to create an ***env.py*** file to store your environment variables. For this project, they are: 
+    - import os
+    - os.environ.setdefault("IP", "YOUR IP")
+    - os.environ.setdefault("PORT", "5000")
+    - os.environ.setdefault("SECRET_KEY", "YOURSECRETKEY")
+    - os.environ.setdefault("MONGO_URI", "mongodb+srv://root:YOURPASSWORD@YOUR-CLUSTER-NAME.2qobt.mongodb.net/YOUR-DATABASE-NAME?retryWrites=true&w=majority")
+    - os.environ.setdefault("MONGO_DBNAME", "YOUR-DATABASE-NAME")
+    - os.environ.setdefault("DEBUG", "False")
+
+- Then create a ***.gitignore*** file, and include this env.py file inside it to ensure your environment variables are never published publically by being pushing to GitHub.
+
+- You are now ready run this project and push any modifications to your own repository. To run, type into the terminal ***python app.py***.
 
 To read more about cloning repositories, you can read [Cloning a repository](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
 
