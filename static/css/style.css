@@ -175,6 +175,7 @@ hr {
 .artists-box,
 .artist-box,
 .artist-info,
+.work-box,
 .crews-box,
 .style-box {
     position: relative;
@@ -199,6 +200,10 @@ hr {
 }
 
 .artist-box {
+    margin: 30px auto 15px auto;
+}
+
+.work-box {
     margin: 0 auto;
 }
 
