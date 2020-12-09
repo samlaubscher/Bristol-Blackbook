@@ -3,7 +3,6 @@
 
     <div class="text-center">
         <div class="border-container">
-
             <!-- Work Image -->
             <img src="{{ work.image_url }}" class="crew-image" alt="Crew Image">
             
@@ -24,45 +23,46 @@
                         {% for crew in crews %}
                             {% if crew.crew_name|upper == work.artist_name|upper %}
                                 <a href="{{ url_for('crew', crew_name=work.artist_name) }}">
-                                <h2 class="artist-direct-info">{{ work.artist_name|upper }}</h2>
+                                    <h2 class="artist-direct-info">{{ work.artist_name|upper }}</h2>
                                 </a>
                             {% endif %}
                         {% endfor %}
+                    <div class="border-mask-bottom-full"></div>
+                </div>
+            </div>
+            <div class="col-sm-8 center-margin">
+                <div class="artist-box">
+                    <div class="border-mask-top-full"></div>
+                        <h2 class="artist-info text-center">Style: </h2>
+                        <!-- Artist Page Route -->
+                        <a href="{{ url_for('style', style_name=work.style_name) }}">
+                            <h2 class="artist-direct-info">{{ work.style_name }}</h2>
+                        </a>
+                    <div class="border-mask-bottom-full"></div>
+                </div>
+            </div>
+            <div class="col-sm-8 center-margin">
+                <div class="artist-box">
+                    <div class="border-mask-top-full"></div>
+                        <h2 class="artist-info text-center">Type: </h2>
+                        <!-- Artist Page Route -->
+                        <a href="{{ url_for('type', type_name=work.type_name) }}">
+                            <h2 class="artist-direct-info">{{ work.type_name }}</h2>
+                        </a>
+                    <div class="border-mask-bottom-full"></div>
+                </div>
+            </div>
+            <div class="col-sm-8 center-margin">
+                <div class="artist-box">
+                    <div class="border-mask-top-full"></div>
+                        <h2 class="artist-info text-center">Year Painted: </h2>
+                        <!-- Artist Page Route -->
+                        <a>
+                            <h2 class="artist-direct-info">{{ work.year_painted }}</h2>
+                        </a>
                     <div class="border-mask-bottom"></div>
                 </div>
             </div>
-
-            <!-- Line Break -->
-            <div class="col-sm-8 center-margin"><hr></div>
-
-            <!-- Artist's Other Works -->
-            <div class="row">
-                {% for artistwork in works %}
-                    {% if work.artist_name == artistwork.artist_name %}
-                    <div class="col-sm-6 col-lg-4 art-panel">
-                        <div class="card card-cascade wider">
-                            <div class="view view-cascade overlay">
-                                <!-- image -->
-                                <img class="card-img-top"
-                                        src="{{ artistwork.image_url }}" alt="Graffiti Image">
-                                <a href="{{ url_for('work', work_id=artistwork._id) }}">
-                                    <!-- info overlay -->
-                                    <div class="mask flex-center rgba-black-strong">
-                                        <p class="white-text">
-                                            <br>Style: {{ artistwork.style_name }}
-                                            <br>Year Painted: {{ artistwork.year_painted }}
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <!-- Line Break -->
-            <div class="col-sm-8 center-margin"><hr></div>
         </div>
 
         <!-- Buttons -->
