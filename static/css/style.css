@@ -199,7 +199,7 @@ hr {
 }
 
 .artist-box {
-    margin: 30px auto 15px auto;
+    margin: 0 auto;
 }
 
 .crews-box {
@@ -217,7 +217,8 @@ hr {
 }
 
 .border-mask-top,
-.border-mask-top-l {
+.border-mask-top-l,
+.border-mask-top-full {
     position: absolute;
     top: -4px;
     width: 30%;
@@ -226,7 +227,8 @@ hr {
 }
 
 .border-mask-bottom,
-.border-mask-bottom-r {
+.border-mask-bottom-r,
+.border-mask-bottom-full {
     position: absolute;
     bottom: -4px;
     width: 30%;
@@ -242,6 +244,12 @@ hr {
 .border-mask-top,
 .border-mask-bottom-r {
     right: 10px;
+}
+
+.border-mask-top-full,
+.border-mask-bottom-full {
+    left: 0px;
+    width: 100%;
 }
 
 /* Text */
@@ -367,7 +375,8 @@ hr {
 }
 
 .crew-image {
-    margin-top: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     max-width: 90%;
     height: auto;
 }
@@ -400,7 +409,7 @@ hr {
 .artist-info {
     display: inline-block;
     font-size: 30px;
-    margin: 30px 10px;
+    margin: 0px 10px;
     border: none;
 }
 
