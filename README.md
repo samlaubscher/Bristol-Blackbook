@@ -155,8 +155,131 @@ This project was designed using an agile approach, utilisng a Kanban board to tr
 
 ### 2.1 Existing Features
 
-### [**Home Page**]()
+### **Intro Index Landing Page**
 
+When users visit the sites main index page ***(/)***, they are taken to a landing page displaying information about the sites main purpose and how to contribute. From this page, users can either click an Enter button, or can use the navbar to move through the site further.
+
+### **All Works Main Home Page**
+
+This page acts as the home page, displaying all available works uploaded to the database. At the top, users are able to search works according to the artist/crew name, style or type. Users are also able to filter results and order them in several different ways by clicking the Order By dropdown button in the top right. Each work is rendered as a medium sized image panel, which displays information for the work when hovered.
+
+### **Register & Login Pages**
+
+These pages display the logo with a form below allowing users to enter both a username and password. They allow users to either create a new account or login to an existing one by entering these unique values. The application will run validation and authentication on passwords and usernames for character and invalid or existing data checks. 
+
+### **Profile Page**
+
+When a user logs into their account, they will be directed to their own profile page. This will display their name, as well as any content that have contributed to the site in a concise manner. They will also have the option to edit/delete their account or any personally created content.
+
+### **Logout**
+
+The logout route link is displayed in the top right corner of the navbar when users are logged into an account. Clicking logout will remove 'user' from session cookies, effectively logging them out.
+
+### **New Upload Page**
+
+This page allows users to upload a new work to the database. It allows users to first select whether the work is by an artist or crew, as this will modify the content accordingly. Users can then select from a list of existing Artists or Crews respectively, before selecting the applicable Style and Type of the work, as well as the year painted and image URL. Each of these inputs either take data directly from certain collections within the database, or allow users to input their own values with respective validation applied. All submitted data is then saved in the works collection and displayed on the site accordingly.
+
+### **Work Page**
+
+When a user clicks on a work, they will be taken to a dedicated page allowing them to view the image in full size without any clipping. This page also displays the information relating to the work object:- Artst, Style, Type, and Year Painted. If the user uploaded the work or is the admin, they will be shown buttons at the very bottom allowing them to edit or delete the object.
+
+### **Edit Work Page**
+
+A work can be edited via the Edit Work page if the data assigned to the work object needs to be updated. A particular user only has access to edit a work if they were the one to originally upload it to the database. The admin can edit any work object.
+
+### **Add Artist Page**
+
+Users can easily add artists to the database by navigating to this page and inputting an artist name, their respective crews, and submitting. Validation will check for character input as well as existing data in the Artists collection.
+
+### **Artists page**
+
+The Artists page displays all artists uploaded to the database. Clicking on any of these will take the user to the artist dedicated page. There is also an 'Add Artist' button that will direct users to that page if they are logged in.
+
+### **Artist Page**
+
+Upon clicking an artists name, they will be taken to the artists individual page. This will display any information pertaining to the selected artist object, including any crew associations that artist may have, along with all works in their name. Please note when clicking on the artist name on a crew work, users will be taken to the crew page instead. If the user uploaded the artist or is the admin, they will be shown buttons at the very bottom allowing them to edit or delete the object.
+
+### **Edit Artist Page**
+
+An artist can be edited via the Edit Artist page if the data assigned to the artist object needs to be updated. A particular user only has access to edit an artist if they were the one to originally upload them to the database. The admin can edit any artist object.
+
+### **Add Crew Page**
+
+Users are able to add new crews to the database by navigating to this page and inputting the crew name and image. Validation will check for character input as well as existing data in the Crews collection.
+
+### **Crews Page**
+
+The Crews page displays all crews uploaded to the database, along with their main crew image. They are displayed in large card panels, breaking up the layout of the site and allowing the user to see the crew image clearly. Clicking one of these crew panels takes the user to the individual Crew page.
+
+### **Crew Page**
+
+The Crew page shows all associated data for the selected crew object. Underneath the crew image, each artist associated with the crew is displayed. Below this, each work with the crew listed as the main artist is also displayed. Clicking either an artist name or work will redirect the user to its respective page. If the user uploaded the crew or is the admin, they will be shown buttons at the very bottom allowing them to edit or delete the object.
+
+### **Edit Crew Page**
+
+A crew can be edited via the Edit Crew page if the data assigned to the crew object needs to be updated. A particular user only has access to edit a crew if they were the one to originally upload it to the database. The admin can edit any crew object.
+
+### **Add Style Page [Admin Only]**
+
+The admin is able to add new styles to the database by navigating to this page and inputting the style name and image. Only the admin is able to add styles as users should not have a reason to add any styles to the database. Validation will check for character input as well as existing data in the Styles collection.
+
+### **Styles Page**
+
+The Styles page displays all of the different styles of graffiti. Users can upload works and correctly categorise them under a respective styles. These are also displayed in large card panels, further breaking up the layout of the site and allowing the user to see the style image clearly. Clicking one of these style panels takes the user to the individual Style page.
+
+### **Style Page**
+
+The Style page shows all associated data for the selected style object. Underneath the style image, each work executed and categorised within this style is displayed. Clicking any of these works will redirect the user to its respective page. The admin will be shown buttons at the very bottom allowing them to edit or delete the object.
+
+### **Edit Style Page [Admin Only]**
+
+A style can be edited by the admin via the Edit Style page. No normal users are allowed to do this.
+
+### **Add Type Page [Admin Only]**
+
+The admin is able to add new types to the database by navigating to this page and inputting the type name and image. Validation will check for character input as well as existing data in the Types collection.
+
+### **Types Page**
+
+The Types page displays all of the different types of graffiti there can be. Users can upload works and correctly categorise them under their respective type, for example an individual work can be by the same artist in the same style, but may be on a freight train as apposed to on a legal wall. Each type is also displayed in large card panels, further breaking up the layout of the site and allowing the user to see the type image clearly. Clicking one of these type panels takes the user to the individual Type page.
+
+### **Type Page**
+
+The Type page shows all associated data for the selected type object. Underneath the type image, each work executed and categorised of this type is displayed. Clicking any of these works will redirect the user to its respective page. The admin will be shown buttons at the very bottom allowing them to edit or delete the object.
+
+### **Edit Type Page [Admin Only]**
+
+A type can be edited by the admin via the Edit Type page. No normal users are allowed to do this.
+
+### **Admin Panel Page [Admin Only]**
+
+The admin panel facilitates the ability for the site administrator to easily delete any user in the database if they violate the correct use of the website. The page also displays buttons allowing for Styles or Types to be added to the database. All other content edit/delete admin privileges did not need to be included here as they are accessible across the site when logged into the admin account.
+
+### **Header**
+
+Each page contains the header which has a background image filling the entire width of the screen and extending down from the top of the window 300px in height. At the top sits the navbar and in the center of the header there is a black bordered box used as the title logo containing the text Bristol Blackbook. This box has a gradient border fading from white to black, and the text is underlined with a gradient matching the purple colour scheme for the entire site. The bottom of the header background image also has a gradient fading to black, allowing the image to blend with the body background effectively. 
+
+### **Navbar**
+
+Due to the header, each page across the application naturally also contains the full width navbar at the very top of the window, facilitating effortless navigation across the site. This navbar sits at the very top of the header and has a black background with 70% opacity, allowing for the header image to be seen behind. The main logo is displayed in the far left, followed by page links for Home, Artists, Crews, Styles and Types, and on the far right sits the Login and Register page links. The content of the navbar changes when users are logged into an account. On the left additional links of New Upload, Add Artist and Add Crew are displayed, and the far right links are both entirely swapped to display the Profile and Logout route links.
+
+### **Footer**
+
+Each page has a full width footer at the bottom of the window, containing social media links and copyright information.
+
+### 2.1 Features Left To Implement
+
+### **Bristol Paint Shops Page**
+
+I want to create a page that lists each of the shops in Bristol that sell decent spray paint. I will include their name, location, and opening times, as well as any known deals available, ontop of listing the general price range for each brand stocked.
+
+### **Work Rating System**
+
+The ability for users to grade each work on a 5 star rating system would ultimately grant the site owner a deeper level of insight into the users of their site. This would allow not only the site owner to have additional data on its audience, but other users will benefit from this feature as it will display the opinion and feedback of other fellow site users. Perhaps the most important aspect of this feature however is that the original uploader or even artist can benefit from these types of statistics by seeing the direct user rating of each created work.
+
+### **Comments Section On Works**
+
+Originally Disqus was used as a comment secion, however it was removed as I would like to create my own comments section in the future. This will allow site users to comment on content under their own usernames with their created account without any additional registration as seen with Disqus.
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -332,7 +455,7 @@ If you would like to run this code locally on your own machine, follow these ste
     - os.environ.setdefault("SECRET_KEY", "YOURSECRETKEY")
     - os.environ.setdefault("MONGO_URI", "mongodb+srv://root:YOURPASSWORD@YOUR-CLUSTER-NAME.2qobt.mongodb.net/YOUR-DATABASE-NAME?retryWrites=true&w=majority")
     - os.environ.setdefault("MONGO_DBNAME", "YOUR-DATABASE-NAME")
-    - os.environ.setdefault("DEBUG", "False")
+    - os.environ.setdefault("DEBUG", "FALSE")
 
 - Then create a ***.gitignore*** file, and include this env.py file inside it to ensure your environment variables are never published publically by being pushing to GitHub.
 
