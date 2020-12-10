@@ -34,17 +34,53 @@ Bristol has one of the most prolific and active graffiti scenes in the UK. The B
 - [**2 Features**](#2-features)
 
   - [**2.1 Existing Features**](#21-existing-features)
-    - Login 
+    - [**Intro Index Landing Page**](#intro-index-landing-page)
+    - [**All Works Main Home Page**](#all-works-main-home-page)
+    - [**Register & Login Pages**](#register-&-login-pages)
+    - [**Profile Page**](#profile-page)
+    - [**Logout**](#logout)
+    - [**New Upload Page**](#new-upload-page)
+    - [**Work Page**](#work-page)
+    - [**Edit Work Page**](#edit-work-page)
+    - [**Add Artist Page**](#add-artist-page)
+    - [**Artists Page**](#artists-page)
+    - [**Artist Page**](#artist-page)
+    - [**Edit Artist Page**](#edit-artist-page)
+    - [**Add Crew Page**](#add-crew-page)
+    - [**Crews Page**](#crews-page)
+    - [**Crew Page**](#crew-page)
+    - [**Edit Crew Page**](#edit-crew-page)
+    - [**Add Style Page [Admin Only]**](#add-style-page-[admin-only])
+    - [**Styles Page**](#styles-page)
+    - [**Style Page**](#style-page)
+    - [**Edit Style Page [Admin Only]**](#edit-style-page-[admin-only])
+    - [**Add Type Page [Admin Only]**](#add-typee-page-[admin-only])
+    - [**Types Page**](#types-page)
+    - [**Type Page**](#type-page)
+    - [**Edit Type Page [Admin Only]**](#edit-type-page-[admin-only])
+    - [**Admin Panel page [Admin Only]**](#admin-panel-page-[admin-only])
+    - [**Header Image**](#header-image)
+    - [**Navbar**](#navbar)
+    - [**Footer**](#footer)
   - [**2.2 Features Left to Implement**](#22-Features-left-to-impliment)
-    - local
+    - [**Bristol Paint Shops Page**](#bristol-paint-shops-page)
+    - [**Work Rating System**](#work-rating-system)
+    - [**Comments Section On Works**](#comments-section-on-works)
 
 - [**3 Technologies Used**](#3-technologies-used)
   - [**3.1 Languages**](#31-languages)
     - [**HTML/HTML 5**](#html/html-5)
     - [**CSS/CSS3**](#css/css3)
     - [**JavaScript ES6**](#JavaScript-ES6)
-  - [**3.2 Libraries**](#32-libraries)
-    - [**Jasmine Testing Famework**](#jasmine-testing-framework)
+    - [**Python**](#Python)
+  - [**3.2 Frameworks & Libraries**](#32-frameworks-&-libraries)
+    - [**Flask**](#Flask)
+    - [**Jinja2**](#jinja2)
+    - [**Werkzeug Security**](#Werkzeug-Security)
+    - [**MongoDB Atlas**](#mongodb-atlas)
+    - [**PyMongo**](#pymongo)
+    - [**BSON ObjectID**](#bson-objectid)
+    - [**MD Bootstrap**](#md-bootstrap)
     - [**Font Awesome**](#font-awesome)
     - [**Google Fonts API**](#Google-Fonts-API)
   - [**3.3 Tools**](#33-Tools)
@@ -53,6 +89,8 @@ Bristol has one of the most prolific and active graffiti scenes in the UK. The B
     - [**Git**](#git)
     - [**GitHub**](#github)
     - [**GNU Image Manipulation Program**](#GNU-Image-Manipulation-Program)
+    - [**Heroku**](#heroku)
+    - [**Balsamiq**](#balsamiq)
 
 * [**4 Testing**](#4-testing)
 
@@ -110,16 +148,21 @@ The purpose and goals of this project are:
 
 ### 1.4 Design Process
 
+### **Logo**
+
+I designed a logo for the site using the font 'Sprayerz' ontop of a spray type pattern.
+
+<div align="center">
+<img src="./static/images/readme/logo-black.jpg" alt="Main Logo" width="200">
+</div>
+
 ### **Colour scheme**
 
 Fitting with the name Blackbook, I decided to design the site with a black background.
 
 ### **Typography**
 
-For the main title font used within this project, I imported a free font named 'Sprayerz' from the font folder within static/. The font I used for the main site body including the navbar was 'Kanit', supplied by Google Fonts.
-
-The font is one of the most important aspects of the design process, so the title and text font has to fit the space theme. I used 'Audiowide' for the main title and layered multiple h2 elements offset to create a 3d drop shadow with a neon glow above. The main body text font is 'Oxanium' which is a really nice squared font that works with the digital look. 'Orbitron' is used for the score counter, the font works well with the black background as the styled line through the letters stops the font being too visually stimulating, maintaining focus on the centre of the screen.
-
+For the main title font used within this project, I used a free font named 'Sprayerz', being imported from the font folder within static/. The font I used for the main site body including the navbar was 'Kanit', supplied by Google Fonts. I used 'Anton', a tall thicker font for the page headers, and then 'Archivo Black' for any info displayed.
 
 ### **Wireframes**
 
