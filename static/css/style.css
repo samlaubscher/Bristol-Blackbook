@@ -191,12 +191,27 @@ hr {
 .artists-box {
     height: 75px;
     width: 200px;
-    transition: all 0.25s ease 0s;
+    transition: 0.3s;
 }
 
-.artists-box:hover {
+.style-box {
+    transition: 0.3s;
+}
+
+.artists-box h3,
+.style-box h3 {
+    transition: 0.2s;
+}
+
+.artists-box:hover,
+.style-box:hover {
     color: #c571da;
     border-color: #c571da;
+}
+
+.artists-box:hover h3,
+.style-box:hover h3 {
+    transform: scale(1.04);
 }
 
 .artist-box {
@@ -212,6 +227,7 @@ hr {
     display: block;
     text-align: center;
     border: solid 3px #ffffff42;
+    transition: 0.3s;
 }
 
 .crews-box:hover {
@@ -363,6 +379,11 @@ hr {
     padding-right: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
+    transition: 0.3s;
+}
+
+.art-panel:hover {
+    transform: scale(1.03);
 }
 
 /* Images */
@@ -371,12 +392,11 @@ hr {
     height: 300px;
     padding: 15px;
     padding-bottom: 0;
+    transition: 0.3s;
 }
 
 #crew-panel-image:hover {
-	animation-name: image-zoom;
-	animation-duration: 0.5s;
-	animation-fill-mode: both;
+    transform: scale(1.04);
 }
 
 .crew-image,
@@ -391,15 +411,6 @@ hr {
 .type-image,
 .style-image {
     margin-bottom: 5px;
-}
-
-@keyframes image-zoom {
-	from {
-		transform: scale(1);
-	}
-	to {
-		transform: scale(1.02);
-	}
 }
 
 /* Admin pages */
@@ -431,6 +442,11 @@ hr {
     font-size: 80px;
     letter-spacing: 3px;
     margin: 10px;
+    transition: 0.3s;
+}
+
+.artist-direct-info:hover {
+    color: #c571da
 }
 
 .artist-crew-info {
@@ -532,7 +548,13 @@ hr {
 
 .social-links a i {
     color: rgba(255, 255, 255, 0.603);
-    padding: 0 20px;
+    padding: 0;
+    margin: 0 20px;
+    transition: 0.3s;
+}
+
+.social-links a i:hover {
+    color: #c571da
 }
 
 /* preloader - https://bootsnipp.com/snippets/GaeVl */
