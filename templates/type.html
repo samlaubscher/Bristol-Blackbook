@@ -13,26 +13,26 @@
             </div>
         </div>
         <!-- Crew Image -->
-        <img src="{{ type.type_image }}" class="crew-image" alt="Crew Image">
+        <img src="{{ type.type_image }}" class="type-image" alt="Type Image">
         
         <!-- Line Break -->
         <div class="col-sm-8 center-margin"><hr></div>
         
         <!-- Type Pieces -->
         <div class="row">
-            {% for type in types %}
+            {% for work in works %}
                 <div class="col-sm-6 col-lg-4 art-panel">
                     <div class="card card-cascade wider">
                         <div class="view view-cascade overlay">
                             <!-- image -->
                             <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
-                                    src="{{ works.image_url }}" alt="Graffiti Image">
-                            <a href="{{ url_for('work', work_id=cwork._id) }}">
+                                    src="{{ work.image_url }}" alt="Graffiti Image">
+                            <a href="{{ url_for('work', work_id=work._id) }}">
                                 <!-- info overlay -->
                                 <div class="mask flex-center rgba-black-strong">
                                     <p class="white-text">
-                                        <br>Style: {{ cwork.style_name }}
-                                        <br>Year Painted: {{ cwork.year_painted }}
+                                        <br>Style: {{ work.style_name }}
+                                        <br>Year Painted: {{ work.year_painted }}
                                     </p>
                                 </div>
                             </a>
