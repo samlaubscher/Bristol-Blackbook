@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="welcome-info-panel text-center">
+        <img src="\static\images\logo.png" alt="Logo">
+        <h2 class="page-title text-center">Error!</h2>
+        <h3 class="welcome-info-top">Oops... Something went wrong!</h3>
+        <p class="welcome-info">Click below to be taken back to the home page.</p>
+        <div class="col-sm-12 add-btn text-center">
+            <a href="{{ url_for('welcome') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
+                Home Page
+            </a>
+        </div>
+    </div>
+
+{% endblock %}
