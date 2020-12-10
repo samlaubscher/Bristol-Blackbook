@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./static/images/readme/logo-black.jpg" alt="Main Logo" width="300">
+<img src="./static/images/readme/bristol-blackbook.jpg" alt="Main Logo" width="700">
 
 # Bristol Blackbook
 
