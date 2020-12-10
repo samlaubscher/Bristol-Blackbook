@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src=# alt="Main Logo">
+<img src="./static/images/readme/logo-black.jpg" alt="Main Logo" width="300">
 
 # Bristol Blackbook
 
@@ -78,7 +78,7 @@ Bristol has one of the most prolific and active graffiti scenes in the UK. The B
 
 ### 1.1 Overview
 
-Bristol Blackbook was built off the idea of creating a database to document the urban artform of graffiti found on the streets of Bristol city. Often most artists upload these images to Instagram under private accounts, restricted for anonymity. This means most people cannot see them, so I wanted to create a website that maintained this idea of user privacy and was not associated with any social media platforms. This allows users to anonymously view and contribute to the content.
+Bristol Blackbook was built from the idea of creating a database for documenting the urban artform graffiti, found on the streets of Bristol city. Often most artists upload these images to Instagram under private accounts, restricted for anonymity. This means most people cannot see them, so I wanted to create a website that maintained this idea of user privacy and was not associated with any social media platforms. This allows users to anonymously view and contribute to the content. I chose the name Bristol Blackbook as the blackbook is famously where graffiti writers practice their work, and often they collect the tags and works of other graffiti writers in these books when they meet others. For a graffiti writer, blackbooks are a good way of personally archiving a section of their history in graffiti, they capture the artists works permanently, their progression, and they often hold the memory of all artists that have contributed to the book.
 
 ### 1.2 Project Goals
 
@@ -95,16 +95,6 @@ The purpose and goals of this project are:
 
 ### 1.3 User Stories
 
-When creating my user stories, I tried to implement the principles of Bill Wake's INVEST nmemomic for each one.
-- Independant
-- Negotiable
-- Valuable
-- Estimatable
-- Small
-- Testable
-
-When necessary, I wanted to break stories down into smaller related epics.
-
 - As a developer, I want my site to have a clearly defined purpose so users are aware of the sites functionality, maintaining a good user experience.
 - As a developer, I want each of my features to have effective functionality so that users are not given an unpleasent experience.
 - As a designer, I want users to register for an account so that I can personalise their experience.
@@ -116,10 +106,11 @@ When necessary, I wanted to break stories down into smaller related epics.
 - As a registered user, I want control over my account, so that I can easily choose to delete the account or any content I have uploaded to the website.
 
 
-
 ### 1.4 Design Process
 
 ### **Colour scheme**
+
+Fitting with the name Blackbook, I decided to design the site with a black background.
 
 ### **Typography**
 
@@ -133,7 +124,7 @@ The font is one of the most important aspects of the design process, so the titl
 <details>
 <summary><b>Desktop & Mobile Wireframes</b> - (click to expand)</summary>
 
-- 
+-
 
 <div align="center">
 
