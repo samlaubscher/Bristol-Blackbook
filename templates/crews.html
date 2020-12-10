@@ -18,7 +18,7 @@
                         <div class="view view-cascade">
                             <a href="{{ url_for('crew', crew_name=crew.crew_name) }}">
                             <!-- image -->
-                            <img class="card-img-top" id="crew-panel-image"
+                            <img class="card-img-top" id="crew-panel-image" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
                                     src="{{ crew.crew_image }}" alt="Graffiti Image">
                                 <h3 class="crew-name">{{ crew.crew_name }}</h3>
                             </a>

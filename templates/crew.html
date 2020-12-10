@@ -13,7 +13,8 @@
                 </div>
             </div>
             <!-- Crew Image -->
-            <img src="{{ crew.crew_image }}" class="crew-image" alt="Crew Image">
+            <img src="{{ crew.crew_image }}" class="crew-image" alt="Crew Image"
+                onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
             
             <!-- Line Break -->
             <div class="col-sm-8 center-margin"><hr></div>
@@ -25,7 +26,7 @@
                         <div class="card card-cascade wider">
                             <div class="view view-cascade overlay">
                                 <!-- image -->
-                                <img class="card-img-top"
+                                <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
                                         src="{{ cwork.image_url }}" alt="Graffiti Image">
                                 <a href="{{ url_for('work', work_id=cwork._id) }}">
                                     <!-- info overlay -->

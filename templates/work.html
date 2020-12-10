@@ -4,7 +4,8 @@
     <div class="text-center">
         <div class="border-container">
             <!-- Work Image -->
-            <img src="{{ work.image_url }}" class="crew-image" alt="Crew Image">
+            <img src="{{ work.image_url }}" class="crew-image" alt="Crew Image" 
+                onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
             
             <!-- Artist Name -->
             <div class="col-sm-8 center-margin">

@@ -25,7 +25,7 @@
                     <div class="card card-cascade wider">
                         <div class="view view-cascade overlay">
                             <!-- image -->
-                            <img class="card-img-top"
+                            <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
                                     src="{{ works.image_url }}" alt="Graffiti Image">
                             <a href="{{ url_for('work', work_id=cwork._id) }}">
                                 <!-- info overlay -->

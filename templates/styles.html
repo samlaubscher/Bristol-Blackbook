@@ -24,8 +24,8 @@
                             <!-- Style Name -->
                             <a href="{{ url_for('style', style_name=style.style_name) }}">
                             <!-- Style mage -->
-                            <img class="card-img-top" id="crew-panel-image"
-                                    src="{{ style.style_image }}" alt="Style Image">
+                            <img class="card-img-top" id="crew-panel-image" alt="Style Image" 
+                                    src="{{ style.style_image }}" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
                                     <h3 class="style-name white-text">{{ style.style_name }}</h3>
                             </a>
                             <div class="border-mask-bottom"></div>
