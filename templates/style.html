@@ -13,7 +13,7 @@
             </div>
         </div>
         <!-- Crew Image -->
-        <img src="{{ style.style_image }}" class="crew-image" alt="Crew Image"
+        <img src="{{ style.style_image }}" class="style-image" alt="Style Image"
             onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
         
         <!-- Line Break -->
@@ -21,19 +21,20 @@
         
         <!-- Crew Pieces -->
         <div class="row">
-            {% for style in styles %}
+            {% for work in works %}
                 <div class="col-sm-6 col-lg-4 art-panel">
                     <div class="card card-cascade wider">
                         <div class="view view-cascade overlay">
                             <!-- image -->
                             <img class="card-img-top" alt="Graffiti Image" 
-                                    src="{{ cwork.image_url }}" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
-                            <a href="{{ url_for('work', work_id=cwork._id) }}">
+                                    src="{{ work.image_url }}" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
+                            <a href="{{ url_for('work', work_id=work._id) }}">
                                 <!-- info overlay -->
                                 <div class="mask flex-center rgba-black-strong">
                                     <p class="white-text">
-                                        <br>Style: {{ cwork.style_name }}
-                                        <br>Year Painted: {{ cwork.year_painted }}
+                                        Artist: {{ work.artist_name }}
+                                        <br>Type: {{ work.type_name }}
+                                        <br>Year Painted: {{ work.year_painted }}
                                     </p>
                                 </div>
                             </a>
