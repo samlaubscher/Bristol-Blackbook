@@ -12,7 +12,7 @@ Bristol has one of the most prolific and active graffiti scenes in the UK. The B
 
 ##### This project was developed for my Data Centric Development project on my Full Stack Software Development course.
 
-<img src="./static/images/readme/amiresponsive.jpg" alt="Main Logo" width="500">
+<img src="./static/images/readme/amiresponsive.jpg" alt="Main Logo" width="700">
 
 </div>
 
