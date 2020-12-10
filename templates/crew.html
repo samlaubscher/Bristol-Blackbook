@@ -13,7 +13,7 @@
                 </div>
             </div>
             <!-- Crew Image -->
-            <img src="{{ crew.crew_image }}" class="crew-image" alt="Crew Image"
+            <img src="{{ crew.crew_image }}" class="large-image" alt="Crew Image"
                 onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
             
             <!-- Line Break -->
@@ -32,8 +32,8 @@
                                     <!-- info overlay -->
                                     <div class="mask flex-center rgba-black-strong">
                                         <p class="white-text">
-                                            
                                             <br>Style: {{ cwork.style_type }}
+                                            <br>Type: {{ cwork.type_type }}
                                             <br>Year Painted: {{ cwork.year_painted }}
                                         </p>
                                     </div>

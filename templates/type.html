@@ -13,7 +13,7 @@
             </div>
         </div>
         <!-- Crew Image -->
-        <img src="{{ type.type_image }}" class="type-image" alt="Type Image">
+        <img src="{{ type.type_image }}" class="large-image type-image" alt="Type Image">
         
         <!-- Line Break -->
         <div class="col-sm-8 center-margin"><hr></div>
@@ -31,6 +31,7 @@
                                 <!-- info overlay -->
                                 <div class="mask flex-center rgba-black-strong">
                                     <p class="white-text">
+                                        Artist: {{ work.artist_name }}
                                         <br>Style: {{ work.style_name }}
                                         <br>Year Painted: {{ work.year_painted }}
                                     </p>
