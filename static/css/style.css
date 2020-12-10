@@ -365,7 +365,7 @@ hr {
     margin-bottom: 5px;
 }
 
-/* Crew Pages */
+/* Images */
 
 #crew-panel-image {
     height: 300px;
@@ -379,11 +379,16 @@ hr {
 	animation-fill-mode: both;
 }
 
-.crew-image {
+.crew-image,
+.type-image {
     margin-top: 30px;
     margin-bottom: 30px;
     max-width: 90%;
     height: auto;
+}
+
+.type-image {
+    margin-bottom: 5px;
 }
 
 @keyframes image-zoom {
