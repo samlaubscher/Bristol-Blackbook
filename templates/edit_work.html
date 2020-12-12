@@ -1,89 +1,85 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue-text text-darken-4 text-center">Edit Work</h3>
+    <h3 class="page-title text-center">Edit Work</h3>
 
-    <div class="row">
+    <div class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_work', work_id=work._id) }}">
-            <div class="card">
-                <div class="card-body">
-                    <!-- artist name -->
-                    <div class="row">
-                        <class class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
-                            <i class="fas fa-user-ninja input-prefix"></i>
-                            <select class="form-control" id="artist_name" name="artist_name" required>
-                                <option value="" disabled>Artist Name</option>
-                                {% for artist in artists %}
-                                    {% if work.artist_name == artist.artist_name %}
-                                        <option value="{{ artist.artist_name }}" selected>{{ artist.artist_name }}</option>
-                                    {% else %}
-                                        <option value="{{ artist.artist_name }}">{{ artist.artist_name }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>
-                        </class>
-                    </div>
-                    <!-- style -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field">
-                            <i class="fas fa-spray-can input-prefix"></i>
-                            <select class="form-control" name="style_name" id="style_name" required>
-                                <option value="" disabled selected>Style</option>
-                                {% for style in styles %}
-                                    {% if work.style_name == style.style_name %}
-                                        <option value="{{ style.style_name }}" selected>{{ style.style_name }}</option>
-                                    {% else %}
-                                        <option value="{{ style.style_name }}">{{ style.style_name }}</option>
-                                    {% endif %}
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <!-- type -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon upload-field">
-                            <i class="fas fa-map-marked-alt input-prefix"></i>
-                            <select class="form-control" name="type_name" id="type_name" required>
-                                <option value="" disabled selected>Type</option>
-                                {% for type in types %}
-                                    <option value="{{ type.type_name }}">{{ type.type_name }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                    </div>
-                    <!-- year -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
-                            <i class="fas fa-calendar-alt input-prefix"></i>
-                            <input type="text" id="year_painted" name="year_painted" pattern="^[0-9]{4,4}$" 
-                                value="{{ work.year_painted }}" minlength="4" maxlength="4" class="form-control" required>
-                            <label for="year_painted">Year Painted</label>
-                        </div>
-                    </div>
-                    <!-- image URL -->
-                    <div class="row">
-                        <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
-                            <i class="fas fa-camera-retro input-prefix"></i>
-                            <input type="text" id="image_url" name="image_url" class="form-control" 
-                                value="{{ work.image_url }}" minlength="6" class="form-control" required>
-                            <label for="image_url">Image URL</label>
-                        </div>
-                        <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
-                            Only use direct links to images by right clicking and pressing 'copy image address'. You can upload images to an external site such as <a href="https://imgbox.com/" target="_blank">imgbox.com</a>.
-                            When uploaded, click on the image for a full size version. Then right click and 'copy image address'.
-                        </small>
-                    </div>
-                    <br>
-                    <!-- submit button -->
-                    <div class="row" style="justify-content: center;">
-                        <a href="{{ url_for('works') }}" class="btn btn-mdb-color text-shadow">
-                            Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>
-                        <button type="submit" class="btn btn-elegant text-shadow">
-                            Edit Work <i class="fas fa-edit" style="font-size: 90%;"></i>
-                        </button>
-                    </div>
-                </div>      
-            </div>     
+            <!-- artist name -->
+            <div class="row">
+                <class class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
+                    <i class="fas fa-user-ninja input-prefix"></i>
+                    <select class="form-control" id="artist_name" name="artist_name" required>
+                        <option value="" disabled>Artist Name</option>
+                        {% for artist in artists %}
+                            {% if work.artist_name == artist.artist_name %}
+                                <option value="{{ artist.artist_name }}" selected>{{ artist.artist_name }}</option>
+                            {% else %}
+                                <option value="{{ artist.artist_name }}">{{ artist.artist_name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </class>
+            </div>
+            <!-- style -->
+            <div class="row">
+                <div class="md-form input-with-pre-icon upload-field">
+                    <i class="fas fa-spray-can input-prefix"></i>
+                    <select class="form-control" name="style_name" id="style_name" required>
+                        <option value="" disabled selected>Style</option>
+                        {% for style in styles %}
+                            {% if work.style_name == style.style_name %}
+                                <option value="{{ style.style_name }}" selected>{{ style.style_name }}</option>
+                            {% else %}
+                                <option value="{{ style.style_name }}">{{ style.style_name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <!-- type -->
+            <div class="row">
+                <div class="md-form input-with-pre-icon upload-field">
+                    <i class="fas fa-map-marked-alt input-prefix"></i>
+                    <select class="form-control" name="type_name" id="type_name" required>
+                        <option value="" disabled selected>Type</option>
+                        {% for type in types %}
+                            <option value="{{ type.type_name }}">{{ type.type_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <!-- year -->
+            <div class="row">
+                <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
+                    <i class="fas fa-calendar-alt input-prefix"></i>
+                    <input type="text" id="year_painted" name="year_painted" pattern="^[0-9]{4,4}$" 
+                        value="{{ work.year_painted }}" minlength="4" maxlength="4" class="form-control" required>
+                    <label for="year_painted">Year Painted</label>
+                </div>
+            </div>
+            <!-- image URL -->
+            <div class="row">
+                <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
+                    <i class="fas fa-camera-retro input-prefix"></i>
+                    <input type="text" id="image_url" name="image_url" class="form-control" 
+                        value="{{ work.image_url }}" minlength="6" class="form-control" required>
+                    <label for="image_url">Image URL</label>
+                </div>
+                <small id="image-url-helper" class="form-text text-muted text-center" style="width: 70%; margin: auto;">
+                    Only use direct links to images by right clicking and pressing 'copy image address'. You can upload images to an external site such as <a href="https://imgbox.com/" target="_blank">imgbox.com</a>.
+                    When uploaded, click on the image for a full size version. Then right click and 'copy image address'.
+                </small>
+            </div>
+            <br>
+            <!-- submit button -->
+            <div class="row" style="justify-content: center;">
+                <a href="{{ url_for('works') }}" class="btn btn-outline-secondary text-shadow" id="neon-upload-btn">
+                    Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>
+                <button type="submit" class="btn btn-outline-purple text-shadow" id="neon-upload-btn">
+                    Edit Work <i class="fas fa-edit" style="font-size: 90%;"></i>
+                </button>
+            </div>
         </form>
     </div>
 
