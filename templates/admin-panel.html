@@ -1,10 +1,13 @@
 {% extends "base.html" %}
+
 {% block content %}
 
+    <!-- Page Title-->
     <div class="admin-banner text-shadow"><h2>ADMIN PANEL</h2></div>
 
     <div class="row border-container">
         <div class="col-sm-12">
+            <!-- Registered Users -->
             <h2 class="text-center">Users:</h2>
             <div class="row">
                 {% for user in users %}
@@ -14,7 +17,7 @@
                             <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
                             data-target="#confirm-delete-modal-{{ user.username }}">Delete</button>
 
-                            <!-- confirm delete modal -->
+                            <!-- Confirm Delete Modal -->
                             <div class="modal fade" id="confirm-delete-modal-{{ user.username }}" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
@@ -37,7 +40,7 @@
                 {% endfor %}
             </div>
 
-            <!-- Add buttons -->
+            <!-- Buttons -->
             <div class="col-sm-8 center-margin">
                 <hr>
                 <h2 class="text-center">Add Items</h2>

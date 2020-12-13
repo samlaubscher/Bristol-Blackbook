@@ -25,11 +25,11 @@
                     <div class="col-sm-6 col-lg-4 art-panel">
                         <div class="card card-cascade wider">
                             <div class="view view-cascade overlay">
-                                <!-- image -->
+                                <!-- Image -->
                                 <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
                                         src="{{ work.image_url }}" alt="Graffiti Image">
                                 <a href="{{ url_for('work', work_id=work._id) }}">
-                                    <!-- info overlay -->
+                                    <!-- Info Overlay -->
                                     <div class="mask flex-center rgba-black-strong">
                                         <p class="white-text">
                                             <br>Style: {{ work.style_name }}
@@ -66,7 +66,7 @@
                 {% endfor %}
             </div>
 
-            <!-- Edit Buttons -->
+            <!-- Buttons -->
             <div class="col-sm-8 center-margin">
                 <hr>
                 {% if session.user|lower == crew.submitted_by|lower or session.user|lower == "admin"|lower %}
@@ -77,7 +77,7 @@
                         data-target="#confirm-delete-modal">Delete</button>
                     <hr style="width: 70%;">
 
-                    <!-- confirm delete modal -->
+                    <!-- Confirm Delete Modal -->
                     <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
                         aria-hidden="true">
                         <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">

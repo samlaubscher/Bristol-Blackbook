@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- Page Title -->
     <h2 class="page-title text-center">Edit Crew</h2>
 
     <div class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_crew', crew_name=crew.crew_name) }}">
-            <!-- artist name -->
+            <!-- Crew Name -->
             <div class="row">
                 <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
                     <i class="fas fa-users input-prefix"></i>
                     <input type="text" id="crew_name" name="crew_name" value="{{ crew.crew_name }}"
-                        minlength="2" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control" required>
+                    minlength="2" maxlength="7" pattern="^[a-zA-Z0-9]{2,7}$" class="form-control" required>
                     <label for="crew_name">Crew Name</label>
                 </div>
             </div>
+            <!-- Crew Image -->
             <div class="row">
                 <div class="md-form input-with-pre-icon upload-field">
                     <i class="fas fa-camera-retro input-prefix"></i>
@@ -26,7 +28,7 @@
                 </small>
             </div>
             <br>
-            <!-- submit button -->
+            <!-- Buttons -->
             <div class="row" style="justify-content: center;">
                 <a href="{{ url_for('crews') }}" class="btn btn-outline-secondary text-shadow" id="neon-upload-btn">
                     Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>

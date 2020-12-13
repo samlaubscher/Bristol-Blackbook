@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- Page Title -->
     <h2 class="page-title text-center">Upload New Work</h2>
 
     <div class="row border-container">
@@ -21,7 +22,7 @@
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('new_work') }}">
             <div class="collapse" id="artistPiece">
                 <h2 class="upload-header">ARTIST WORK</h2>
-                <!-- artist name -->
+                <!-- Artist Name -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
                         <i class="fas fa-user-ninja input-prefix"></i>
@@ -33,7 +34,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- style -->
+                <!-- Style -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field">
                         <i class="fas fa-spray-can input-prefix"></i>
@@ -45,7 +46,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- type -->
+                <!-- Type -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field">
                         <i class="fas fa-map-marked-alt input-prefix"></i>
@@ -57,7 +58,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- year -->
+                <!-- Year -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field">
                         <i class="fas fa-calendar-alt input-prefix"></i>
@@ -66,7 +67,7 @@
                         <label for="year_painted">Year Painted</label>
                     </div>
                 </div>
-                <!-- image URL -->
+                <!-- Image URL -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field" style="width: 70%; margin: auto; justify-self: start;">
                         <i class="fas fa-camera-retro input-prefix"></i>
@@ -79,7 +80,7 @@
                     </small>
                 </div>
                 <br>
-                <!-- submit button -->
+                <!-- Submit Button -->
                 <div class="row submit-btn">
                     <button type="submit" class="col-sm-4 btn-elegant">
                         Upload Artist Work <i class="fas fa-plus-circle" style="font-size: 90%;"></i>
@@ -93,7 +94,7 @@
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('new_work') }}">
             <div class="collapse" id="crewPiece">
                 <h2 class="upload-header">CREW WORK</h2>
-                <!-- crew name -->
+                <!-- Crew Name -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
                         <i class="fa fa-users input-prefix"></i>
@@ -105,7 +106,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- style -->
+                <!-- Style -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field">
                         <i class="fas fa-spray-can input-prefix"></i>
@@ -117,7 +118,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- type -->
+                <!-- Type -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field">
                         <i class="fas fa-map-marked-alt input-prefix"></i>
@@ -129,7 +130,7 @@
                         </select>
                     </div>
                 </div>
-                <!-- year -->
+                <!-- Year -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field">
                         <i class="fas fa-calendar-alt input-prefix"></i>
@@ -138,7 +139,7 @@
                         <label for="year_painted">Year Painted</label>
                     </div>
                 </div>
-                <!-- image URL -->
+                <!-- Image URL -->
                 <div class="row">
                     <div class="md-form input-with-pre-icon upload-field" style="width: 70%; margin: auto; justify-self: start;">
                         <i class="fas fa-camera-retro input-prefix"></i>
@@ -151,7 +152,7 @@
                     </small>
                 </div>
                 <br>
-                <!-- submit button -->
+                <!-- Submit Button -->
                 <div class="row submit-btn">
                     <button type="submit" class="col-sm-4 btn-elegant">
                         Upload Crew Work <i class="fas fa-plus-circle" style="font-size: 90%;"></i>

@@ -1,11 +1,13 @@
 {% extends "base.html" %}
+
 {% block content %}
 
+    <!-- Page Title-->
     <h2 class="page-title text-center">Add Artist</h2>
 
     <div class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('add_artist') }}">
-            <!-- artist name -->
+            <!-- Artist Name -->
             <div class="row">
                 <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
                     <i class="fas fa-user-ninja input-prefix"></i>
@@ -14,6 +16,7 @@
                     <label for="artist_name">Artist Name</label>
                 </div>
             </div>
+            <!-- Artist Crews -->
             <div class="row">
                 <div class="md-form input-with-pre-icon upload-field">
                     <i class="fas fa-users input-prefix"></i>
@@ -29,7 +32,7 @@
                 You can select multiple crews by holding CTRL on your keyboard.
             </small>
             <br>
-            <!-- submit button -->
+            <!-- Submit Button -->
             <div class="row" style="justify-content: center;">
                 <button type="submit" class="btn btn-outline-purple text-shadow" id="neon-upload-btn">
                     Add Artist <i class="fas fa-plus-circle" style="font-size: 90%;"></i>

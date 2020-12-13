@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Page Title -->
 <h2 class="text-center">All Uploaded Works</h2>
 
     <div class="row center-content">
         <div>
-            <!-- search box -->
+            <!-- Search Box -->
             <div class="row search-container">
                 <!-- Add Work Button -->
                 <div class="col-sm-12 add-btn text-center">
@@ -15,21 +16,21 @@
                 </div>
                 <form class="form-inline col-sm-12 center-content" method="POST"
                     id="search" action="{{ url_for('search') }}">
-                    <!-- search bar -->
+                    <!-- Search Bar -->
                     <div class="md-form input-with-pre-icon search">
                         <i class="fas fa-search input-prefix"></i>
                         <input type="text" name="query" id="query"
                             minlength="3" maxlength="15" pattern="^[a-zA-Z]{3,15}$" class="form-control">
                         <label for="query">Search for Artist, Crew or Style</label>
                     </div>
-                    <!-- search buttons -->
+                    <!-- Search Buttons -->
                     <div class="search">
                         <a onclick="document.getElementById('search').submit()" class="btn btn-sm btn-outline-secondary text-shadow" id="neon-btn">Search</a>
                         <a href="{{ url_for('works') }}" class="btn btn-sm btn-outline-purple text-shadow" id="neon-btn">Reset</a>
                     </div>
                 </form>
             </div>
-            <!-- filter dropdown -->
+            <!-- Filter Dropdown -->
             <div class="row">
                 <div class="col-sm-12">
                     <a class="btn btn-sm purple-gradient dropdown-toggle filter-btn" id="filter" type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -45,18 +46,18 @@
                 </div>
             </div>
 
-            <!-- artworks -->
+            <!-- Artworks -->
             <div class="row">
                 {% if works|length > 0 %}
                     {% for work in works %}
                         <div class="col-sm-6 col-lg-4 art-panel">
                             <div class="card card-cascade wider">
                                 <div class="view view-cascade overlay">
-                                    <!-- image -->
+                                    <!-- Image -->
                                     <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
                                             src="{{ work.image_url }}" alt="Graffiti Image">
                                     <a href="{{ url_for('work', work_id=work._id) }}">
-                                        <!-- info overlay -->
+                                        <!-- Info Overlay -->
                                         <div class="mask flex-center rgba-black-strong">
                                             <p class="white-text">
                                                 Artist: {{ work.artist_name }}
@@ -70,6 +71,7 @@
                             </div>
                         </div>
                     {% endfor %}
+                <!-- No Search Results -->
                 {% else %}
                     <h2 class="red-text no-results">No Results Found</h2>
                 {% endif %}

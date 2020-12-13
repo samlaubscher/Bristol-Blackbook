@@ -65,7 +65,7 @@
             </div>
         </div>
 
-        <!-- Admin Buttons -->
+        <!-- Buttons -->
         {% if session.user|lower == artist.submitted_by|lower or session.user|lower == "admin"|lower %}
             <hr style="width: 70%;">
             <h3 class="white-text">EDIT ARTIST</h3>
@@ -73,7 +73,7 @@
             <button type="button" class="btn btn-outline-purple text-shadow" id="neon-btn" data-toggle="modal" 
                 data-target="#confirm-delete-modal">Delete</button>
             <hr style="width: 70%;">
-            <!-- confirm delete modal -->
+            <!-- Confirm Delete Modal -->
             <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
                 aria-hidden="true">
                 <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">

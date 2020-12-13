@@ -3,6 +3,7 @@
 
     <div class="admin-banner text-shadow"><h3>ADMIN PANEL</h3></div>
 
+    <!-- Page Title -->
     <h2 class="page-title text-center">Edit Style</h2>
 
     <div class="row border-container">
@@ -21,11 +22,13 @@
                     maxlength="500" class="form-control validate" required>
                 <label for="image_url">Image URL</label>
             </div>
-            
-            <!-- Submit -->
+            <!-- Buttons -->
             <div class="row" style="justify-content: center;">
-                <button type="submit" class="col-sm-4 btn-elegant">
-                    Add Style <i class="fas fa-plus-circle"></i>
+                <a href="{{ url_for('styles') }}" class="btn btn-outline-secondary text-shadow" id="neon-upload-btn">
+                    Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>
+            <div class="row" style="justify-content: center;">
+                <button type="submit" class="btn btn-outline-purple text-shadow" id="neon-upload-btn">
+                    Update Style <i class="fas fa-edit" style="font-size: 90%;"></i>
                 </button>
             </div>
         </form>

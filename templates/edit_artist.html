@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+<!-- Page Title -->
 <h2 class="page-title text-center">Edit Artist</h2>
 
 <div class="row border-container">
     <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_artist', artist_name=artist.artist_name) }}">
-        <!-- artist name -->
+        <!-- Artist Name -->
         <div class="row">
             <div class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
                 <i class="fas fa-user-ninja input-prefix"></i>
@@ -14,6 +15,7 @@
                 <label for="artist_name">Artist Name</label>
             </div>
         </div>
+        <!-- Artist Crews -->
         <div class="row">
             <div class="md-form input-with-pre-icon upload-field">
                 <i class="fas fa-users input-prefix"></i>
@@ -29,7 +31,7 @@
             You can select multiple crews by holding CTRL on your keyboard.
         </small>
         <br>
-        <!-- submit button -->
+        <!-- Buttons -->
         <div class="row" style="justify-content: center;">
             <a href="{{ url_for('artists') }}" class="btn btn-outline-secondary text-shadow" id="neon-upload-btn">
                 Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>

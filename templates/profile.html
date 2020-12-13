@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- Page Title -->
     <h2 class="page-title text-center">{{ username|upper }}'S USER PANEL</h2>
 
     <div class="row border-container">
@@ -9,7 +10,7 @@
             <div class="col-sm-12 add-btn text-center">
                 <button type="button" class="btn btn-outline-secondary text-shadow" id="neon-btn" data-toggle="modal"
                     data-target="#confirm-delete-artist-modal">Delete Account <i class="fas fa-ban"></i></button>
-                <!-- confirm delete modal -->
+                <!-- Confirm Delete Modal -->
                 <div class="modal fade" id="confirm-delete-artist-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-artist-modal"
                     aria-hidden="true">
                     <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
@@ -28,6 +29,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Users Uploaded Works -->
             <hr>
             <h2 class="upload-header">YOUR UPLOADS</h2>
             <div class="row">
@@ -35,11 +37,11 @@
                     <div class="col-sm-6 col-lg-4 art-panel">
                         <div class="card card-cascade wider">
                             <div class="view view-cascade overlay">
-                                <!-- image -->
+                                <!-- Image -->
                                 <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
                                         src="{{ work.image_url }}" alt="Graffiti Image">
                                 <a href="{{ url_for('work', work_id=work._id) }}">
-                                    <!-- info overlay -->
+                                    <!-- Info Overlay -->
                                     <div class="mask flex-center rgba-black-strong">
                                         <p class="white-text">
                                             Artist: {{ work.artist_name }}
@@ -51,11 +53,12 @@
                                 </a>
                             </div>
                         </div>
+                        <!-- Buttons -->
                         <div class="row center-content">
                             <a href="{{ url_for('edit_work', work_id=work._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
                             <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
                                 data-target="#confirm-delete-work-modal">Delete</button>
-                            <!-- confirm delete modal -->
+                            <!-- Confirm Delete Modal -->
                             <div class="modal fade" id="confirm-delete-work-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-work-modal"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
@@ -79,6 +82,7 @@
             </div>
         </div>
 
+        <!-- Users Uploaded Artists -->
         <div class="col-sm-12 col-md-8 offset-md-2">
             <hr>
             <h2 class="upload-header">YOUR UPLOADED ARTISTS</h2>
@@ -87,11 +91,13 @@
                     <div class="col-4 top-margin">
                         <div>
                             <div class="text-center">
+                                <!-- Artist Name -->
                                 <h4 class="card-title white-text"><strong>{{ artist.artist_name }}</strong></h4>
+                                <!-- Buttons -->
                                 <a href="{{ url_for('edit_artist', artist_name=artist.artist_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
                                 <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal"
                                     data-target="#confirm-delete-artist-modal">Delete</button>
-                                <!-- confirm delete modal -->
+                                <!-- Confirm Delete Modal -->
                                 <div class="modal fade" id="confirm-delete-artist-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-artist-modal"
                                     aria-hidden="true">
                                     <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">

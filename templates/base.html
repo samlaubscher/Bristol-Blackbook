@@ -16,14 +16,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <!-- Custom Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    {% block styles %}
-    {% endblock %}
-    <title>Bristol Blackbook</title>
+    <title>{% block title %}{% endblock %} | Bristol Blackbook</title>
 </head>
 <body>
     <header>
         <div id="cover">
-            <!-- navbar from Bootsptrap -->
+            <!-- Navbar From Bootsptrap -->
             <nav class="navbar navbar-expand-lg navbar-dark text-shadow">
                 <a class="navbar-brand" href="{{ url_for('welcome') }}">
                     <img class="nav-logo" src="\static\images\logo.png" alt="Nav Logo">
@@ -65,7 +63,7 @@
         </div>
     </header>
 
-    <!-- preloader -->
+    <!-- Preloader -->
     <div class="row loader">
         <div class="col-md-12">
             <div class="preloader1">
@@ -81,7 +79,7 @@
     </div>
 
     <section>
-        <!-- flash message -->
+        <!-- Flash Message -->
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -93,6 +91,7 @@
         {% endwith %}
     </section>
 
+    <!-- Main Page Content -->
     <div class="container-lg">
         {% block content %}
         {% endblock %}

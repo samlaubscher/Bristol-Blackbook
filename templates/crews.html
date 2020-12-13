@@ -1,23 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- Page Title-->
     <h2 class="text-center">Crews</h2>
     
     <div class="row border-container">
-        <!-- add artist button -->
+        <!-- Add Crew Button -->
         <div class="col-sm-12 add-btn text-center">
             <a href="{{ url_for('add_crew') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
                 Add Crew  <i class="fas fa-plus"></i>
             </a>
         </div>
 
+        <!-- Crews -->
         <div class="row">
             {% for crew in crews %}
                 <div class="col-sm-12 col-md-6">
                     <div class="card card-cascade wider crews-box">
                         <div class="view view-cascade">
                             <a href="{{ url_for('crew', crew_name=crew.crew_name) }}">
-                            <!-- image -->
+                            <!-- Image -->
                             <img class="card-img-top" id="crew-panel-image" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
                                     src="{{ crew.crew_image }}" alt="Graffiti Image">
                                 <h3 class="crew-name">{{ crew.crew_name }}</h3>

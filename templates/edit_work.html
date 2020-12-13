@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+    <!-- Page Title -->
     <h3 class="page-title text-center">Edit Work</h3>
 
     <div class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_work', work_id=work._id) }}">
-            <!-- artist name -->
+            <!-- Artist Name -->
             <div class="row">
                 <class class="md-form input-with-pre-icon upload-field" style="margin-top: 25px;">
                     <i class="fas fa-user-ninja input-prefix"></i>
@@ -21,7 +22,7 @@
                     </select>
                 </class>
             </div>
-            <!-- style -->
+            <!-- Style -->
             <div class="row">
                 <div class="md-form input-with-pre-icon upload-field">
                     <i class="fas fa-spray-can input-prefix"></i>
@@ -37,7 +38,7 @@
                     </select>
                 </div>
             </div>
-            <!-- type -->
+            <!-- Type -->
             <div class="row">
                 <div class="md-form input-with-pre-icon upload-field">
                     <i class="fas fa-map-marked-alt input-prefix"></i>
@@ -49,7 +50,7 @@
                     </select>
                 </div>
             </div>
-            <!-- year -->
+            <!-- Year -->
             <div class="row">
                 <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto;">
                     <i class="fas fa-calendar-alt input-prefix"></i>
@@ -58,7 +59,7 @@
                     <label for="year_painted">Year Painted</label>
                 </div>
             </div>
-            <!-- image URL -->
+            <!-- Image URL -->
             <div class="row">
                 <div class="md-form input-with-pre-icon" style="width: 70%; margin: auto; justify-self: start;">
                     <i class="fas fa-camera-retro input-prefix"></i>
@@ -72,7 +73,7 @@
                 </small>
             </div>
             <br>
-            <!-- submit button -->
+            <!-- Buttons -->
             <div class="row" style="justify-content: center;">
                 <a href="{{ url_for('works') }}" class="btn btn-outline-secondary text-shadow" id="neon-upload-btn">
                     Cancel <i class="fas fa-window-close" style="font-size: 90%;"></i> </a>
