@@ -1,3 +1,4 @@
+# import libraries & dependencies
 import os
 from dns.resolver import query
 from flask import (
@@ -20,6 +21,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 # global variables
 mongo = PyMongo(app)
+
 
 # routes
 @app.route("/")
@@ -927,6 +929,7 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
+# Environment Variables
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"), 
             port=int(os.environ.get("PORT")),
