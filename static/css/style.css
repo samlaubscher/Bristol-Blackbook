@@ -390,6 +390,26 @@ hr {
     transform: scale(1.03);
 }
 
+.pagination {
+    justify-content: center;
+}
+
+.pagination .page-item .page-link {
+    color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+    background-image: linear-gradient(190deg, #ff6ec4, #7873f5);
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #7873f5;
+}
+
+.page-link {
+    padding: .5rem .45rem;
+}
+
 /* Images */
 
 #crew-panel-image {
@@ -433,17 +453,17 @@ hr {
 
 .artist-info {
     display: inline-block;
-    font-size: 30px;
-    margin: 0px 10px;
+    font-size: 18px;
+    margin: 0px 6px;
     border: none;
 }
 
 .artist-direct-info,
 .artist-crew-info {
     display: inline-block;
-    font-size: 80px;
+    font-size: 40px;
     letter-spacing: 3px;
-    margin: 10px;
+    margin: 8px;
     transition: 0.3s;
 }
 
@@ -627,3 +647,48 @@ hr {
 }
 
 /* Media Queries */
+
+@media only screen
+and (min-width : 480px) {
+
+    .page-link {
+        padding: .5rem .75rem;
+    }
+
+    .artist-info {
+        font-size: 30px;
+        margin: 0px 10px;
+    }
+    
+    .artist-direct-info,
+    .artist-crew-info {
+        font-size: 80px;
+        margin: 10px;
+    }
+}
+
+@media only screen and (min-width : 574px) {
+    .artist-info {
+        font-size: 20px;
+        margin: 0px 6px;
+    }
+    
+    .artist-direct-info,
+    .artist-crew-info {
+        font-size: 40px;
+        margin: 8px;
+    }
+}
+
+@media only screen and (min-width : 766px) {
+    .artist-info {
+        font-size: 30px;
+        margin: 0px 8px;
+    }
+    
+    .artist-direct-info,
+    .artist-crew-info {
+        font-size: 80px;
+        margin: 8px;
+    }
+}
