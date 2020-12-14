@@ -22,12 +22,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 # global variables
 mongo = PyMongo(app)
-all_works = list(mongo.db.works.find().sort("date_submitted", -1))
-
-
-# pagination 
-def get_works(offset=0, per_page=1):
-    return all_works[offset: offset + per_page]
 
 
 # routes
@@ -58,18 +52,23 @@ def works():
     *   None.
     
     \n Returns:  
-    *  Template displaying all works from db in date_submitted descending order.
+    *  Template displaying all works from db in date_submitted descending order with pagination.
     """
-    
+
+    works = list(mongo.db.works.find().sort("date_submitted", -1))
+    # pagination 
+    def get_works(offset=0, per_page=9):
+        return works[offset: offset + per_page]
+
     page, per_page, offset = get_page_args(page_parameter='page',
                                             per_page_parameter='per_page')
-    per_page = 15
-    total = len(all_works)
+    per_page = 9
+    total = len(works)
     pagination_works = get_works(offset=offset, per_page=per_page)
     pagination = Pagination(page=page, per_page=per_page, total=total,
                             css_framework='bootstrap4')
-
-    return render_template("works.html", works=pagination_works, page=page, per_page=per_page, pagination=pagination)
+    return render_template("works.html", works=pagination_works, page=page, 
+                            per_page=per_page, pagination=pagination)
 
 
 @app.route("/search", methods=["GET", "POST"])
@@ -78,18 +77,31 @@ def search():
     
     * Takes user input from works page search box.
     * Queries db for results based on user input.
+    * Displays results with pagination.
     
     \n Args: 
     1. query(str): user input from search box field.
     
     \n Returns:
-    *   Template containing any results matching query input.
+    *   Template containing any results matching query input with pagination.
     *   h2 containing 'No Results Found' is returned if no results.
     """
 
     query = request.form.get("query")
     works = list(mongo.db.works.find({"$text": {"$search": query}}))
-    return render_template("works.html", works=works)
+    # pagination 
+    def get_works(offset=0, per_page=9):
+        return works[offset: offset + per_page]
+
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                            per_page_parameter='per_page')
+    per_page = 9
+    total = len(works)
+    pagination_works = get_works(offset=offset, per_page=per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=total,
+                            css_framework='bootstrap4')
+    return render_template("works.html", works=pagination_works, page=page, 
+                            per_page=per_page, pagination=pagination)
 
 
 @app.route("/filter/<filter_type>/<direction>")
@@ -98,22 +110,45 @@ def filter(filter_type, direction):
     
     * Checks for selected sort order
     * Sets the order in which the data will display on main page.
-    * Displays data in defined order.
+    * Displays data in defined order with pagination.
     
     \n Args:
     1.  filter_type(str): Targeted field within db collection.
     2.  direction(str): Direction of db sort order (ascending or descending).
     
     \n Returns: 
-    *   Template displaying works from db in respective sort order.
+    *   Template displaying works from db in respective sort order with pagination.
     """
 
     if direction == 'ascending':
         works = list(mongo.db.works.find().sort(filter_type, 1))
-        return render_template("works.html", works=works)
+        # pagination 
+        def get_works(offset=0, per_page=9):
+            return works[offset: offset + per_page]
+        page, per_page, offset = get_page_args(page_parameter='page',
+                                                per_page_parameter='per_page')
+        per_page = 9
+        total = len(works)
+        pagination_works = get_works(offset=offset, per_page=per_page)
+        pagination = Pagination(page=page, per_page=per_page, total=total,
+                                css_framework='bootstrap4')
+        return render_template("works.html", works=pagination_works, page=page, 
+                                per_page=per_page, pagination=pagination)
 
     works = list(mongo.db.works.find().sort(filter_type, -1))   
-    return render_template("works.html", works=works)
+    # pagination 
+    def get_works(offset=0, per_page=1):
+        return works[offset: offset + per_page]
+
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                            per_page_parameter='per_page')
+    per_page = 15
+    total = len(works)
+    pagination_works = get_works(offset=offset, per_page=per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=total,
+                            css_framework='bootstrap4')
+    return render_template("works.html", works=pagination_works, page=page, 
+                            per_page=per_page, pagination=pagination)
 
 
 @app.route("/work/<work_id>")
