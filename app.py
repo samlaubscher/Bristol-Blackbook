@@ -195,17 +195,20 @@ def register():
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
+        
+        if request.form.get("password") == request.form.get("confirm-password"):
+            user = {
+                "username": request.form.get("username").lower(),
+                "password": generate_password_hash(request.form.get("password"))
+            }
+            mongo.db.users.insert_one(user)
 
-        user = {
-            "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
-        }
-        mongo.db.users.insert_one(user)
-
-        # insert user into session cookie
-        session["user"] = request.form.get("username").lower()
-        flash("Registration Successful!")
-        return redirect(url_for("profile", username=session["user"]))
+            # insert user into session cookie
+            session["user"] = request.form.get("username").lower()
+            flash("Registration Successful!")
+            return redirect(url_for("profile", username=session["user"]))
+        flash("Passwords Do Not Match")
+        return redirect(url_for("register"))
 
     return render_template("register.html")
 
