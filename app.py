@@ -522,7 +522,7 @@ def crew(crew_name):
     """
 
     crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
-    artists = mongo.db.artists.find({"artist_crews": str(crew_name)})
+    artists = list(mongo.db.artists.find({"artist_crews": str(crew_name)}))
     works = mongo.db.works.find({"artist_name": str(crew_name)})
     return render_template("crew.html", crew=crew, artists=artists, works=works)
 
