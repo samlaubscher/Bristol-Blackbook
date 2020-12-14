@@ -774,7 +774,7 @@ def type(type_name):
     """
 
     type = mongo.db.types.find_one({"type_name": str(type_name)})
-    works = mongo.db.works.find({"type_name": str(type_name)})
+    works = list(mongo.db.works.find({"type_name": str(type_name)}))
     return render_template("type.html", type=type, works=works)
 
 
