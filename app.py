@@ -397,7 +397,7 @@ def artist(artist_name):
     """
 
     artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
-    works = mongo.db.works.find({"artist_name": str(artist_name)})
+    works = list(mongo.db.works.find({"artist_name": str(artist_name)}))
     return render_template("artist.html", artist=artist, works=works)
 
 
