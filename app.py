@@ -645,7 +645,7 @@ def style(style_name):
     """
 
     style = mongo.db.styles.find_one({"style_name": str(style_name)})
-    works = mongo.db.works.find({"style_name": str(style_name)})
+    works = list(mongo.db.works.find({"style_name": str(style_name)}))
     return render_template("style.html", style=style, works=works)
 
 
