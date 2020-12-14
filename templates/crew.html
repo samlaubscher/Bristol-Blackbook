@@ -52,52 +52,61 @@
             
             <!-- Crew Artists -->
             <div class="row">
-                {% for artist in artists %}
-                    <div class="col-md-3 col-sm-8">
-                        <a href="{{ url_for('artist', artist_name=artist.artist_name) }}">
-                            <div class="center-margin">
-                                <div class="artists-box">
-                                    <div class="border-mask-top"></div>
-                                    <h3 class="artist-name">{{ artist.artist_name }}</h3>
-                                    <div class="border-mask-bottom"></div>
+                {% if artists %}
+                    {% for artist in artists %}
+                        <div class="col-md-3 col-sm-8">
+                            <a href="{{ url_for('artist', artist_name=artist.artist_name) }}">
+                                <div class="center-margin">
+                                    <div class="artists-box">
+                                        <div class="border-mask-top"></div>
+                                        <h3 class="artist-name">{{ artist.artist_name }}</h3>
+                                        <div class="border-mask-bottom"></div>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                {% endfor %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h2 class="red-text no-results">No Added Members</h2>
+                {% endif %}
             </div>
-
-            <!-- Buttons -->
             <div class="col-sm-8 center-margin">
                 <hr>
-                {% if session.user|lower == crew.submitted_by|lower or session.user|lower == "admin"|lower %}
-                    <hr style="width: 70%;">
-                    <h3 class="white-text">EDIT CREW</h3>
-                    <a href="{{ url_for('edit_crew', crew_name=crew.crew_name) }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">Edit</a>
-                    <button type="button" class="btn btn-outline-purple text-shadow" id="neon-btn" data-toggle="modal" 
-                        data-target="#confirm-delete-modal">Delete</button>
-                    <hr style="width: 70%;">
+            </div>
 
-                    <!-- Confirm Delete Modal -->
-                    <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-                            <div class="modal-content text-center">
-                                <div class="modal-header d-flex justify-content-center">
-                                    <p class="heading">Are you sure?</p>
-                                </div>
-                                <div class="modal-body">
-                                    <i class="fas fa-times fa-4x animated rotateIn"></i>
-                                </div>
-                                <div class="modal-footer flex-center">
-                                    <a href="{{ url_for('delete_crew', crew_name=crew.crew_name) }}" class="btn btn-outline-danger">Yes</a>
-                                    <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
-                                </div>
+            <!-- Go Back Button -->
+            <div class="col-sm-12 text-center">
+                <a href="{{ url_for('crews') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
+                    Go Back  <i class="fas fa-angle-double-left"></i>
+                </a>
+            </div>
+            <!-- User Uploaded / Admin Buttons-->
+            {% if session.user|lower == crew.submitted_by|lower or session.user|lower == "admin"|lower %}
+                <h3 class="white-text">EDIT CREW</h3>
+                <a href="{{ url_for('edit_crew', crew_name=crew.crew_name) }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">Edit</a>
+                <button type="button" class="btn btn-outline-purple text-shadow" id="neon-btn" data-toggle="modal" 
+                    data-target="#confirm-delete-modal">Delete</button>
+                <hr style="width: 70%;">
+
+                <!-- Confirm Delete Modal -->
+                <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                        <div class="modal-content text-center">
+                            <div class="modal-header d-flex justify-content-center">
+                                <p class="heading">Are you sure?</p>
+                            </div>
+                            <div class="modal-body">
+                                <i class="fas fa-times fa-4x animated rotateIn"></i>
+                            </div>
+                            <div class="modal-footer flex-center">
+                                <a href="{{ url_for('delete_crew', crew_name=crew.crew_name) }}" class="btn btn-outline-danger">Yes</a>
+                                <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
                             </div>
                         </div>
                     </div>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
