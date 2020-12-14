@@ -77,7 +77,11 @@
                     <h2 class="red-text no-results">No Results Found</h2>
                 {% endif %}
             </div>
-            <div class="row bottom-pagination-container"></div>
+            <div class="row bottom-pagination-container">
+                <div class="col-sm-6 center-margin">
+                    {{ pagination.links }}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

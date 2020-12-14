@@ -8,6 +8,7 @@ from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_paginate import Pagination, get_page_args
 if os.path.exists("env.py"):
     import env
 
@@ -21,6 +22,12 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 # global variables
 mongo = PyMongo(app)
+all_works = list(mongo.db.works.find().sort("date_submitted", -1))
+
+
+# pagination 
+def get_works(offset=0, per_page=1):
+    return all_works[offset: offset + per_page]
 
 
 # routes
@@ -53,9 +60,16 @@ def works():
     \n Returns:  
     *  Template displaying all works from db in date_submitted descending order.
     """
+    
+    page, per_page, offset = get_page_args(page_parameter='page',
+                                            per_page_parameter='per_page')
+    per_page = 15
+    total = len(all_works)
+    pagination_works = get_works(offset=offset, per_page=per_page)
+    pagination = Pagination(page=page, per_page=per_page, total=total,
+                            css_framework='bootstrap4')
 
-    works = list(mongo.db.works.find().sort("date_submitted", -1))
-    return render_template("works.html", works=works)
+    return render_template("works.html", works=pagination_works, page=page, per_page=per_page, pagination=pagination)
 
 
 @app.route("/search", methods=["GET", "POST"])
