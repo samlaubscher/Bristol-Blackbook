@@ -3,7 +3,7 @@
 {% block content %}
 
     <!-- Page Title -->
-    <h2 class="page-title text-center">Register An Account</h2>
+    <h2 class="page-title text-center">Register</h2>
 
     <div class="row border-container">
         <div class="col-sm-12 text-center">
@@ -22,7 +22,14 @@
                 <i class="fas fa-user-lock prefix"></i>
                 <input type="password" name="password" id="password" minlength="3" 
                     maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control validate" required>
-                <label for="password" data-error="wrong" data-success="right">Type your password</label>
+                <label for="password" data-error="wrong" data-success="right">Create a password</label>
+            </div>
+            <!-- Check Password -->
+            <div class="md-form">
+                <i class="fas fa-user-check prefix"></i>
+                <input type="password" name="confirm-password" id="confirm-password" minlength="3" 
+                    maxlength="15" pattern="^[a-zA-Z0-9]{3,15}$" class="form-control validate" required>
+                <label for="confirm-password" data-error="wrong" data-success="right">Confirm password</label>
             </div>
             <!-- Register -->
             <div class="row" style="justify-content: center;">
@@ -31,12 +38,12 @@
                 </button>
             </div>
         </form>
-    </div>
 
-    <!-- Helper Message -->
-    <div class="col-sm-12 login-text">
-        <div class="text-center">
-            Aready have an account? <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">Login Here</a>
+        <!-- Helper Message -->
+        <div class="col-sm-12 login-text">
+            <div class="text-center">
+                Aready have an account? <a href="{{ url_for('login') }}" class="light-blue-text text-darken-4">Login Here</a>
+            </div>
         </div>
     </div>
 
