@@ -19,19 +19,25 @@
                     <h2 class="artist-info text-center">Crew Affiliation:</h2>
                     <div class="artist-crews">
                         <div class="row">
-                            {% for crew in artist.artist_crews %}
-                                <div class="col-sm-6">
-                                    <a href="{{ url_for('crew', crew_name=crew) }}">
-                                        <div class="center-margin">
-                                            <div class="artists-box">
-                                                <div class="border-mask-top-l"></div>
-                                                <h3 class="artist-name" id="hover-fx">{{ crew }}</h3>
-                                                <div class="border-mask-bottom-r"></div>
+                            {% if artist.artist_crews %}
+                                {% for crew in artist.artist_crews %}
+                                    <div class="col-sm-6">
+                                        <a href="{{ url_for('crew', crew_name=crew) }}">
+                                            <div class="center-margin">
+                                                <div class="artists-box">
+                                                    <div class="border-mask-top-l"></div>
+                                                    <h3 class="artist-name" id="hover-fx">{{ crew }}</h3>
+                                                    <div class="border-mask-bottom-r"></div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            {% endfor %}
+                                        </a>
+                                    </div>
+                                    
+                                    
+                                {% endfor %}
+                            {% else %}
+                            <h2 class="red-text no-results">No Crew</h2>
+                            {% endif %}
                         </div>
                     </div>
                     <hr>
@@ -39,34 +45,46 @@
             </div>
             <!-- Artists Works -->
             <div class="row">
-            {% for work in works %}
-            <div class="col-sm-6 col-lg-4 art-panel">
-                <div class="card card-cascade wider">
-                    <div class="view view-cascade overlay">
-                        <!-- image -->
-                        <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
-                                src="{{ work.image_url }}" alt="Graffiti Image">
-                        <a href="{{ url_for('work', work_id=work._id) }}" aria-label="graffiti work">
-                            <!-- info overlay -->
-                            <div class="mask flex-center rgba-black-strong">
-                                <p class="white-text">
-                                    Artist: {{ work.artist_name }}
-                                    <br>Style: {{ work.style_name }}
-                                    <br>Year Painted: {{ work.year_painted }}
-                                </p>
+                {% if works|length > 0 %}
+                    {% for work in works %}
+                    <div class="col-sm-6 col-lg-4 art-panel">
+                        <div class="card card-cascade wider">
+                            <div class="view view-cascade overlay">
+                                <!-- image -->
+                                <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
+                                        src="{{ work.image_url }}" alt="Graffiti Image">
+                                <a href="{{ url_for('work', work_id=work._id) }}" aria-label="graffiti work">
+                                    <!-- info overlay -->
+                                    <div class="mask flex-center rgba-black-strong">
+                                        <p class="white-text">
+                                            Artist: {{ work.artist_name }}
+                                            <br>Style: {{ work.style_name }}
+                                            <br>Year Painted: {{ work.year_painted }}
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
+                        </div>
                     </div>
+                    {% endfor %}
+                {% else %}
+                <div class="col-sm-6 col-lg-4 art-panel center-margin">
+                    <h2 class="red-text no-results">No Works</h2>
                 </div>
-            </div>
-            {% endfor %}
+                {% endif %}
             </div>
             <div class="col-sm-8 center-margin">
                 <hr>
             </div>
         </div>
 
-        <!-- Buttons -->
+        <!-- Go Back Button -->
+        <div class="col-sm-12 text-center">
+            <a href="{{ url_for('artists') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
+                Go Back  <i class="fas fa-angle-double-left"></i>
+            </a>
+        </div>
+        <!-- User Uploaded / Admin Buttons-->
         {% if session.user|lower == artist.submitted_by|lower or session.user|lower == "admin"|lower %}
             <hr style="width: 70%;">
             <h3 class="white-text">EDIT ARTIST</h3>
