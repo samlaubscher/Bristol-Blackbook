@@ -523,7 +523,7 @@ def crew(crew_name):
 
     crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
     artists = list(mongo.db.artists.find({"artist_crews": str(crew_name)}))
-    works = mongo.db.works.find({"artist_name": str(crew_name)})
+    works = list(mongo.db.works.find({"artist_name": str(crew_name)}))
     return render_template("crew.html", crew=crew, artists=artists, works=works)
 
 
@@ -645,7 +645,7 @@ def style(style_name):
     """
 
     style = mongo.db.styles.find_one({"style_name": str(style_name)})
-    works = mongo.db.works.find({"style_name": str(style_name)})
+    works = list(mongo.db.works.find({"style_name": str(style_name)}))
     return render_template("style.html", style=style, works=works)
 
 
@@ -774,7 +774,7 @@ def type(type_name):
     """
 
     type = mongo.db.types.find_one({"type_name": str(type_name)})
-    works = mongo.db.works.find({"type_name": str(type_name)})
+    works = list(mongo.db.works.find({"type_name": str(type_name)}))
     return render_template("type.html", type=type, works=works)
 
 

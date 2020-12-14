@@ -21,60 +21,70 @@
         
         <!-- Type Pieces -->
         <div class="row">
-            {% for work in works %}
-                <div class="col-sm-6 col-lg-4 art-panel">
-                    <div class="card card-cascade wider">
-                        <div class="view view-cascade overlay">
-                            <!-- Image -->
-                            <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
-                                    src="{{ work.image_url }}" alt="Graffiti Image">
-                            <a href="{{ url_for('work', work_id=work._id) }}">
-                                <!-- Info Overlay -->
-                                <div class="mask flex-center rgba-black-strong">
-                                    <p class="white-text">
-                                        Artist: {{ work.artist_name }}
-                                        <br>Style: {{ work.style_name }}
-                                        <br>Year Painted: {{ work.year_painted }}
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-     
-        <!-- Edit Buttons -->
-        <div class="col-sm-8 center-margin">
-            <hr>
-            {% if session.user|lower == "admin"|lower %}
-                <hr style="width: 70%;">
-                <h3 class="white-text">EDIT TYPE</h3>
-                <a href="{{ url_for('edit_type', type_name=type.type_name) }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">Edit</a>
-                <button type="button" class="btn btn-outline-purple text-shadow" id="neon-btn" data-toggle="modal" 
-                    data-target="#confirm-delete-modal">Delete</button>
-                <hr style="width: 70%;">
-
-                <!-- Confirm Delete Modal -->
-                <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-                        <div class="modal-content text-center">
-                            <div class="modal-header d-flex justify-content-center">
-                                <p class="heading">Are you sure?</p>
-                            </div>
-                            <div class="modal-body">
-                                <i class="fas fa-times fa-4x animated rotateIn"></i>
-                            </div>
-                            <div class="modal-footer flex-center">
-                                <a href="{{ url_for('delete_type', type_name=type.type_name) }}" class="btn btn-outline-danger">Yes</a>
-                                <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
+            {% if works %}
+                {% for work in works %}
+                    <div class="col-sm-6 col-lg-4 art-panel">
+                        <div class="card card-cascade wider">
+                            <div class="view view-cascade overlay">
+                                <!-- Image -->
+                                <img class="card-img-top" onerror="this.onerror=null;this.src='/static/images/noimage.jpg';"
+                                        src="{{ work.image_url }}" alt="Graffiti Image">
+                                <a href="{{ url_for('work', work_id=work._id) }}">
+                                    <!-- Info Overlay -->
+                                    <div class="mask flex-center rgba-black-strong">
+                                        <p class="white-text">
+                                            Artist: {{ work.artist_name }}
+                                            <br>Style: {{ work.style_name }}
+                                            <br>Year Painted: {{ work.year_painted }}
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
+                {% endfor %}
+            {% else %}
+                <h2 class="red-text no-results">No Works</h2>
             {% endif %}
         </div>
+        <div class="col-sm-8 center-margin">
+            <hr>
+        </div>
+
+        <!-- Go Back Button -->
+        <div class="col-sm-12 text-center">
+            <a href="{{ url_for('types') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
+                Go Back  <i class="fas fa-angle-double-left"></i>
+            </a>
+        </div>
+        <!-- User Uploaded / Admin Buttons-->
+        {% if session.user|lower == "admin"|lower %}
+            <hr style="width: 70%;">
+            <h3 class="white-text">EDIT TYPE</h3>
+            <a href="{{ url_for('edit_type', type_name=type.type_name) }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">Edit</a>
+            <button type="button" class="btn btn-outline-purple text-shadow" id="neon-btn" data-toggle="modal" 
+                data-target="#confirm-delete-modal">Delete</button>
+            <hr style="width: 70%;">
+
+            <!-- Confirm Delete Modal -->
+            <div class="modal fade" id="confirm-delete-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-modal"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                    <div class="modal-content text-center">
+                        <div class="modal-header d-flex justify-content-center">
+                            <p class="heading">Are you sure?</p>
+                        </div>
+                        <div class="modal-body">
+                            <i class="fas fa-times fa-4x animated rotateIn"></i>
+                        </div>
+                        <div class="modal-footer flex-center">
+                            <a href="{{ url_for('delete_type', type_name=type.type_name) }}" class="btn btn-outline-danger">Yes</a>
+                            <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </div>
 
