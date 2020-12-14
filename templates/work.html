@@ -65,9 +65,15 @@
                     <div class="border-mask-bottom"></div>
                 </div>
             </div>
-        </div>
 
-        <!-- Buttons -->
+            <!-- Go Back Button -->
+            <div class="col-sm-12 add-btn text-center">
+                <a href="{{ url_for('styles') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
+                    Go Back  <i class="fas fa-angle-double-left"></i>
+                </a>
+            </div>
+        </div>
+        <!-- User Uploaded / Admin Buttons-->
         {% if session.user|lower == work.submitted_by|lower or session.user|lower == "admin"|lower %}
             <a href="{{ url_for('edit_work', work_id=work._id) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
             <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal" 
