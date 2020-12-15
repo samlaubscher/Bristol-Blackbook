@@ -275,8 +275,8 @@ def profile(username):
         # get session user's username from db
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-        works = mongo.db.works.find({"submitted_by": username})
-        artists = mongo.db.artists.find({"submitted_by": username})
+        works = list(mongo.db.works.find({"submitted_by": username}))
+        artists = list(mongo.db.artists.find({"submitted_by": username}))
         return render_template(
             "profile.html", username=username, works=works, artists=artists)
     
