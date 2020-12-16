@@ -2,8 +2,9 @@
 import os
 from dns.resolver import query
 from flask import (
-    Flask, flash, render_template, 
-    redirect, request, session, url_for)
+    Flask, flash, render_template,
+    redirect, request, session, url_for
+    )
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from datetime import datetime
@@ -29,59 +30,68 @@ mongo = PyMongo(app)
 @app.route("/welcome")
 def welcome():
     """welcome:
-    
+
     * Displays welcome page template.
-    
-    \n Args: 
+
+    \n Args:
     *   None.
-    
-    \n Returns:  
+
+    \n Returns:
     *  Template displaying index.html welcome page.
     """
-    
+
     return render_template("index.html")
 
 
 @app.route("/works")
 def works():
     """works:
-    
-    * Displays every work upoaded to db.
-    
-    \n Args: 
+
+    * Fetches every work uploaded to db.
+    * Displays paginated works.
+
+    \n Args:
     *   None.
-    
-    \n Returns:  
-    *  Template displaying all works from db in date_submitted descending order with pagination.
+
+    \n Returns:
+    *  Template displaying all works in date_submitted descending order.
     """
 
     works = list(mongo.db.works.find().sort("date_submitted", -1))
-    # pagination 
+
+    # pagination
+
     def get_works(offset=0, per_page=9):
         return works[offset: offset + per_page]
 
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                            per_page_parameter='per_page')
+    page, per_page, offset = get_page_args(
+        page_parameter='page',
+        per_page_parameter='per_page'
+        )
     per_page = 9
     total = len(works)
     pagination_works = get_works(offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total,
-                            css_framework='bootstrap4')
-    return render_template("works.html", works=pagination_works, page=page, 
-                            per_page=per_page, pagination=pagination)
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='bootstrap4'
+        )
+    return render_template(
+        "works.html", works=pagination_works, page=page,
+        per_page=per_page, pagination=pagination
+        )
 
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """search:
-    
+
     * Takes user input from works page search box.
     * Queries db for results based on user input.
     * Displays results with pagination.
-    
-    \n Args: 
+
+    \n Args:
     1. query(str): user input from search box field.
-    
+
     \n Returns:
     *   Template containing any results matching query input with pagination.
     *   h2 containing 'No Results Found' is returned if no results.
@@ -89,101 +99,128 @@ def search():
 
     query = request.form.get("query")
     works = list(mongo.db.works.find({"$text": {"$search": query}}))
-    # pagination 
+
+    # pagination
+
     def get_works(offset=0, per_page=9):
         return works[offset: offset + per_page]
 
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                            per_page_parameter='per_page')
+    page, per_page, offset = get_page_args(
+        page_parameter='page',
+        per_page_parameter='per_page'
+        )
     per_page = 9
     total = len(works)
     pagination_works = get_works(offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total,
-                            css_framework='bootstrap4')
-    return render_template("works.html", works=pagination_works, page=page, 
-                            per_page=per_page, pagination=pagination)
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='bootstrap4'
+        )
+    return render_template(
+        "works.html", works=pagination_works, page=page,
+        per_page=per_page, pagination=pagination
+        )
 
 
 @app.route("/filter/<filter_type>/<direction>")
 def filter(filter_type, direction):
     """filter:
-    
+
     * Checks for selected sort order
     * Sets the order in which the data will display on main page.
     * Displays data in defined order with pagination.
-    
+
     \n Args:
     1.  filter_type(str): Targeted field within db collection.
     2.  direction(str): Direction of db sort order (ascending or descending).
-    
-    \n Returns: 
-    *   Template displaying works from db in respective sort order with pagination.
+
+    \n Returns:
+    *   Template displaying works from db in respective sort order.
     """
 
     if direction == 'ascending':
         works = list(mongo.db.works.find().sort(filter_type, 1))
-        # pagination 
+
+        # pagination
+
         def get_works(offset=0, per_page=9):
             return works[offset: offset + per_page]
-        page, per_page, offset = get_page_args(page_parameter='page',
-                                                per_page_parameter='per_page')
+        page, per_page, offset = get_page_args(
+            page_parameter='page',
+            per_page_parameter='per_page'
+            )
         per_page = 9
         total = len(works)
         pagination_works = get_works(offset=offset, per_page=per_page)
-        pagination = Pagination(page=page, per_page=per_page, total=total,
-                                css_framework='bootstrap4')
-        return render_template("works.html", works=pagination_works, page=page, 
-                                per_page=per_page, pagination=pagination)
+        pagination = Pagination(
+            page=page, per_page=per_page, total=total,
+            css_framework='bootstrap4'
+            )
+        return render_template(
+            "works.html", works=pagination_works, page=page,
+            per_page=per_page, pagination=pagination
+            )
 
-    works = list(mongo.db.works.find().sort(filter_type, -1))   
-    # pagination 
-    def get_works(offset=0, per_page=1):
+    works = list(mongo.db.works.find().sort(filter_type, -1))
+
+    # pagination
+
+    def get_works(offset=0, per_page=9):
         return works[offset: offset + per_page]
 
-    page, per_page, offset = get_page_args(page_parameter='page',
-                                            per_page_parameter='per_page')
+    page, per_page, offset = get_page_args(
+        page_parameter='page',
+        per_page_parameter='per_page'
+        )
     per_page = 15
     total = len(works)
     pagination_works = get_works(offset=offset, per_page=per_page)
-    pagination = Pagination(page=page, per_page=per_page, total=total,
-                            css_framework='bootstrap4')
-    return render_template("works.html", works=pagination_works, page=page, 
-                            per_page=per_page, pagination=pagination)
+    pagination = Pagination(
+        page=page, per_page=per_page, total=total,
+        css_framework='bootstrap4'
+        )
+    return render_template(
+        "works.html", works=pagination_works, page=page,
+        per_page=per_page, pagination=pagination
+        )
 
 
 @app.route("/work/<work_id>")
 def work(work_id):
     """work:
-    
+
     * Fetches selected work data from db collection.
     * Passes data to template for work page.
-    
+
     \n Args:
     1.  work_id(str): ObjectId of selected work.
-    
-    \n Returns: 
+
+    \n Returns:
     *   Template to diplay all content of individual object from collection.
     """
 
     work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
     artists = mongo.db.artists.find()
     crews = mongo.db.crews.find()
-    return render_template("work.html", work=work, artists=artists, crews=crews)
+    return render_template(
+        "work.html", work=work,
+        artists=artists, crews=crews
+        )
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """register:
-    
+
     * Searches db for existing user.
     * Appends new user data to db if not already existing.
     * Renders profile page for user account or register page.
-    
+
     \n Args:
     1.  user inputs(str): username and password from form fields.
-    
+
     \n Returns:
-    *   User profile page on successful register. 
+    *   User profile page on successful register.
     *   Reloads register page with flash displaying error if unsucessful.
     """
 
@@ -191,15 +228,20 @@ def register():
         # check db for existing username
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-    
+
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("register"))
-        
-        if request.form.get("password") == request.form.get("confirm-password"):
+
+        if request.form.get(
+            "password"
+            ) == request.form.get(
+                "confirm-password"):
             user = {
                 "username": request.form.get("username").lower(),
-                "password": generate_password_hash(request.form.get("password"))
+                "password": generate_password_hash(
+                    request.form.get("password")
+                    )
             }
             mongo.db.users.insert_one(user)
 
@@ -216,14 +258,14 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """login:
-    
+
     * Checks if user exists in db.
     * Logs user in if credentials match.
     * Appends username to session['user'] cookie.
-    
+
     \n Args:
     *   User inputs(str): username and password from form fields.
-    
+
     \n Returns:
     *   User profile template if successful.
     *   Login page with flash displaying error if unsuccessful.
@@ -237,7 +279,7 @@ def login():
         if existing_user:
             # validate password hash
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
+                    existing_user["password"], request.form.get("password")):
                     session["user"] = request.form.get("username").lower()
                     flash("You are now logged in as {}".format(
                         request.form.get("username")))
@@ -258,14 +300,14 @@ def login():
 @app.route("/profile/<username>")
 def profile(username):
     """profile:
-    
+
     * Checks session cookies for 'user'.
     * Returns user profile template.
     * Shows all works and artists user has created in db.
-    
+
     \n Args:
     1.  username(str): Users registered username.
-    
+
     \n Returns:
     *   Template displaying associated user data.
     *   Login page if user does not exist.
@@ -279,21 +321,23 @@ def profile(username):
         artists = list(mongo.db.artists.find({"submitted_by": username}))
         crews = list(mongo.db.crews.find({"submitted_by": username}))
         return render_template(
-            "profile.html", username=username, works=works, artists=artists, crews=crews)
-    
+            "profile.html", username=username, works=works,
+            artists=artists, crews=crews
+            )
+
     return redirect(url_for("login"))
-    
+
 
 @app.route("/logout")
 def logout():
     """logout:
-    
+
     * Removes 'user' session cookie.
     * Returns to login page.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Removes 'user' session cookie.
     """
@@ -306,15 +350,15 @@ def logout():
 @app.route("/new_work", methods=["GET", "POST"])
 def new_work():
     """new_work:
-    
+
     * Loads artist and style data from db to display in dropdown input fields.
     * Requests data from user input form fields when method is POST.
     * Appends data from requested fields to db.
     * Returns works template with flash displaying success.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Creates new work object in works db collection.
     """
@@ -340,8 +384,11 @@ def new_work():
         crewstyles = mongo.db.styles.find().sort("style_name", 1)
         artisttypes = mongo.db.types.find().sort("type_name", 1)
         crewtypes = mongo.db.types.find().sort("type_name", 1)
-        return render_template("new_work.html", artists=artists, crews=crews, 
-            artiststyles=artiststyles, crewstyles=crewstyles, artisttypes=artisttypes, crewtypes=crewtypes)
+        return render_template(
+            "new_work.html", artists=artists, crews=crews,
+            artiststyles=artiststyles, crewstyles=crewstyles,
+            artisttypes=artisttypes, crewtypes=crewtypes
+            )
 
     return redirect(url_for("login"))
 
@@ -349,13 +396,13 @@ def new_work():
 @app.route("/edit_work/<work_id>", methods=["GET", "POST"])
 def edit_work(work_id):
     """edit_work:
-    
+
     * Loads existing work data from db.
     * Updates data for work in db when method is POST.
-    
+
     \n Args:
     *   work_id(str): ObjectId of selected work.
-    
+
     \n Returns:
     *   Updates selected object data in collection.
     """
@@ -369,14 +416,21 @@ def edit_work(work_id):
                 "image_url": request.form.get("image_url"),
                 "submitted_by": session["user"],
                 }
-            mongo.db.works.update_one({"_id": ObjectId(work_id)}, {"$set": update_work})
+            mongo.db.works.update_one(
+                {"_id": ObjectId(work_id)},
+                {"$set": update_work}
+                )
             flash("Work Successfully Updated!")
 
         work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
-        artists =  mongo.db.artists.find().sort("artist_name", 1)
+        artists = mongo.db.artists.find().sort("artist_name", 1)
         styles = mongo.db.styles.find().sort("style_name", 1)
         types = mongo.db.types.find().sort("type_name", 1)
-        return render_template("edit_work.html", work=work, artists=artists, styles=styles, types=types)
+        return render_template(
+            "edit_work.html", work=work,
+            artists=artists, styles=styles,
+            types=types
+            )
 
     return redirect(url_for("login"))
 
@@ -384,13 +438,13 @@ def edit_work(work_id):
 @app.route("/delete_work/<work_id>")
 def delete_work(work_id):
     """delete_work:
-    
+
     * Removes work object from db collection.
     * Returns works main page with flash displaying success.
-    
+
     \n Args:
     *   work_id(str): ObjectId of selected work.
-    
+
     \n Returns:
     *   Removes object from db collection.
     """
@@ -404,14 +458,14 @@ def delete_work(work_id):
 @app.route("/artists")
 def artists():
     """artists:
-    
+
     * Fetches all artist names from db.
     * Fetches all artist crews from db.
     * Displays all artists by name and associated crews.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Template displaying artist names and crews.
     """
@@ -423,15 +477,15 @@ def artists():
 @app.route("/artist/<artist_name>")
 def artist(artist_name):
     """artist:
-    
+
     * Fetches selected artist data from db collection.
     * Fetches selected artists works from db collection.
     * Passes data to template for artist page.
-    
+
     \n Args:
     1.  artist_name(str): name of selected artist in db collection.
-    
-    \n Returns: 
+
+    \n Returns:
     *   Template to diplay all content of individual object from collection.
     """
 
@@ -443,15 +497,15 @@ def artist(artist_name):
 @app.route("/add_artist", methods=["GET", "POST"])
 def add_artist():
     """add_artist:
-    
+
     * Loads crew data from db to display in dropdown input fields.
     * Requests data from user input form fields when method is POST.
     * Appends data from requested fields to db.
     * Returns artists template with flash displaying success.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Creates new artist object in artists db collection.
     """
@@ -469,20 +523,20 @@ def add_artist():
 
         crews = list(mongo.db.crews.find().sort("crew_name", 1))
         return render_template("add_artist.html", crews=crews)
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/edit_artist/<artist_name>", methods=["GET", "POST"])
 def edit_artist(artist_name):
     """edit_artist:
-    
+
     * Loads existing artist data from db.
     * Updates data for artist in db when method is POST.
-    
+
     \n Args:
     *   artist_name(str): artist name of selected artist in db collection.
-    
+
     \n Returns:
     *   Updates selected artist object data in collection.
     """
@@ -494,13 +548,19 @@ def edit_artist(artist_name):
                 "artist_crews": request.form.getlist("artist_crews"),
                 "submitted_by": session["user"]
                 }
-            mongo.db.artists.update_one({"artist_name": str(artist_name)}, {"$set": update_artist})
+            mongo.db.artists.update_one(
+                {"artist_name": str(artist_name)},
+                {"$set": update_artist}
+                )
             flash("Artist Successfully Updated!")
             return redirect(url_for("artists"))
 
         artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
         crews = mongo.db.crews.find().sort("crew_name", 1)
-        return render_template("edit_artist.html", artist=artist, crews=crews)
+        return render_template(
+            "edit_artist.html",
+            artist=artist, crews=crews
+            )
 
     return redirect(url_for("login"))
 
@@ -508,13 +568,13 @@ def edit_artist(artist_name):
 @app.route("/delete_artist/<artist_name>")
 def delete_artist(artist_name):
     """delete_artist:
-    
+
     * Removes work object from db collection.
     * Returns works main page with flash displaying success.
-    
+
     \n Args:
     *   artist_name(str): artist name of selected artist in db collection.
-    
+
     \n Returns:
     *   Removes object from db collection.
     """
@@ -530,13 +590,13 @@ def delete_artist(artist_name):
 @app.route("/crews")
 def crews():
     """crews:
-    
+
     * Fetches all crews from db.
     * Displays all crews by name and image.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Template displaying crew names and images.
     """
@@ -548,35 +608,38 @@ def crews():
 @app.route("/crew/<crew_name>")
 def crew(crew_name):
     """crew:
-    
+
     * Fetches selected crew data from db collection.
     * Fetches selected artists associated to the crew from db collection.
     * Passes data to template for crew page.
-    
+
     \n Args:
     1.  crew_name(str): name of selected crew in db collection.
-    
-    \n Returns: 
-    *   Template to diplay all content of individual crew object from collection.
+
+    \n Returns:
+    *   Template to diplay all content of individual crew object from db.
     """
 
     crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
     artists = list(mongo.db.artists.find({"artist_crews": str(crew_name)}))
     works = list(mongo.db.works.find({"artist_name": str(crew_name)}))
-    return render_template("crew.html", crew=crew, artists=artists, works=works)
+    return render_template(
+        "crew.html", crew=crew,
+        artists=artists, works=works
+        )
 
 
 @app.route("/add_crew", methods=["GET", "POST"])
 def add_crew():
     """add_crew:
-    
+
     * Requests data from user input form fields when method is POST.
     * Appends data from requested fields to db.
     * Returns crews template with flash displaying success.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Creates new crew object in crews db collection.
     """
@@ -593,20 +656,20 @@ def add_crew():
             return redirect(url_for("crews"))
 
         return render_template("add_crew.html")
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/edit_crew/<crew_name>", methods=["GET", "POST"])
 def edit_crew(crew_name):
     """edit_crew:
-    
+
     * Loads existing crew data from db.
     * Updates data for crew in db when method is POST.
-    
+
     \n Args:
     *   crew_name(str): name of selected crew in db collection.
-    
+
     \n Returns:
     *   Updates selected artist object data in collection.
     """
@@ -618,26 +681,29 @@ def edit_crew(crew_name):
                 "crew_image": request.form.get("crew_image"),
                 "submitted_by": session["user"]
                 }
-            mongo.db.crews.update_one({"crew_name": str(crew_name)}, {"$set": update_crew})
+            mongo.db.crews.update_one(
+                {"crew_name": str(crew_name)},
+                {"$set": update_crew}
+                )
             flash("Crew Successfully Updated!")
             return redirect(url_for("crews"))
 
         crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
         return render_template("edit_crew.html", crew=crew)
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/delete_crew/<crew_name>")
 def delete_crew(crew_name):
     """delete_crew:
-    
+
     * Removes crew object from db collection.
     * Returns crews page with flash displaying success.
-    
+
     \n Args:
     *   crew_name(str): name of selected crew in db collection.
-    
+
     \n Returns:
     *   Removes object from db collection.
     """
@@ -653,13 +719,13 @@ def delete_crew(crew_name):
 @app.route("/styles")
 def styles():
     """styles:
-    
+
     * Fetches all style names from db.
     * Displays all styles by style name.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Template displaying style names in ascending order.
     """
@@ -671,16 +737,16 @@ def styles():
 @app.route("/style/<style_name>")
 def style(style_name):
     """style:
-    
+
     * Fetches selected style data from db collection.
     * Fetches works in selected style from db collection.
     * Passes data to template for style page.
-    
+
     \n Args:
     1.  style_name(str): name of style in db collection.
-    
-    \n Returns: 
-    *   Template to diplay all content of individual style object from collection.
+
+    \n Returns:
+    *   Template to diplay all content of individual style object from db.
     """
 
     style = mongo.db.styles.find_one({"style_name": str(style_name)})
@@ -691,14 +757,14 @@ def style(style_name):
 @app.route("/add_style", methods=["GET", "POST"])
 def add_style():
     """add_style:
-    
+
     * Requests data from user input form fields when method is POST.
     * Appends data from requested fields to db.
     * Returns styles template with flash displaying success.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Creates new style object in styles db collection.
     """
@@ -717,20 +783,20 @@ def add_style():
             return render_template("add_style.html")
 
         return redirect(url_for("styles"))
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/edit_style/<style_name>", methods=["GET", "POST"])
 def edit_style(style_name):
     """edit_style:
-    
+
     * Loads existing style data from db.
     * Updates data for style in db when method is POST.
-    
+
     \n Args:
     *   style_name(str): name of style in db collection.
-    
+
     \n Returns:
     *   Updates selected style object data in collection.
     """
@@ -740,30 +806,33 @@ def edit_style(style_name):
             if request.method == "POST":
                 update_style = {
                     "style_name": request.form.get("style_name"),
-                        "style_image": request.form.get("image_url")
+                    "style_image": request.form.get("image_url")
                 }
-                mongo.db.styles.update_one({"style_name": str(style_name)}, {"$set": update_style})
+                mongo.db.styles.update_one(
+                    {"style_name": str(style_name)},
+                    {"$set": update_style}
+                    )
                 flash("Style Successfully Updated!")
                 return redirect(url_for("styles"))
 
             style = mongo.db.styles.find_one({"style_name": str(style_name)})
             return render_template("edit_style.html", style=style)
-        
+
         return redirect(url_for("styles"))
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/delete_style/<style_name>")
 def delete_style(style_name):
     """delete_style:
-    
+
     * Removes style object from db collection.
     * Returns styles page with flash displaying success.
-    
+
     \n Args:
     *   style_name(str): name of style in db collection.
-    
+
     \n Returns:
     *   Removes object from db collection.
     """
@@ -775,20 +844,20 @@ def delete_style(style_name):
             return redirect(url_for("styles"))
 
         return redirect(url_for("styles"))
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/types")
 def types():
     """types:
-    
+
     * Fetches all type names from db.
     * Displays all types by type name.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Template displaying types in name ascending order.
     """
@@ -800,16 +869,16 @@ def types():
 @app.route("/type/<type_name>")
 def type(type_name):
     """type:
-    
+
     * Fetches selected type data from db collection.
     * Fetches works of selected type from db collection.
     * Passes data to template for type page.
-    
+
     \n Args:
     1.  type_name(str): name of type in db collection.
-    
-    \n Returns: 
-    *   Template to diplay all content of individual type object from collection.
+
+    \n Returns:
+    *   Template to diplay all content of individual type object from db.
     """
 
     type = mongo.db.types.find_one({"type_name": str(type_name)})
@@ -820,15 +889,15 @@ def type(type_name):
 @app.route("/add_type", methods=["GET", "POST"])
 def add_type():
     """add_type:
-    
+
     * Checks for admin user authentication.
     * Requests data from user input form fields when method is POST.
     * Appends data from requested fields to db.
     * Returns types template with flash displaying success.
-    
+
     \n Args:
     *   None.
-    
+
     \n Returns:
     *   Creates new type object in types db collection.
     """
@@ -847,21 +916,21 @@ def add_type():
             return render_template("add_type.html")
 
         return redirect(url_for("types"))
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/edit_type/<type_name>", methods=["GET", "POST"])
 def edit_type(type_name):
     """edit_type:
-    
+
     * Checks for admin user authentication.
     * Loads existing type data from db.
     * Updates data for type in db when method is POST.
 
-    \n Args: 
+    \n Args:
     1.  type_name(str): name of type in db collection.
-    
+
     \n Returns:
     *   Updates selected style object data in collection.
     """
@@ -873,29 +942,32 @@ def edit_type(type_name):
                     "type_name": request.form.get("type_name"),
                     "type_image": request.form.get("image_url")
                 }
-                mongo.db.types.update_one({"type_name": str(type_name)}, {"$set": update_type})
+                mongo.db.types.update_one(
+                    {"type_name": str(type_name)},
+                    {"$set": update_type}
+                    )
                 flash("Type Successfully Updated!")
                 return redirect(url_for("types"))
 
             type = mongo.db.types.find_one({"type_name": str(type_name)})
             return render_template("edit_type.html", type=type)
-        
+
         return redirect(url_for("types"))
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/delete_type/<type_name>")
 def delete_type(type_name):
     """delete_type:
-    
+
     * Checks for admin user authentication.
     * Removes type object from db.
     * Returns types page template.
-    
-    \n Args: 
+
+    \n Args:
     1.  type_name(str): name of type in db collection.
-    
+
     \n Returns:
     *  Removes type object from db.
     """
@@ -907,21 +979,21 @@ def delete_type(type_name):
             return redirect(url_for("types"))
 
         return redirect(url_for("types"))
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/admin_panel")
 def admin_panel():
     """admin_panel:
-    
+
     * Checks for admin user authentication.
     * Displays admin panel page.
     * Redirects non admin users to home page.
-    
-    \n Args: 
+
+    \n Args:
     1.  None.
-    
+
     \n Returns:
     *  Template displaying admin panel page if user is admin.
     """
@@ -932,23 +1004,23 @@ def admin_panel():
             return render_template("admin-panel.html", users=users)
 
         return redirect(url_for("works"))
-    
+
     return redirect(url_for("login"))
 
 
 @app.route("/delete_user/<username>")
 def delete_user(username):
     """delete_user:
-    
+
     * Checks for admin user authentication.
     * Removes user object from db.
     * Displays admin panel for admin user.
     * Displays Works page for non admin user.
-    
-    \n Args: 
+
+    \n Args:
     1.  username(str): name of user in db collection.
-    
-    \n Returns:  
+
+    \n Returns:
     *  Removes user object from db.
     """
 
@@ -962,19 +1034,19 @@ def delete_user(username):
         session.pop("user")
         flash("User Deleted!")
         return redirect(url_for("works"))
-    
+
     return redirect(url_for("login"))
 
 
 @app.errorhandler(404)
 def page_not_found(e):
     """page_not_found:
-    
+
     * Displays error handling page.
-    
-    \n Args: 
+
+    \n Args:
     *   Error event code.
-    
+
     \n Returns:
     *  Template displaying error handling page.
     """
@@ -984,6 +1056,6 @@ def page_not_found(e):
 
 # Environment Variables
 if __name__ == "__main__":
-    app.run(host=os.environ.get("IP"), 
+    app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
             debug=os.environ.get("DEBUG"))
