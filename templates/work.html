@@ -2,7 +2,7 @@
 {% block title %}{{ work.style_name }} By {{ work.artist_name }}{% endblock %}
 {% block content %}
 
-    <div class="text-center">
+    <section class="text-center">
         <div class="border-container">
             <!-- Work Image -->
             <img src="{{ work.image_url }}" class="large-image" alt="Graffiti Image" 
@@ -32,33 +32,33 @@
                     <div class="border-mask-bottom-full"></div>
                 </div>
             </div>
+            <!-- Style -->
             <div class="col-sm-8 center-margin">
                 <div class="work-box">
                     <div class="border-mask-top-full"></div>
                         <h2 class="artist-info text-center">Style: </h2>
-                        <!-- Artist Page Route -->
                         <a href="{{ url_for('style', style_name=work.style_name) }}">
                             <h2 class="artist-direct-info">{{ work.style_name }}</h2>
                         </a>
                     <div class="border-mask-bottom-full"></div>
                 </div>
             </div>
+            <!-- Type -->
             <div class="col-sm-8 center-margin">
                 <div class="work-box">
                     <div class="border-mask-top-full"></div>
                         <h2 class="artist-info text-center">Type: </h2>
-                        <!-- Artist Page Route -->
                         <a href="{{ url_for('type', type_name=work.type_name) }}">
                             <h2 class="artist-direct-info">{{ work.type_name }}</h2>
                         </a>
                     <div class="border-mask-bottom-full"></div>
                 </div>
             </div>
+            <!-- Year Painted -->
             <div class="col-sm-8 center-margin">
                 <div class="work-box">
                     <div class="border-mask-top-full"></div>
                         <h2 class="artist-info text-center">Year Painted: </h2>
-                        <!-- Artist Page Route -->
                         <a>
                             <h2 class="artist-direct-info">{{ work.year_painted }}</h2>
                         </a>
@@ -99,6 +99,6 @@
                 </div>
             {% endif %}
         </div>
-    </div>
+    </section>
 
 {% endblock %}

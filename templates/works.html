@@ -2,12 +2,12 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 
-<!-- Page Title -->
-<h2 class="text-center">All Uploaded Works</h2>
+    <!-- Page Title -->
+    <h2 class="text-center">All Uploaded Works</h2>
 
-    <div class="row center-content">
+    <section class="row center-content">
         <div>
-            <!-- Search Box -->
+            <!-- Top Container -->
             <div class="row search-container">
                 <!-- Add Work Button -->
                 <div class="col-sm-12 add-btn text-center">
@@ -15,6 +15,7 @@
                         Add Work  <i class="fas fa-plus"></i>
                     </a>
                 </div>
+                <!-- Search Box -->
                 <form class="form-inline col-sm-12 center-content" method="POST"
                     id="search" action="{{ url_for('search') }}">
                     <!-- Search Bar -->
@@ -83,5 +84,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 {% endblock %}

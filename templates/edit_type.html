@@ -7,7 +7,7 @@
     <!-- Page Title -->
     <h2 class="page-title text-center">Edit Type</h2>
 
-    <div class="row border-container">
+    <section class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_type', type_name=type.type_name) }}">
             <!-- Type Name -->
             <div class="md-form">
@@ -34,5 +34,5 @@
                 </button>
             </div>
         </form>
-    </div>
+    </section>
 {% endblock %}

@@ -5,7 +5,7 @@
     <!-- Page Title -->
     <h2 class="page-title text-center">Edit Crew</h2>
 
-    <div class="row border-container">
+    <section class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_crew', crew_name=crew.crew_name) }}">
             <!-- Crew Name -->
             <div class="row">
@@ -39,6 +39,6 @@
                 </button>
             </div>  
         </form>
-    </div>
+    </section>
 
 {% endblock %}

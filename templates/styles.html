@@ -5,8 +5,8 @@
     <!-- Page Title -->
     <h2 class="page-title text-center">All Styles</h2>
 
-    <!-- Admin Buttons -->
-    <div class="row border-container">
+    <section class="row border-container">
+        <!-- Admin Button -->
         {% if session.user|lower == "admin"|lower %}
                 <div class="col-sm-12 add-btn text-center">
                     <a href="{{ url_for('add_style') }}" class="btn btn-outline-secondary top-margin" id="neon-btn">
@@ -15,7 +15,7 @@
                 </div>
         {% endif %}
 
-        <!-- Artists -->
+        <!-- Styles -->
         {% for style in styles %}
             <div class="col-md-4 col-sm-8">
                 <a href="{{ url_for('style', style_name=style.style_name) }}">
@@ -35,5 +35,5 @@
                 </a>
             </div>
         {% endfor %}
-    </div>
+    </section>
 {% endblock %}

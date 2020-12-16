@@ -5,7 +5,7 @@
     <!-- Page Title-->
     <h2 class="text-center">Artists</h2>
     
-    <div class="row border-container">
+    <section class="row border-container">
         <!-- Add Artist Button -->
         <div class="col-sm-12 add-btn text-center">
             <a href="{{ url_for('add_artist') }}" class="btn btn-outline-secondary text-shadow" id="neon-btn">
@@ -26,5 +26,5 @@
                 </a>
             </div>
         {% endfor %}
-    </div>
+    </section>
 {% endblock %}

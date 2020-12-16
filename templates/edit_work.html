@@ -5,7 +5,7 @@
     <!-- Page Title -->
     <h3 class="page-title text-center">Edit Work</h3>
 
-    <div class="row border-container">
+    <section class="row border-container">
         <form class="col-sm-12 col-md-8 offset-md-2" method="POST" action="{{ url_for('edit_work', work_id=work._id) }}">
             <!-- Artist Name -->
             <div class="row">
@@ -83,6 +83,6 @@
                 </button>
             </div>
         </form>
-    </div>
+    </section>
 
 {% endblock %}
