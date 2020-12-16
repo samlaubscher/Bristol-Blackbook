@@ -62,6 +62,7 @@ Bristol has one of the most prolific and active graffiti scenes in the UK. The B
     - [**Header Image**](#header-image)
     - [**Navbar**](#navbar)
     - [**Footer**](#footer)
+    - [**404 Error Handling Page**](#404-error-handling-page)
   - [**2.2 Features Left to Implement**](#22-Features-left-to-impliment)
     - [**Bristol Paint Shops Page**](#bristol-paint-shops-page)
     - [**Work Rating System**](#work-rating-system)
@@ -135,16 +136,15 @@ The purpose and goals of this project are:
 
 ### 1.3 User Stories
 
-- As a developer, I want my site to have a clearly defined purpose so users are aware of the sites functionality, maintaining a good user experience.
-- As a developer, I want each of my features to have effective functionality so that users are not given an unpleasent experience.
-- As a designer, I want users to register for an account so that I can personalise their experience.
-- As a developer, I want users to register for an account so that I can implement user authentication, preventing unauthorised editing and deletion of data.
-- As a designer, I want each work to display correct info, so that users to be able to clearly find the artist, style, year and type.
-- As a designer, I want to display all content relating to each artist, crew, style or type, so that users are able to easily navigate and view this content.
+- As a user, I want a site to have a clearly defined purpose when I first enter so that I know what I am viewing.
+- As a user, I want all functionality on the site to work to avoid a bad experience.
+- As a user, I want to register for an account so that I can contribute to the database.
+- As a user, I want to be able to browse all works in the db.
+- As a user, I want to clearly see the artist name, style, type and year painted for each work.
+- As a user, I want to be able to easily browse all individual artists, crews, styles amd types in the db.
 - As a user, I want to see how to add content, so that I can easily contribute to the database.
-- As a user, I want to 
-- As a registered user, I want control over my account, so that I can easily choose to delete the account or any content I have uploaded to the website.
-
+- As a user, I want to see what I have uploaded to the database.
+- As a registered user, I want control over my data, so that I can easily choose to delete the account or any content I have uploaded to the website.
 
 ### 1.4 Design Process
 
@@ -166,21 +166,153 @@ For the main title font used within this project, I used a free font named 'Spra
 
 ### **Wireframes**
 
-<details>
-<summary><b>Desktop & Mobile Wireframes</b> - (click to expand)</summary>
+For this project, I created a number of wireframes for the layout of different pages.
 
--
+<details>
+<summary><b>Desktop Wireframes</b> - (click to expand)</summary>
+
+### Homepage
+
+The homepage will display 9 works at a time with pagination at the bottom of the screen. At the top there will be a search bar, Add Work button, and a filter sort by button.
 
 <div align="center">
+<img src="static\images\readme\wireframes\homepage-d.jpg" alt="Wireframe 1" width="500">
+</div>
 
-<img src=# alt="Wireframe 1" width="500">
+### Artists Page
+
+The artists page will show all artist names in a grid with 4 names per row. Clicking on these will take the user to the artist page. At the top there will be an Add Artist button.
+
+<div align="center">
+<img src="static\images\readme\wireframes\artists-page.jpg" alt="Wireframe 2" width="500">
+</div>
+
+### Crews Page
+
+The crews page will show a main crew image larger than images on the works page. This was done to break up the layout of the site. Below this mage will be the crew name. There will also be an Add Crew page.
+
+<div align="center">
+<img src="static\images\readme\wireframes\crews.jpg" alt="Wireframe 3" width="500">
+</div>
+
+### Styles or Types Pages
+
+Both the Styles and Types pages will have the same layout. Below the image there will be the name of the style or type.
+
+<div align="center">
+<img src="static\images\readme\wireframes\styles-types.jpg" alt="Wireframe 4" width="500">
+</div>
+
+### View Work Page
+
+When a user clicks on a work, they will be shown the image in large format. Below the image all the info will be shown, allowing users to click onone of these to be taken to its unique page.
+
+<div align="center">
+<img src="static\images\readme\wireframes\view-content-d.jpg" alt="Wireframe 1" width="500">
+</div>
+
+### View Artist Page
+
+Viewing an artist displays the crews they are affiliated with. Below this all of their works will be displayed.
+
+<div align="center">
+<img src="static\images\readme\wireframes\view-artist-page.jpg" alt="Wireframe 1" width="500">
+</div>
+
+### View Crew Page
+
+The view crew page is laid out differently once again by showing the main crew image at the top in large size. Below this are all works listed with the crew as main artist, and then each of the crew members are listed. Styles and Types are laid out in the same way without the crew members section at the bottom.
+
+<div align="center">
+<img src="static\images\readme\wireframes\crew-page.jpg" alt="Wireframe 1" width="500">
+</div>
+
+### Add or Edit Work Pages
+
+To add a work to the database, users will be presented a page will multiple dropdown menus and text boxes. The artist name dropdown will be taking options from the Artists collection. The style dropdown will be taking options from the Styles collection, and the types dropdown will be taking options from the Types collection. Users can then input a year painted and finally an image URL. When editing a work, these fields will be autofilled with the current data binded to that object.
+
+<div align="center">
+<img src="static\images\readme\wireframes\add-edit-work.jpg" alt="Wireframe 1" width="500">
+</div>
+
+### Add/Edit Artist or Crew or Style or Type Pages
+
+To add either an Artist, Crew, Style or Type to the database, users will be presented with similarly laid out pages. There will be text boxes for names and image URL's to be added. When editing, these fields will be autofilled with the current data binded to that object.
+
+<div align="center">
+<img src="static\images\readme\wireframes\add-artist-crew-style-type.jpg" alt="Wireframe 1" width="500">
+</div>
+
+### Register Page
+
+The register page will allow users to create a username and password. There is also a confirm password box used to confirm users are aware of their entered password.
+
+<div align="center">
+<img src="static\images\readme\wireframes\register.jpg" alt="Wireframe 1" width="500">
+</div>
+
+### Login Page
+
+The login page is much like the register page, without the confirm password box.
+
+<div align="center">
+<img src="static\images\readme\wireframes\login.jpg" alt="Wireframe 1" width="500">
+</div>
+
+### Profile Page
+
+When a user first logs in, they will be redirected to their profile page. This page allows users to view their uploaded content and/or delete their account entirely. At the top of the page is a Delete Account button, followed by an Uploaded Works section, Uploaded Artists section, and an Uploaded Crews section.
+
+<div align="center">
+<img src="static\images\readme\wireframes\profile.jpg" alt="Wireframe 1" width="500">
 </div>
 
 </details>
 
-### **Development Stages**
+<details>
+<summary><b>Mobile Wireframes</b> - (click to expand)</summary>
+
+### Large Mobile Responsive Content
+
+Content loaded on large mobile devices will be displayed in rows of 2 items.
+
+<div align="center">
+<img src="static\images\readme\wireframes\large-mobile.jpg" alt="Wireframe 1" width="300">
+</div>
+
+### Small Mobile Responsive Content
+
+Content loaded on smaller mobile devices will display images in full width mode. This allows users to view the images properly when on smaller screens.
+
+<div align="center">
+<img src="static\images\readme\wireframes\small-mobile.jpg" alt="Wireframe 1" width="300">
+</div>
+
+### Mobile View Content
+
+When an item is clicked, a page is loaded allowing the user to see the image in full width with all info displayed below.
+
+<div align="center">
+<img src="static\images\readme\wireframes\mobile-view-content.jpg" alt="Wireframe 1" width="300">
+</div>
+
+### Mobile Multi Content
+
+When viewping pages such as the profile page on mobile, content is displayed in rows of 2 with headers splitting up the sections.
+
+<div align="center">
+<img src="static\images\readme\wireframes\mobile-multi-content.jpg" alt="Wireframe 1" width="300">
+</div>
+
+</details>
+
+### **Project Management**
 
 This project was designed using an agile approach, utilisng a Kanban board to track my development progress throughout the build. You can view the board I created using Trello [here](https://trello.com/b/mH8fpkjQ/milestone-project-3).
+
+### **Database Architechture**
+
+Entity relationship diagram
 
 
 [Back to Table Of Contents](#table-of-contents)
@@ -303,6 +435,10 @@ Due to the header, each page across the application naturally also contains the 
 
 Each page has a full width footer at the bottom of the window, containing social media links and copyright information.
 
+### **404 Error Handling Page**
+
+In case a user encounters a 404 error, 
+
 ### 2.1 Features Left To Implement
 
 ### **Bristol Paint Shops Page**
@@ -362,6 +498,8 @@ Atlas is the cloud hosted version of MongoDB's database service. This was used a
 ### [**PyMongo**](https://pypi.org/project/pymongo/)
 
 PyMongo is a distribution of Python used to interact with the MongoDB database.
+
+### [**Flash_Paginate**]()
 
 ### [**BSON ObjectID**]()
 
@@ -504,6 +642,8 @@ To read more about cloning repositories, you can read [Cloning a repository](htt
 ## 6 Credits
 
 ### 6.1 Content and code
+
+Pagination - https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
 
 ### 6.2 Media
 
