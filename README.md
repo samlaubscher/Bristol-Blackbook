@@ -119,38 +119,49 @@ Bristol has one of the most prolific and active graffiti scenes in the UK. The B
 
 ### 1.1 Overview
 
-Bristol Blackbook was built from the idea of creating a database for documenting the urban artform graffiti, found on the streets of Bristol city. Often most artists upload these images to Instagram under private accounts, restricted for anonymity. This means most people cannot see them, so I wanted to create a website that maintained this idea of user privacy and was not associated with any social media platforms. This allows users to anonymously view and contribute to the content. I chose the name Bristol Blackbook as the blackbook is famously where graffiti writers practice their work, and often they collect the tags and works of other graffiti writers in these books when they meet others. For a graffiti writer, blackbooks are a good way of personally archiving a section of their history in graffiti, they capture the artists works permanently, their progression, and they often hold the memory of all artists that have contributed to the book.
+Bristol Blackbook was built from the idea of creating a database for documenting the urban artform graffiti, found on the streets of Bristol city. 
+
+Often most artists upload these images to Instagram under private accounts, restricted for anonymity. This means most people cannot see them, so I wanted to create a website that maintained this idea of user privacy and was not associated with any social media platforms. This allows users to anonymously view and contribute to the content. 
+
+I chose the name Bristol Blackbook as the blackbook is famously where graffiti writers practice their work, and often they collect the tags and works of other graffiti writers in these books when they meet others. For a graffiti writer, blackbooks are a good way of personally archiving a section of their history in graffiti, they capture the artists works permanently, their progression, and they often hold the memory of all artists that have contributed to the book.
 
 ### 1.2 Project Goals
 
-The purpose and goals of this project are:
+The purpose and goals of this project are to:
 - Create a full stack site that allows users to manage a common dataset about the domain of Bristol street art (graffiti).
 - Implement CRUD functionality.
 - Allow all users to read data from the database on the site.
-- Users are able to first create an accounts, and then create, update and delete their own data.
-- The sites content functionality will change for visitors and registered users.
-- The site must clearly display its purpose.
+- Allow users to first create an account, and then create, update and delete their own data.
+- Modify the sites content and functionality based on visitors and registered users.
+- Clearly display the sites purpose.
 - Display images effectively.
-- Categorise works by artist.
-- Artists assigned to crews
+- Categorise and group works by artist, style & type.
+
 
 ### 1.3 User Stories
 
+### First Time Users
+
 - As a user, I want a site to have a clearly defined purpose when I first enter so that I know what I am viewing.
 - As a user, I want all functionality on the site to work to avoid a bad experience.
-- As a user, I want to register for an account so that I can contribute to the database.
 - As a user, I want to be able to browse all works in the db.
 - As a user, I want to clearly see the artist name, style, type and year painted for each work.
 - As a user, I want to be able to easily browse all individual artists, crews, styles amd types in the db.
+- As a user, I want to register for an account so that I can contribute to the database.
 - As a user, I want to see how to add content, so that I can easily contribute to the database.
-- As a user, I want to see what I have uploaded to the database.
-- As a registered user, I want control over my data, so that I can easily choose to delete the account or any content I have uploaded to the website.
+
+### Returning Users
+
+- As a returning user, I want to log into my account and be presented with my own profile page.
+- As a returning user, I want to see what I have uploaded to the database on this profile page.
+- As a returning user, I want control over my data, so that I can easily choose to delete the account or any content I have uploaded to the website.
+
 
 ### 1.4 Design Process
 
 ### **Logo**
 
-I designed a logo for the site using the font 'Sprayerz' ontop of a spray type pattern.
+I designed a logo for the site using the font 'Sprayerz' ontop of a spray type pattern, created in GIMP.
 
 <div align="center">
 <img src="./static/images/readme/logo-black.jpg" alt="Main Logo" width="200">
@@ -158,7 +169,17 @@ I designed a logo for the site using the font 'Sprayerz' ontop of a spray type p
 
 ### **Colour scheme**
 
-Fitting with the name Blackbook, I decided to design the site with a black background.
+Fitting with the name Blackbook, I decided to design the site with a black background. I also implemented a pink/purple color scheme, taking inpiration from one of the Materialize gradient buttons used on the main welcome page and works page for the Enter & Sort By buttons.
+
+- #000000 - Black was used for the main body background.
+- #9A9A9A - Grey was used for some of the text and social icons.
+- #ffffff - White was used for the main body text color.
+- #D86FD2 - Pink was the first shade of the gradient used for the theme.
+- #8B72EE - Purple was the last shade of the gradient used for the theme.
+
+<div align="center">
+<img src="./static/images/readme/colors.jpg" alt="Main Logo" width="500">
+</div>
 
 ### **Typography**
 
@@ -306,14 +327,15 @@ When viewping pages such as the profile page on mobile, content is displayed in 
 
 </details>
 
+### **Database Architechture**
+
+<div align="center">
+<img src="static\images\readme\erd.jpg" alt="Database Architecture" width="600">
+</div>
+
 ### **Project Management**
 
 This project was designed using an agile approach, utilisng a Kanban board to track my development progress throughout the build. You can view the board I created using Trello [here](https://trello.com/b/mH8fpkjQ/milestone-project-3).
-
-### **Database Architechture**
-
-Entity relationship diagram
-
 
 [Back to Table Of Contents](#table-of-contents)
 
