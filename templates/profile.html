@@ -129,6 +129,49 @@
                     <h2 class="red-text no-results">No Artists</h2>
                 {% endif %}
             </div>
+        </div>
+        <!-- Users Uploaded Crews -->
+        <div class="col-sm-12 col-md-8 offset-md-2">
+            <hr>
+            <h2 class="upload-header">YOUR CREWS</h2>
+            <div class="row">
+                {% if crews %}
+                    {% for crew in crews %}
+                        <div class="col-4 top-margin">
+                            <div>
+                                <div class="text-center">
+                                    <!-- Crew Name -->
+                                    <h4 class="card-title white-text"><strong>{{ crew.crew_name }}</strong></h4>
+                                    <!-- Buttons -->
+                                    <a href="{{ url_for('edit_crew', crew_name=crew.crew_name) }}" class="btn btn-sm btn-cyan text-shadow">Edit</a>
+                                    <button type="button" class="btn btn-sm btn-mdb-color text-shadow" data-toggle="modal"
+                                        data-target="#confirm-delete-crew-modal">Delete</button>
+                                    <!-- Confirm Delete Modal -->
+                                    <div class="modal fade" id="confirm-delete-crew-modal" tabindex="-1" role="dialog" aria-labelledby="confirm-delete-crew-modal"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                                            <div class="modal-content text-center">
+                                                <div class="modal-header d-flex justify-content-center">
+                                                    <p class="heading">Are you sure?</p>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <i class="fas fa-times fa-4x animated rotateIn"></i>
+                                                </div>
+                                                <div class="modal-footer flex-center">
+                                                    <a href="{{ url_for('delete_crew', crew_name=crew.crew_name) }}" class="btn btn-outline-danger">Yes</a>
+                                                    <a type="button" class="btn btn-danger waves-effect" data-dismiss="modal">No</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h2 class="red-text no-results">No Crews</h2>
+                {% endif %}
+            </div>
             <hr>
         </div>
     </div>

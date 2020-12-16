@@ -277,8 +277,9 @@ def profile(username):
             {"username": session["user"]})["username"]
         works = list(mongo.db.works.find({"submitted_by": username}))
         artists = list(mongo.db.artists.find({"submitted_by": username}))
+        crews = list(mongo.db.crews.find({"submitted_by": username}))
         return render_template(
-            "profile.html", username=username, works=works, artists=artists)
+            "profile.html", username=username, works=works, artists=artists, crews=crews)
     
     return redirect(url_for("login"))
     
