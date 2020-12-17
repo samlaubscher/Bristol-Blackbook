@@ -150,12 +150,19 @@ The purpose and goals of this project are to:
 - As a user, I want to register for an account so that I can contribute to the database.
 - As a user, I want to see how to add content, so that I can easily contribute to the database.
 
-### Returning Users
+### Returning/Registered Users
 
+- As a registered user, I want full CRUD functionality.
 - As a returning user, I want to log into my account and be presented with my own profile page.
 As a returning user, I want to see what I have uploaded to the database, so that I can track my contributions.
 - As a returning user, I want control over my data, so that I can easily choose to delete the account or any content I have uploaded to the website.
 
+### Site Owner
+
+- As the site owner, I want users to register for accounts so that I can implement authentication.
+- As the site owner, I want users to register for accounts so that I can personalise their experience.
+- As the site owner, I want access to all features available to the site when logged in as admin.
+- As the site owner, I want to be able to see all users registered to the site so that I can track who has registered and delete any accounts if needed.
 
 ### 1.4 Design Process
 
@@ -173,7 +180,7 @@ Fitting with the name Blackbook, I decided to design the site with a black backg
 
 - #000000 - Black was used for the main body background.
 - #9A9A9A - Grey was used for some of the text and social icons.
-- #ffffff - White was used for the main body text color.
+- #FFFFFF - White was used for the main body text color.
 - #D86FD2 - Pink was the first shade of the gradient used for the theme.
 - #8B72EE - Purple was the last shade of the gradient used for the theme.
 
@@ -330,6 +337,8 @@ When viewping pages such as the profile page on mobile, content is displayed in 
 ### **Database Architechture**
 
 The diagram below outlines the structure and arcitecture of my database. Each seperate entity corresponds to a collection within my database. The population of entity parameters by other entity parameters is clearly displayed using arrows. These relational populations are either automatic or require the user to select from a list of values fed from the other collection.
+
+Within MongoDB, I only had to create the empty collections - all data was entered and created on the frontend of the website.
 
 <div align="center">
 <img src="static\images\readme\erd.jpg" alt="Database Architecture" width="600">
@@ -597,49 +606,71 @@ http://pep8online.com/
 
 ### **Manual Testing**
 
+In place of unit testing my code, I manually tested that all site features and routes work as expected without error. Through the following tests, I demonstrate that the application has full CRUD functionality available from the frontend.
+
 <details>
 <summary><b>Checking User Stories</b> - (click to expand)</summary>
-
 
 ### First Time Users
 
 - As a user, I want a site to have a clearly defined purpose when I first enter so that I know what I am viewing.
-    - The main landing page describes exactly what the site is for.
+    - The main landing page describes exactly what the site is for. - PASS
 
 - As a user, I want to register for an account so that I can contribute to the database.
-    - The Register button is clearly displayed on the navbar.
-    - Registration functionality works, as demonstrated below.
+    - The Register button is clearly displayed on the navbar. - PASS
+    - Registration functionality works, as demonstrated below. - PASS
 
 - As a user, I want to be able to browse all works in the db.
-    - The home page from the navbar displays all works uploaded to the db.
+    - The home page from the navbar displays all works uploaded to the db. - PASS
 
 - As a user, I want to clearly see the artist name, style, type and year painted for each work.
-    - When hovering the mouse over an image thumbnail on the main works page, all info is diaplayed.
-    - If an image is clicked, a page containing the image in large scale along with all info is clearly displayed.
+    - When hovering the mouse over an image thumbnail on the main works page, all info is diaplayed. - PASS
+    - If an image is clicked, a dedicated page containing the image in large scale along with all info is returned. - PASS
 
 - As a user, I want to be able to easily browse all individual artists, crews, styles and types in the db.
-    - The navbar displays links to pages displaying each of these items.
-    - Each page lists all of the items within the db clearly.
+    - The navbar displays links to pages displaying each of these items. - PASS
+    - Each page lists all of the items within the db clearly. - PASS
 
 - As a user, I want to see how to add content, so that I can easily contribute to the database.
-    - Each page has a button to add an item of that sort to the database.
-    - Users logged in will see these links on the navbar.
+    - Each page has a button to add an item of that sort to the database. - PASS
+    - Users logged in will see these links on the navbar. - PASS
 
 - As a user, I want all functionality on the site to work to avoid a bad experience.
-    - All functionality works as expected. Please see further testing below.
+    - All functionality works as expected. Please see further testing below. - PASS
 
 
-### Returning Users
+### Returning/Registered Users
+
+- As a registered user, I want full CRUD functionality.
+  - Users are able to Create their own data, Read all data, Update and Delete their own data. Only the Read functionality is available to non registered users. - PASS
 
 - As a returning user, I want to log into my account and be presented with my own profile page for a personalised experience.
-  - Users are automatically redirected to their profile page when they log in.
+  - Users are automatically redirected to their profile page when they log in. - PASS
 
 - As a returning user, I want to see what I have uploaded to the database, so that I can track my contributions.
-    - When users sign in, they are shown their profile page. This shows a concise list of all their uploaded contributions.
+    - When users sign in, they are shown their profile page. This shows a concise list of all their uploaded contributions. - PASS
 
 - As a registered user, I want control over my data, so that I can easily choose to delete the account or any content I have uploaded to the website.
-    - The option to delete a users account is displayed on their user panel.
-    - All items they have uploaded will display buttons allowing them to edit/delete it.
+    - The option to delete a users account is displayed on their user panel. - PASS
+    - All items they have uploaded will display buttons allowing them to edit/delete it. - PASS
+
+### Site Owner
+
+- As the site owner, I want users to register for accounts so that I can implement authentication.
+  - Users are able to register for an account easily. - PASS
+  - User authentication applied and tested sucessfully. - PASS
+
+- As the site owner, I want users to register for accounts so that I can personalise their experience.
+  - Users are given their own profile page. This displays their name and uploaded content. - PASS
+  - Navbar links will change for users visiting vs logged in. - PASS
+
+- As the site owner, I want access to all features available to the site when logged in as admin.
+  - The admin account has access to all features site wide. - PASS
+  - The admin has full CRUD functionality over all data on the site. - PASS
+  - The admin panel displays all users registered, as well as buttons to pages normal users cannot access. - PASS
+
+- As the site owner, I want to be able to see all users registered to the site so that I can track who has registered and delete any accounts if needed.
+  - The admin panel displays all users registered, there is a Delete button below each user account name shown. - PASS
 
 </details>
 
@@ -648,97 +679,105 @@ http://pep8online.com/
 
 ### Navbar
 
-- Each navbar link was tested from each page.
-- Every link worked as expected.
-- The main logo takes the user to the welcome page.
+- Each navbar link tested and working from each page. - PASS
+- The main logo takes the user to the welcome page. - PASS
+- Viewing the website on tablet or mobile devices, the navbar links dissapear and a hanmburger icon appears instead. Clicking this shows a drop down menu with all links.  - PASS
 
 ### Buttons
 
-- The main header takes the user to the welcome page.
+- The main header takes the user to the welcome page. - PASS
 
-- The ENTER button on the welcome page was tested. It returns the /works page with a 200 status code.
+- The ENTER button on the welcome page returns the /works page with a 200 status code. - PASS
 
-- All Add buttons were tested across each page. When users were not signed in, they redirected users to the login page with a 302 status code. When users were signed in, they were taken to the correct page with a 200 status code, as long as the page was not admin only.
+- All Add buttons - When users are not signed in, they get redirected to the login page with a 302 status code. When users are signed in, they are taken to the correct page with a 200 status code, as long as the page is not admin only. - PASS
 
-- All Go Back buttons were tested. They returned 200 codes.
+- All Go Back buttons return 200 codes to the correct page. - PASS
 
-- Both Artist and Crew Upload buttons display or hide one another when pressed, keeping only one on the screen at any one time.
+- Both Artist and Crew Upload buttons display or hide one another when pressed, keeping only one on the screen at any one time. - PASS
 
-- All form submit buttons were tested. They all POST data sucessfully.
+- All form submit buttons POST data sucessfully. - PASS
 
-- All Edit/Delete buttons correctly modify their data. One bug has been found and is noted under bugs.
+- All Edit/Delete buttons correctly modify their data. - PASS (One bug has been found and is noted under bugs.)
 
 ### Links
 
-- All social media links redirect to the correct websites. Pages correctly open in a new tab using target='_blank'.
+- All social media links redirect to the correct websites. - PASS
 
-- Clicking any image takes the user to that images page. From here, clicking the artist name, style or type will take the user to each respective page. All info links work correctly as expected.
+- External links correctly open in a new tab using target='_blank'. - PASS
 
-- Clicking a crew name or artist name takes the user to the individual pages, where more detail about the object is correctly displayed. No links are broken.
+- Clicking any image takes the user to that images page. From here, clicking the artist name, style or type will take the user to each respective page. All info links work correctly as expected. - PASS
+
+- Clicking a crew name or artist name takes the user to the individual pages, where more detail about the object is correctly displayed. - PASS
+
+No links are broken. - PASS
 
 ### Forms
 
-- All forms were tested for incorrect input types. All correct validation working and displaying.
+- All forms were tested for prompting incorrect input types. - PASS
 
-- When posting a form with empty data, the form validation prompts the user that they must enter a value.
+- All correct validation working and displaying. - PASS
+
+- Character count limitations working. - PASS
+
+- When posting a form with empty data, the form validation prompts the user that they must enter a value. - PASS
 
 </details>
 
 <details>
 <summary><b>Testing 200 Codes</b> - (click to expand)</summary>
 
-## All Users Pages
+### All Users Pages
 
-- /welcome - OK
-- /login - OK
-- /register - OK
-- /works - OK
-- /artists - OK
-- /crews - OK
-- /styles - OK
-- /types - OK
+- /welcome - PASS
+- /login - PASS
+- /register - PASS
+- /works - PASS
+- /artists - PASS
+- /crews - PASS
+- /styles - PASS
+- /types - PASS
 
 <div align="center">
     <img src="./static/images/testing/main-pages-200.jpg" alt="PEP8" width="700">
 </div>
 
-- I tested the pagination, checking the correct query parameter was passed for each page.
-
-<div align="center">
-    <img src="./static/images/testing/get-works-pagination.jpg" alt="PEP8" width="700">
-</div>
-
-- /work/ObjectID - OK
-- /artist/artist_name - OK
-- /crew/crew_name - OK
-- /style/style_name - OK
-- /type/type_name - OK
+- /work/ObjectID - PASS
+- /artist/artist_name - PASS
+- /crew/crew_name - PASS
+- /style/style_name - PASS
+- /type/type_name - PASS
 
 <div align="center">
     <img src="./static/images/testing/get-pages-200.jpg" alt="PEP8" width="700">
 </div>
 
-## Registered User Pages
+### Registered User Pages
 
-- /profile/username - OK
-- /new_work - OK
-- /add_artist - OK
-- /add_crew - OK
-- /add_style - OK
-- /add_type - OK
+- /profile/username - PASS
+- /new_work - PASS
+- /add_artist - PASS
+- /add_crew - PASS
+- /add_style - PASS
+- /add_type - PASS
 
 <div align="center">
     <img src="./static/images/testing/add-pages-200.jpg" alt="PEP8" width="700">
 </div>
 
-- /edit_work/ObjectID - OK
-- /edit_artist/artist_name - OK
-- /edit_crew/crew_name - OK
-- /edit_style/style_name - OK
-- /edit_type/type_name - OK
+- /edit_work/ObjectID - PASS
+- /edit_artist/artist_name - PASS
+- /edit_crew/crew_name - PASS
+- /edit_style/style_name - PASS
+- /edit_type/type_name - PASS
 
 <div align="center">
     <img src="./static/images/testing/edit-pages-200.jpg" alt="PEP8" width="700">
+</div>
+
+- I tested the pagination, checking the correct query parameter was passed for each page. - PASS
+
+<div align="center">
+    <img src="./static/images/testing/get-works-pagination.jpg" alt="PEP8" width="700">
 </div>
 
 </details>
@@ -746,17 +785,17 @@ http://pep8online.com/
 <details>
 <summary><b>Testing 302 Codes</b> - (click to expand)</summary>
 
-- Visitor Page Redirects
+### Visitor Page Redirects
 
-When a user is not logged into an account, they are unable to access any pages beyond the standard Read level functionality and will be redirected to the login page.
+When a user is not logged into an account, they are unable to access any pages beyond the standard Read level functionality and will be redirected to the login page. - PASS
 
 <div align="center">
     <img src="./static/images/testing/redirects-302.jpg" alt="PEP8" width="700">
 </div>
 
-- Admin Only Pages
+### Admin Only Pages
 
-Logging in with the username 'test', I tried to access add_type and add_style pages that only the admin should have access to.
+Logging in with the username 'test', I tried to access add_type and add_style pages that only the admin should have access to. - PASS
 
 <div align="center">
     <img src="./static/images/testing/admin-pages-302.jpg" alt="PEP8" width="700">
@@ -767,7 +806,7 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 <details>
 <summary><b>Testing User Scenarios</b> - (click to expand)</summary>
 
-### Registering An Account
+### Registering An Account - PASS
 
 - Clicking on the Register page link.
 - Entering 'TestName' as a username.
@@ -783,7 +822,7 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
     <img src="./static/images/testing/testname-register-302.jpg" alt="PEP8" width="700">
 </div>
 
-### Creating A Crew
+### Creating A Crew - PASS
 
 - Clicking on the Crews page.
 - Clicking the Add Crew button.
@@ -801,7 +840,7 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
     <img src="./static/images/testing/create-crew.jpg" alt="PEP8" width="700">
 </div>
 
-### Creating An Artist
+### Creating An Artist - PASS
 
 - Clicking on Artists page.
 - Clicking the Add Artist button.
@@ -819,7 +858,7 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
     <img src="./static/images/testing/create-artist.jpg" alt="PEP8" width="700">
 </div>
 
-### Uploading A New Work
+### Uploading A New Work - PASS
 
 - Clicking on Works/Home page.
 - Clicking the New Work button.
@@ -839,7 +878,17 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
     <img src="./static/images/testing/new-work.jpg" alt="PEP8" width="700">
 </div>
 
-### Edit or Delete Work
+### Edit or Delete Work - PASS
+
+- Clicking on the work to edit/delete.
+- Clicking the Edit button at the bottom of the page.
+- Checking all of the fields are prefilled with the objects data.
+- Clicking Cancel to be returned to the Works page.
+- Clicking on the work again.
+- Clicking the Delete button at the bottom of the page.
+- Clicking Yes on the modal popup.
+- Check for page redirect and flash displaying successful delete.
+- Check that the work is now gone from All Works.
 
 <div align="center">
     <img src="./static/images/testing/edit-delete-work.gif" alt="PEP8" width="700">
@@ -849,22 +898,56 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
     <img src="./static/images/testing/edit-delete-work.jpg" alt="PEP8" width="700">
 </div>
 
+### Logout and Login - PASS
 
-### Delete Profile
+- Clicking on the Logout link on the navbar.
+- Checking for page redirect and flash displaying logout success.
+- Checking the navbar links have changed now user is not logged in.
+- Page was redirected to Login page, so entering 'TestName' as username.
+- Entering 'TestPassword' as password.
+- Clicking Login button.
+- Checking for page redirect to user profile and flash displaying login success.
 
 <div align="center">
-    <img src="./static/images/testing/delete-test-profile.gif" alt="PEP8" width="700">
+    <img src="./static/images/testing/logout-login.gif" alt="PEP8" width="700">
 </div>
 
+<div align="center">
+    <img src="./static/images/testing/logout-login.jpg" alt="PEP8" width="700">
+</div>
+
+### Delete Content and Account - PASS
+
+- Clicking on the profile page link on the navbar.
+- Deleting any uploaded content on the test account.
+- Returning to profile page when all content is removed.
+- Clicking Delete Account and Yes on modal pop up.
+- Checking for page redirect to main works page with flash displaying deletion success.
+- Checking the navbar links have changed as user is no longer logged in.
+
+<div align="center">
+    <img src="./static/images/testing/delete-artist-then-account.gif" alt="PEP8" width="700">
+</div>
+
+<div align="center">
+    <img src="./static/images/testing/delete-artist-then-account.jpg" alt="PEP8" width="700">
+</div>
 
 </details>
-
 
 ### 4.2 Bugs
 
 ### **Fixed**
 
+- Spelling mistakes in some class and id names were discovered and fixed through testing.
+
+- Delete modals would sometimes delete the wrong object. This was fixed through testing.
+
+- Created onerror image for images that break and cause the site to look bad.
+
 ### **Still Existing**
+
+- On the profile page, when users click to delete a work, the modal window glitches out and jumps between the center of the screen and inside the work card panel. This often makes it really hard to click one of the options. This needs to be fixed by repositioning the divs.
 
 [Back to Table Of Contents](#table-of-contents)
 
