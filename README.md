@@ -590,6 +590,11 @@ Used to create the wireframes for this project
 
 ### **Automated Testing**
 
+https://validator.w3.org/
+
+Errors: duplicate IDs 
+bug fixes: a link
+
 jshint.com
 
 <details>
@@ -804,7 +809,7 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 </details>
 
 <details>
-<summary><b>Testing User Scenarios</b> - (click to expand)</summary>
+<summary><b>Testing User Scenarios & CRUD Functionality</b> - (click to expand)</summary>
 
 ### Registering An Account - PASS
 

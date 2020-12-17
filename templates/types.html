@@ -19,21 +19,19 @@
         <!-- Types -->
         {% for type in types %}
             <div class="col-md-4 col-sm-8">
-                <a href="{{ url_for('types', type_name=type.type_name) }}">
-                    <div class="center-margin">
-                        <div class="style-box">
-                            <div class="border-mask-top"></div>
-                            <!-- Type Name -->
-                            <a href="{{ url_for('type', type_name=type.type_name) }}">
-                                <!-- Type Image -->
-                                <img class="card-img-top" id="crew-panel-image" src="{{ type.type_image }}" alt="Type Image"
-                                    onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
-                                <h3 class="type white-text">{{ type.type_name }}</h3>
-                            </a>
-                            <div class="border-mask-bottom"></div>
-                        </div>
+                <div class="center-margin">
+                    <div class="style-box">
+                        <div class="border-mask-top"></div>
+                        <!-- Type Name -->
+                        <a href="{{ url_for('type', type_name=type.type_name) }}">
+                            <!-- Type Image -->
+                            <img class="card-img-top" id="crew-panel-image" src="{{ type.type_image }}" alt="Type Image"
+                                onerror="this.onerror=null;this.src='/static/images/noimage.jpg';">
+                            <h3 class="type white-text">{{ type.type_name }}</h3>
+                        </a>
+                        <div class="border-mask-bottom"></div>
                     </div>
-                </a>
+                </div>
             </div>
         {% endfor %}
     </section>
