@@ -590,7 +590,7 @@ jshint.com
 http://pep8online.com/
 
 <div align="center">
-    <img src="./static/images/testing/pep8.jpg" alt="PEP8" width="500">
+    <img src="./static/images/testing/pep8.jpg" alt="PEP8" width="700">
 </div>
 
 </details>
@@ -644,6 +644,47 @@ http://pep8online.com/
 </details>
 
 <details>
+<summary><b>Testing Functionality</b> - (click to expand)</summary>
+
+### Navbar
+
+- Each navbar link was tested from each page.
+- Every link worked as expected.
+- The main logo takes the user to the welcome page.
+
+### Buttons
+
+- The main header takes the user to the welcome page.
+
+- The ENTER button on the welcome page was tested. It returns the /works page with a 200 status code.
+
+- All Add buttons were tested across each page. When users were not signed in, they redirected users to the login page with a 302 status code. When users were signed in, they were taken to the correct page with a 200 status code, as long as the page was not admin only.
+
+- All Go Back buttons were tested. They returned 200 codes.
+
+- Both Artist and Crew Upload buttons display or hide one another when pressed, keeping only one on the screen at any one time.
+
+- All form submit buttons were tested. They all POST data sucessfully.
+
+- All Edit/Delete buttons correctly modify their data. One bug has been found and is noted under bugs.
+
+### Links
+
+- All social media links redirect to the correct websites. Pages correctly open in a new tab using target='_blank'.
+
+- Clicking any image takes the user to that images page. From here, clicking the artist name, style or type will take the user to each respective page. All info links work correctly as expected.
+
+- Clicking a crew name or artist name takes the user to the individual pages, where more detail about the object is correctly displayed. No links are broken.
+
+### Forms
+
+- All forms were tested for incorrect input types. All correct validation working and displaying.
+
+- When posting a form with empty data, the form validation prompts the user that they must enter a value.
+
+</details>
+
+<details>
 <summary><b>Testing 200 Codes</b> - (click to expand)</summary>
 
 ## All Users Pages
@@ -659,6 +700,12 @@ http://pep8online.com/
 
 <div align="center">
     <img src="./static/images/testing/main-pages-200.jpg" alt="PEP8" width="700">
+</div>
+
+- I tested the pagination, checking the correct query parameter was passed for each page.
+
+<div align="center">
+    <img src="./static/images/testing/get-works-pagination.jpg" alt="PEP8" width="700">
 </div>
 
 - /work/ObjectID - OK
@@ -699,10 +746,20 @@ http://pep8online.com/
 <details>
 <summary><b>Testing 302 Codes</b> - (click to expand)</summary>
 
-302 authentication redirects
+- Visitor Page Redirects
+
+When a user is not logged into an account, they are unable to access any pages beyond the standard Read level functionality and will be redirected to the login page.
 
 <div align="center">
     <img src="./static/images/testing/redirects-302.jpg" alt="PEP8" width="700">
+</div>
+
+- Admin Only Pages
+
+Logging in with the username 'test', I tried to access add_type and add_style pages that only the admin should have access to.
+
+<div align="center">
+    <img src="./static/images/testing/admin-pages-302.jpg" alt="PEP8" width="700">
 </div>
 
 </details>
@@ -710,7 +767,94 @@ http://pep8online.com/
 <details>
 <summary><b>Testing User Scenarios</b> - (click to expand)</summary>
 
-### Register Account
+### Registering An Account
+
+- Clicking on the Register page link.
+- Entering 'TestName' as a username.
+- Entering 'TestPassword' as a password.
+- Confirming this password.
+- Check for profile redirect and flash displaying username.
+
+<div align="center">
+    <img src="./static/images/testing/creating-test-profile.gif" alt="PEP8" width="700">
+</div>
+
+<div align="center">
+    <img src="./static/images/testing/testname-register-302.jpg" alt="PEP8" width="700">
+</div>
+
+### Creating A Crew
+
+- Clicking on the Crews page.
+- Clicking the Add Crew button.
+- Entering 'Team123' as the crew name.
+- Entering an image as the crew photo.
+- Submitting the form.
+- Check for page redirect and flash displaying success.
+- Find crew and click on it to view.
+
+<div align="center">
+    <img src="./static/images/testing/create-crew.gif" alt="PEP8" width="700">
+</div>
+
+<div align="center">
+    <img src="./static/images/testing/create-crew.jpg" alt="PEP8" width="700">
+</div>
+
+### Creating An Artist
+
+- Clicking on Artists page.
+- Clicking the Add Artist button.
+- Entering 'MrTee' as the artist name.
+- Assigning the artist to the 'Team123' crew previously created.
+- Submitting the form.
+- Check for page redirect and flash displaying success.
+- Find artist and click on it to view.
+
+<div align="center">
+    <img src="./static/images/testing/create-artist.gif" alt="PEP8" width="700">
+</div>
+
+<div align="center">
+    <img src="./static/images/testing/create-artist.jpg" alt="PEP8" width="700">
+</div>
+
+### Uploading A New Work
+
+- Clicking on Works/Home page.
+- Clicking the New Work button.
+- Entering 'MrTee' as the artist name.
+- Assigning the work a stye of 'Dub'.
+- Assigning the work a type of 'Legal Spot'
+- Entering an image URL for the work.
+- Submitting the form.
+- Check for page redirect and flash displaying success.
+- Find work at top of main page and click on it to view.
+
+<div align="center">
+    <img src="./static/images/testing/create-work.gif" alt="PEP8" width="700">
+</div>
+
+<div align="center">
+    <img src="./static/images/testing/new-work.jpg" alt="PEP8" width="700">
+</div>
+
+### Edit or Delete Work
+
+<div align="center">
+    <img src="./static/images/testing/edit-delete-work.gif" alt="PEP8" width="700">
+</div>
+
+<div align="center">
+    <img src="./static/images/testing/edit-delete-work.jpg" alt="PEP8" width="700">
+</div>
+
+
+### Delete Profile
+
+<div align="center">
+    <img src="./static/images/testing/delete-test-profile.gif" alt="PEP8" width="700">
+</div>
 
 
 </details>
