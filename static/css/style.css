@@ -502,10 +502,6 @@ hr {
     color:#c571da;
 }
 
-.form-control.option:selected {
-    color:#c01919;
-}
-
 .md-form .input-prefix,
 .md-form .prefix {
     color: #fff;
@@ -611,7 +607,7 @@ hr {
     flex-flow:column wrap;
     justify-content:center;
     align-items:center;
-    perspective:700;
+    perspective:700px;
     background: rgba(0, 0, 0, 0.849);
 }
 .preloader1 .loader{
