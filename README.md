@@ -84,7 +84,7 @@ The purpose and goals of this project are to:
 - As a user, I want all functionality on the site to work to avoid a bad experience.
 - As a user, I want to be able to browse all works in the db.
 - As a user, I want to clearly see the artist name, style, type and year painted for each work.
-- As a user, I want to be able to easily browse all individual artists, crews, styles amd types in the db.
+- As a user, I want to be able to easily browse all individual artists, crews, styles and types in the db.
 - As a user, I want to register for an account so that I can contribute to the database.
 - As a user, I want to see how to add content, so that I can easily contribute to the database.
 
@@ -171,7 +171,7 @@ Both the Styles and Types pages will have the same layout. Below the image there
 
 ### View Work Page
 
-When a user clicks on a work, they will be shown the image in large format. Below the image all the info will be shown, allowing users to click onone of these to be taken to its unique page.
+When a user clicks on a work, they will be shown the image in large format. Below the image all the info will be shown, allowing users to click on one of these to be taken to its unique page.
 
 <div align="center">
 <img src="static\images\readme\wireframes\view-content-d.jpg" alt="Wireframe 1" width="500">
@@ -195,7 +195,7 @@ The view crew page is laid out differently once again by showing the main crew i
 
 ### Add or Edit Work Pages
 
-To add a work to the database, users will be presented a page will multiple dropdown menus and text boxes. The artist name dropdown will be taking options from the Artists collection. The style dropdown will be taking options from the Styles collection, and the types dropdown will be taking options from the Types collection. Users can then input a year painted and finally an image URL. When editing a work, these fields will be autofilled with the current data binded to that object.
+To add a work to the database, users will be presented a page will multiple dropdown menus and text boxes. The artist name dropdown will be taking options from the Artists collection. The style dropdown will be taking options from the Styles collection, and the types dropdown will be taking options from the Types collection. Users can then input a year painted and finally an image URL. When editing a work, these fields will be autofilled with the current data bound to that object.
 
 <div align="center">
 <img src="static\images\readme\wireframes\add-edit-work.jpg" alt="Wireframe 1" width="500">
@@ -203,7 +203,7 @@ To add a work to the database, users will be presented a page will multiple drop
 
 ### Add/Edit Artist or Crew or Style or Type Pages
 
-To add either an Artist, Crew, Style or Type to the database, users will be presented with similarly laid out pages. There will be text boxes for names and image URL's to be added. When editing, these fields will be autofilled with the current data binded to that object.
+To add either an Artist, Crew, Style or Type to the database, users will be presented with similarly laid out pages. There will be text boxes for names and image URL's to be added. When editing, these fields will be autofilled with the current data bound to that object.
 
 <div align="center">
 <img src="static\images\readme\wireframes\add-artist-crew-style-type.jpg" alt="Wireframe 1" width="500">
@@ -264,7 +264,7 @@ When an item is clicked, a page is loaded allowing the user to see the image in 
 
 ### Mobile Multi Content
 
-When viewping pages such as the profile page on mobile, content is displayed in rows of 2 with headers splitting up the sections.
+When viewing pages such as the profile page on mobile, content is displayed in rows of 2 with headers splitting up the sections.
 
 <div align="center">
 <img src="static\images\readme\wireframes\mobile-multi-content.jpg" alt="Wireframe 1" width="300">
@@ -284,7 +284,7 @@ Within MongoDB, I only had to create the empty collections - all data was entere
 
 ### **Project Management**
 
-This project was designed using an agile approach, utilisng a Kanban board to track my development progress throughout the build. You can view the board I created using Trello [here](https://trello.com/b/mH8fpkjQ/milestone-project-3).
+This project was designed using an agile approach, utilising a Kanban board to track my development progress throughout the build. You can view the board I created using Trello [here](https://trello.com/b/mH8fpkjQ/milestone-project-3).
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -665,6 +665,14 @@ No links are broken. - PASS
 
 - When posting a form with empty data, the form validation prompts the user that they must enter a value. - PASS
 
+### Responsiveness
+
+- All pages respond to different screen sizes effectively. - PASS
+
+- No content behaves weirdly when resized and correctly repositions. - PASS
+
+- No content overflows off the page at any size. - PASS
+
 </details>
 
 <details>
@@ -958,7 +966,7 @@ If you would like to run this code locally on your own machine, follow these ste
 
 - Alternatively, you can download the repository directly as a compressed ZIP folder from the ***Code*** dropdown box, underneath the ***Clone*** section. Unpack this ZIP folder into your virtual environment location.
 
-- When the project is successfully cloned or downloaded and opened in the correct directory, you need to install any dependancies and requirements by typing ***pip3 install -r requirements.txt*** into your IDE's terminal window.
+- When the project is successfully cloned or downloaded and opened in the virtual environment, you need to install any dependancies and requirements by typing ***pip3 install -r requirements.txt*** into your IDE's terminal window.
 
 - You next need to create an ***env.py*** file to store your environment variables. For this project, they are: 
     - import os
@@ -981,10 +989,18 @@ To read more about cloning repositories, you can read [Cloning a repository](htt
 
 ### 6.1 Content and code
 
-Pagination - https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+Code for the preloader was taken from here - https://bootsnipp.com/snippets/GaeVl
+
+Code for the pagination was taken from this guide - https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+
+All additional code was my own.
 
 ### 6.2 Media
 
+Most images were taken from the internet and are not my own. I asked permission to use most of the images from friends accounts.
+
 ### 6.3 Acknowledgements
+
+I would like to thank my mentor Ignatius for the time he has spent with me going over this project. I would also like to thank all students that offered advice, all people who supported me in any way during the project, and all friends that took the time to look at the site during development.
 
 [Back to Table Of Contents](#table-of-contents)
