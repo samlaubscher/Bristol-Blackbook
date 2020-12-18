@@ -24,94 +24,32 @@ Bristol has one of the most prolific and active graffiti scenes in the UK. The B
 
   - [**1.1 Overview**](#11-overview)
   - [**1.2 Project Goals**](#12-project-goals)
-  - [**1.3 User Goals**](#13-user-goals)
+  - [**1.3 User Stories**](#13-user-stories)
   - [**1.4 Design Process**](#14-design-process)
-    - [**Colour Scheme**](#colour-scheme)
-    - [**Typography**](#typography)
-    - [**Wireframes**](#wireframes)
-    - [**Development Stages**](#development-stages)
 
 - [**2 Features**](#2-features)
 
   - [**2.1 Existing Features**](#21-existing-features)
-    - [**Intro Index Landing Page**](#intro-index-landing-page)
-    - [**All Works Main Home Page**](#all-works-main-home-page)
-    - [**Register & Login Pages**](#register-&-login-pages)
-    - [**Profile Page**](#profile-page)
-    - [**Logout**](#logout)
-    - [**New Upload Page**](#new-upload-page)
-    - [**Work Page**](#work-page)
-    - [**Edit Work Page**](#edit-work-page)
-    - [**Add Artist Page**](#add-artist-page)
-    - [**Artists Page**](#artists-page)
-    - [**Artist Page**](#artist-page)
-    - [**Edit Artist Page**](#edit-artist-page)
-    - [**Add Crew Page**](#add-crew-page)
-    - [**Crews Page**](#crews-page)
-    - [**Crew Page**](#crew-page)
-    - [**Edit Crew Page**](#edit-crew-page)
-    - [**Add Style Page [Admin Only]**](#add-style-page-[admin-only])
-    - [**Styles Page**](#styles-page)
-    - [**Style Page**](#style-page)
-    - [**Edit Style Page [Admin Only]**](#edit-style-page-[admin-only])
-    - [**Add Type Page [Admin Only]**](#add-typee-page-[admin-only])
-    - [**Types Page**](#types-page)
-    - [**Type Page**](#type-page)
-    - [**Edit Type Page [Admin Only]**](#edit-type-page-[admin-only])
-    - [**Admin Panel page [Admin Only]**](#admin-panel-page-[admin-only])
-    - [**Header Image**](#header-image)
-    - [**Navbar**](#navbar)
-    - [**Footer**](#footer)
-    - [**404 Error Handling Page**](#404-error-handling-page)
   - [**2.2 Features Left to Implement**](#22-Features-left-to-impliment)
-    - [**Bristol Paint Shops Page**](#bristol-paint-shops-page)
-    - [**Work Rating System**](#work-rating-system)
-    - [**Comments Section On Works**](#comments-section-on-works)
 
 - [**3 Technologies Used**](#3-technologies-used)
   - [**3.1 Languages**](#31-languages)
-    - [**HTML/HTML 5**](#html/html-5)
-    - [**CSS/CSS3**](#css/css3)
-    - [**JavaScript ES6**](#JavaScript-ES6)
-    - [**Python**](#Python)
   - [**3.2 Frameworks & Libraries**](#32-frameworks-&-libraries)
-    - [**Flask**](#Flask)
-    - [**Jinja2**](#jinja2)
-    - [**Werkzeug Security**](#Werkzeug-Security)
-    - [**MongoDB Atlas**](#mongodb-atlas)
-    - [**PyMongo**](#pymongo)
-    - [**BSON ObjectID**](#bson-objectid)
-    - [**MD Bootstrap**](#md-bootstrap)
-    - [**Font Awesome**](#font-awesome)
-    - [**Google Fonts API**](#Google-Fonts-API)
   - [**3.3 Tools**](#33-Tools)
-    - [**VSCode**](#vscode)
-    - [**Chrome DevTools**](#chrome-devtools)
-    - [**Git**](#git)
-    - [**GitHub**](#github)
-    - [**GNU Image Manipulation Program**](#GNU-Image-Manipulation-Program)
-    - [**Heroku**](#heroku)
-    - [**Balsamiq**](#balsamiq)
 
 * [**4 Testing**](#4-testing)
-
   - [**4.1 Completed**](#41-completed)
-    - [**Manual Testing**](#manual-testing)
-    - [**Automatic Testing**](#automatic-testing)
   - [**4.2 Bugs**](#42-bugs)
-    - [**Fixed**](#fixed)
-    - [**Still Existing**](#still-existing)
 
 * [**5 Deployment**](#5-deployment)
 
   - [**5.1 Heroku**](#51-github-pages)
-  - [**5.2 Local**](#52-local)
+  - [**5.2 Locally**](#52-locally)
 
 * [**6 Credits**](#6-credits)
   - [**6.1 Contents and code**](#61Contents-and-code)
   - [**6.2 Media**](#62-media)
   - [**6.3 Acknowledgements**](#63-Acknowledgements)
-  - [**6.4 References**](#64-references)
 
 ---
 
@@ -596,24 +534,15 @@ Used to create the entity relationship diagram for this project.
 
 ### **Automated Testing**
 
-https://validator.w3.org/
+- DevTools Lighthouse - I ran extensive testing with the lighthouse tool. Any pages that did not return green 90+ scores in each area were worked on to solve issues that could be addressed. Some issues included image sizes and redundant code in Bootstrap files.
 
-Errors: duplicate IDs , links copied from somewhere
-bug fixes: a link
+- [HTML Validator](https://validator.w3.org/) - All code passed except for a few duplicate IDs and warnings on external code. I was able to discover and fix a duplicate anchor link bug using this validator.
 
-css 
-https://jigsaw.w3.org/
-preloader perspective 
-warnings from materialise
+- [CSS Validator](https://jigsaw.w3.org/) - All code passes this validator with no errors. Only warnings on external code from MDB. 
 
-jshint.com
+- [JavaScript Validator](jshint.com) - All code passed with no errors.
 
-lighthouse
-
-
-
-### PEP8 
-http://pep8online.com/
+- [Python PEP8 Validator](http://pep8online.com/) - Most of my code was python based. I ran my code through the PEP8 validator and made sure no issues were raised.
 
 <div align="center">
     <img src="./static/images/testing/pep8.jpg" alt="PEP8" width="700">
@@ -1057,7 +986,5 @@ Pagination - https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
 ### 6.2 Media
 
 ### 6.3 Acknowledgements
-
-### 6.4 References
 
 [Back to Table Of Contents](#table-of-contents)
