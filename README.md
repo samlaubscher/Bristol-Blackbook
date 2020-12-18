@@ -993,6 +993,8 @@ Code for the preloader was taken from here - https://bootsnipp.com/snippets/GaeV
 
 Code for the pagination was taken from this guide - https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
 
+Small parts of code were re-used from the original Task Manager project for the Data Centric module.
+
 All additional code was my own.
 
 ### 6.2 Media
