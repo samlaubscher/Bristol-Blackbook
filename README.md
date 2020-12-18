@@ -668,6 +668,15 @@ In place of unit testing my code, I manually tested that all site features and r
 - All devices and broswers performed correctly during testing. - PASS
 - The bug detected is in the bugs section.
 
+### Pagination
+
+- All pagination works on the main page - PASS
+
+### Search & Filter Works
+
+- Searching works by artist name returns correct works. - PASS
+- Each filter route selected with the Sort By menu returns the correct filtering of works. - PASS
+
 </details>
 
 <details>
