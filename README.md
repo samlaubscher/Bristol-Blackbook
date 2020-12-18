@@ -592,13 +592,19 @@ Used to create the wireframes for this project
 
 https://validator.w3.org/
 
-Errors: duplicate IDs 
+Errors: duplicate IDs , links copied from somewhere
 bug fixes: a link
+
+css 
+https://jigsaw.w3.org/
+preloader perspective 
+warnings from materialise
 
 jshint.com
 
-<details>
-<summary><b>PEP8</b> - (click to expand)</summary>
+lighthouse
+
+
 
 ### PEP8 
 http://pep8online.com/
@@ -606,8 +612,6 @@ http://pep8online.com/
 <div align="center">
     <img src="./static/images/testing/pep8.jpg" alt="PEP8" width="700">
 </div>
-
-</details>
 
 ### **Manual Testing**
 
@@ -954,6 +958,10 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 
 - On the profile page, when users click to delete a work, the modal window glitches out and jumps between the center of the screen and inside the work card panel. This often makes it really hard to click one of the options. This needs to be fixed by repositioning the divs.
 
+- The gradient underline on the header logo box displays strangely on Apple Facebook and Safari browsers. The underline displays as a full box, there may be some code to fix this but due to time this will have to wait.
+
+- The search feature only returns the artist name. All objects used to return if a query matched, so I may have changed the code by accident. I could not see the issue when looking inititaly, so for now the feature just searches for the artist name and this fix can be implemented at a later date.
+
 [Back to Table Of Contents](#table-of-contents)
 
 ## 5 Deployment
@@ -990,6 +998,14 @@ This project was automatically deployed to Heroku from my GitHub repository. To 
 
 If you would like to run this code locally on your own machine, follow these steps:
 
+- First open your IDE and navigate to the working directory you want to use.
+
+- You then need to create a ***virtual environment*** to install all dependencies in a sandbox. To do this using venv use the following code:
+  - ***python3 -m venv <YOUR_DIR>***
+
+- When your virtual environment is created you need to activate it with the following code:
+  - ***<YOUR_DIR>\Scripts\activate***
+
 - Follow this link to the repository for [Bristol Blackbook](https://github.com/samlaubscher/Bristol-Blackbook).
 
 - In the top corner next to the ***About*** section, click the ***Code*** button with the downwards facing arrow icons.
@@ -998,8 +1014,6 @@ If you would like to run this code locally on your own machine, follow these ste
     > https://github.com/samlaubscher/Bristol-Blackbook.git
 
 - Open ***Git Bash*** in your IDE.
-
-- First navigate to the working directory you want the files to be cloned into.
 
 - Then type into the terminal window ***git clone {URL}*** and replace the ***{URL}*** with the link copied from the repository page.
 
