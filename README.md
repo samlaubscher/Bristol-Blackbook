@@ -637,7 +637,7 @@ In place of unit testing my code, I manually tested that all site features and r
 - The main header takes the user to the welcome page. - PASS
 - The ENTER button on the welcome page returns the /works page with a 200 status code. - PASS
 - All Add buttons - When users are not signed in, they get redirected to the login page with a 302 status code. When users are signed in, they are taken to the correct page with a 200 status code, as long as the page is not admin only. - PASS
-- All Go Back buttons return 200 codes to the correct page. - PASS
+- All Back To.. buttons return 200 codes to the correct page. - PASS
 - Both Artist and Crew Upload buttons display or hide one another when pressed, keeping only one on the screen at any one time. - PASS
 - All form submit buttons POST data sucessfully. - PASS
 - All Edit/Delete buttons correctly modify their data. - PASS (One bug has been found and is noted under bugs.)
