@@ -362,15 +362,15 @@ When users visit the sites main index page ***(/)***, they are taken to a landin
 
 ### **All Works Main Home Page**
 
-This page acts as the home page, displaying all available works uploaded to the database. At the top, users are able to search works according to the artist/crew name, style or type. Users are also able to filter results and order them in several different ways by clicking the Order By dropdown button in the top right. Each work is rendered as a medium sized image panel, which displays information for the work when hovered.
+This page acts as the home page, displaying all available works uploaded to the database. The page displays 9 works per page, pagination pages and links are clearly visible at the bottom of the images panels. At the top, users are able to search works according to the artist name. Users are also able to filter results and order them in several different ways by clicking the Order By dropdown button in the top right. Each work is rendered as a medium sized image panel, which displays information for the work when hovered.
 
 ### **Register & Login Pages**
 
-These pages display the logo with a form below allowing users to enter both a username and password. They allow users to either create a new account or login to an existing one by entering these unique values. The application will run validation and authentication on passwords and usernames for character and invalid or existing data checks. 
+These pages display the logo with a form below allowing users to enter both a username and password. They allow users to either create a new account or login to an existing one by entering these unique values. Registration requires the user to enter their password twice. The application will run validation and authentication on passwords and usernames for character and invalid or existing data checks.
 
 ### **Profile Page**
 
-When a user logs into their account, they will be directed to their own profile page. This will display their name, as well as any content that have contributed to the site in a concise manner. They will also have the option to edit/delete their account or any personally created content.
+When a user logs into their account, they will be directed to their own profile page. This will display their name, as well as any content that have contributed to the site in a concise manner. They will also have the option to delete their account or any personally created content.
 
 ### **Logout**
 
@@ -462,15 +462,15 @@ Each page contains the header which has a background image filling the entire wi
 
 ### **Navbar**
 
-Due to the header, each page across the application naturally also contains the full width navbar at the very top of the window, facilitating effortless navigation across the site. This navbar sits at the very top of the header and has a black background with 70% opacity, allowing for the header image to be seen behind. The main logo is displayed in the far left, followed by page links for Home, Artists, Crews, Styles and Types, and on the far right sits the Login and Register page links. The content of the navbar changes when users are logged into an account. On the left additional links of New Upload, Add Artist and Add Crew are displayed, and the far right links are both entirely swapped to display the Profile and Logout route links.
+Due to the header, each page across the application naturally also contains the full width navbar at the very top of the window, facilitating effortless navigation across the site. This navbar sits at the very top of the header and has a black background with 70% opacity, allowing for the header image to be seen behind. The main logo is displayed in the far left, followed by page links for Home, Artists, Crews, Styles and Types, and on the far right sits the Login and Register page links. The content of the navbar changes when users are logged into an account. On the left additional links of New Upload, Add Artist and Add Crew are displayed, and the far right links are both entirely swapped to display the Profile and Logout route links. The navbar is also responsive, switching to a collapsable hamburger type menu on tablet and mobile devices. This works well due to the length of the links when logged in.
 
 ### **Footer**
 
 Each page has a full width footer at the bottom of the window, containing social media links and copyright information.
 
-### **404 Error Handling Page**
+### **404 & 500 Error Handling Page**
 
-In case a user encounters a 404 error, 
+In case a user encounters a 404 or 500 error, they will be redirected to this page. It explains there was an issue and allows users to click to go back home.
 
 ### 2.1 Features Left To Implement
 
@@ -524,21 +524,19 @@ Jinja is a templating engine for Python used with Flask to render all HTML data 
 
 Werkzeug is used with Flask to secure user authentication through password hashing.
 
-### [**MongoDB Atlas**](https://www.mongodb.com/cloud/atlas)
-
-Atlas is the cloud hosted version of MongoDB's database service. This was used as my database for the project.
-
 ### [**PyMongo**](https://pypi.org/project/pymongo/)
 
 PyMongo is a distribution of Python used to interact with the MongoDB database.
 
-### [**Flash_Paginate**]()
+### [**Flask-paginate 0.7.1**](https://pypi.org/project/flask-paginate/)
 
-### [**BSON ObjectID**]()
+This was used to paginate the works on the main works page.
+
+### [**BSON ObjectID**](https://docs.mongodb.com/manual/reference/method/ObjectId/)
 
 This was used to create and parse ObjectID's from the MongoDB database.
 
-### [**MD Bootstrap**](https://mdbootstrap.com/)
+### [**MD Bootstrap 4.19.1**](https://mdbootstrap.com/)
 
 Material Design Bootstrap is a free open source CSS framework, combining styles from Material Design with the main functionality of Bootsptrap. I used MDB to fill the site with boilerplate content when building the functionality, but it was also used to create responsiveness.
 
@@ -551,6 +549,10 @@ Font Awesome 5.8.2 was used for icons across the site.
 Most of the fonts used within this project were provided by the Google Fonts API. The fonts used were 'Anton' 'Kanit', and 'Archivo Black'.
 
 ### 3.3 Tools
+
+### [**MongoDB Atlas**](https://www.mongodb.com/cloud/atlas)
+
+Atlas is the cloud hosted version of MongoDB's database service. This was used as my database for the project.
 
 ### [**VSCode**](https://code.visualstudio.com/)
 
@@ -578,7 +580,11 @@ My web application was deployed online using Heroku.
 
 ### [**Balsamiq**](https://balsamiq.com/)
 
-Used to create the wireframes for this project
+Used to create the wireframes for this project.
+
+### [**Lucid**](https://lucid.app/)
+
+Used to create the entity relationship diagram for this project.
 
 [Back to Table Of Contents](#table-of-contents)
 
@@ -1021,7 +1027,7 @@ If you would like to run this code locally on your own machine, follow these ste
 
 - To then remove the origin link to this repository from your IDE, type ***git remote rm origin***.
 
-- Alternatively, you can download the repository directly as a compressed ZIP folder from the ***Code*** dropdown box, underneath the ***Clone*** section. Unpack this ZIP folder into your desired location.
+- Alternatively, you can download the repository directly as a compressed ZIP folder from the ***Code*** dropdown box, underneath the ***Clone*** section. Unpack this ZIP folder into your virtual environment location.
 
 - When the project is successfully cloned or downloaded and opened in the correct directory, you need to install any dependancies and requirements by typing ***pip3 install -r requirements.txt*** into your IDE's terminal window.
 
@@ -1032,7 +1038,7 @@ If you would like to run this code locally on your own machine, follow these ste
     - os.environ.setdefault("SECRET_KEY", "YOURSECRETKEY")
     - os.environ.setdefault("MONGO_URI", "mongodb+srv://root:YOURPASSWORD@YOUR-CLUSTER-NAME.2qobt.mongodb.net/YOUR-DATABASE-NAME?retryWrites=true&w=majority")
     - os.environ.setdefault("MONGO_DBNAME", "YOUR-DATABASE-NAME")
-    - os.environ.setdefault("DEBUG", "FALSE")
+    - os.environ.setdefault("DEBUG", 0)
 
 - Then create a ***.gitignore*** file, and include this env.py file inside it to ensure your environment variables are never published publically by being pushing to GitHub.
 
