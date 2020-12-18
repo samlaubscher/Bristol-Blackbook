@@ -63,6 +63,12 @@ Often most artists upload these images to Instagram under private accounts, rest
 
 I chose the name Bristol Blackbook as the blackbook is famously where graffiti writers practice their work, and often they collect the tags and works of other graffiti writers in these books when they meet others. For a graffiti writer, blackbooks are a good way of personally archiving a section of their history in graffiti, they capture the artists works permanently, their progression, and they often hold the memory of all artists that have contributed to the book.
 
+There could be potantially multiple target markets for this website including: 
+  - Users interested in graffiti.
+  - Users not interested in graffiti but wanting to check it out.
+
+The site is built to be inclusive, meaning all users have the potential to gain value from having access to the site.
+
 ### 1.2 Project Goals
 
 The purpose and goals of this project are to:
@@ -74,7 +80,6 @@ The purpose and goals of this project are to:
 - Clearly display the sites purpose.
 - Display images effectively.
 - Categorise and group works by artist, style & type.
-
 
 ### 1.3 User Stories
 
@@ -142,7 +147,7 @@ For this project, I created a number of wireframes for the layout of different p
 The homepage will display 9 works at a time with pagination at the bottom of the screen. At the top there will be a search bar, Add Work button, and a filter sort by button.
 
 <div align="center">
-<img src="static\images\readme\wireframes\homepage-d.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\homepage-d.jpg" width="500">
 </div>
 
 ### Artists Page
@@ -150,7 +155,7 @@ The homepage will display 9 works at a time with pagination at the bottom of the
 The artists page will show all artist names in a grid with 4 names per row. Clicking on these will take the user to the artist page. At the top there will be an Add Artist button.
 
 <div align="center">
-<img src="static\images\readme\wireframes\artists-page.jpg" alt="Wireframe 2" width="500">
+<img src="static\images\readme\wireframes\artists-page.jpg" width="500">
 </div>
 
 ### Crews Page
@@ -158,7 +163,7 @@ The artists page will show all artist names in a grid with 4 names per row. Clic
 The crews page will show a main crew image larger than images on the works page. This was done to break up the layout of the site. Below this mage will be the crew name. There will also be an Add Crew page.
 
 <div align="center">
-<img src="static\images\readme\wireframes\crews.jpg" alt="Wireframe 3" width="500">
+<img src="static\images\readme\wireframes\crews.jpg" width="500">
 </div>
 
 ### Styles or Types Pages
@@ -166,7 +171,7 @@ The crews page will show a main crew image larger than images on the works page.
 Both the Styles and Types pages will have the same layout. Below the image there will be the name of the style or type.
 
 <div align="center">
-<img src="static\images\readme\wireframes\styles-types.jpg" alt="Wireframe 4" width="500">
+<img src="static\images\readme\wireframes\styles-types.jpg" width="500">
 </div>
 
 ### View Work Page
@@ -174,7 +179,7 @@ Both the Styles and Types pages will have the same layout. Below the image there
 When a user clicks on a work, they will be shown the image in large format. Below the image all the info will be shown, allowing users to click on one of these to be taken to its unique page.
 
 <div align="center">
-<img src="static\images\readme\wireframes\view-content-d.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\view-content-d.jpg" width="500">
 </div>
 
 ### View Artist Page
@@ -182,7 +187,7 @@ When a user clicks on a work, they will be shown the image in large format. Belo
 Viewing an artist displays the crews they are affiliated with. Below this all of their works will be displayed.
 
 <div align="center">
-<img src="static\images\readme\wireframes\view-artist-page.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\view-artist-page.jpg" width="500">
 </div>
 
 ### View Crew Page
@@ -190,7 +195,7 @@ Viewing an artist displays the crews they are affiliated with. Below this all of
 The view crew page is laid out differently once again by showing the main crew image at the top in large size. Below this are all works listed with the crew as main artist, and then each of the crew members are listed. Styles and Types are laid out in the same way without the crew members section at the bottom.
 
 <div align="center">
-<img src="static\images\readme\wireframes\crew-page.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\crew-page.jpg" width="500">
 </div>
 
 ### Add or Edit Work Pages
@@ -198,7 +203,7 @@ The view crew page is laid out differently once again by showing the main crew i
 To add a work to the database, users will be presented a page will multiple dropdown menus and text boxes. The artist name dropdown will be taking options from the Artists collection. The style dropdown will be taking options from the Styles collection, and the types dropdown will be taking options from the Types collection. Users can then input a year painted and finally an image URL. When editing a work, these fields will be autofilled with the current data bound to that object.
 
 <div align="center">
-<img src="static\images\readme\wireframes\add-edit-work.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\add-edit-work.jpg" width="500">
 </div>
 
 ### Add/Edit Artist or Crew or Style or Type Pages
@@ -206,7 +211,7 @@ To add a work to the database, users will be presented a page will multiple drop
 To add either an Artist, Crew, Style or Type to the database, users will be presented with similarly laid out pages. There will be text boxes for names and image URL's to be added. When editing, these fields will be autofilled with the current data bound to that object.
 
 <div align="center">
-<img src="static\images\readme\wireframes\add-artist-crew-style-type.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\add-artist-crew-style-type.jpg" width="500">
 </div>
 
 ### Register Page
@@ -214,7 +219,7 @@ To add either an Artist, Crew, Style or Type to the database, users will be pres
 The register page will allow users to create a username and password. There is also a confirm password box used to confirm users are aware of their entered password.
 
 <div align="center">
-<img src="static\images\readme\wireframes\register.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\register.jpg" width="500">
 </div>
 
 ### Login Page
@@ -222,7 +227,7 @@ The register page will allow users to create a username and password. There is a
 The login page is much like the register page, without the confirm password box.
 
 <div align="center">
-<img src="static\images\readme\wireframes\login.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\login.jpg" width="500">
 </div>
 
 ### Profile Page
@@ -230,7 +235,7 @@ The login page is much like the register page, without the confirm password box.
 When a user first logs in, they will be redirected to their profile page. This page allows users to view their uploaded content and/or delete their account entirely. At the top of the page is a Delete Account button, followed by an Uploaded Works section, Uploaded Artists section, and an Uploaded Crews section.
 
 <div align="center">
-<img src="static\images\readme\wireframes\profile.jpg" alt="Wireframe 1" width="500">
+<img src="static\images\readme\wireframes\profile.jpg" width="500">
 </div>
 
 </details>
@@ -243,7 +248,7 @@ When a user first logs in, they will be redirected to their profile page. This p
 Content loaded on large mobile devices will be displayed in rows of 2 items.
 
 <div align="center">
-<img src="static\images\readme\wireframes\large-mobile.jpg" alt="Wireframe 1" width="300">
+<img src="static\images\readme\wireframes\large-mobile.jpg" width="300">
 </div>
 
 ### Small Mobile Responsive Content
@@ -251,7 +256,7 @@ Content loaded on large mobile devices will be displayed in rows of 2 items.
 Content loaded on smaller mobile devices will display images in full width mode. This allows users to view the images properly when on smaller screens.
 
 <div align="center">
-<img src="static\images\readme\wireframes\small-mobile.jpg" alt="Wireframe 1" width="300">
+<img src="static\images\readme\wireframes\small-mobile.jpg" width="300">
 </div>
 
 ### Mobile View Content
@@ -630,48 +635,38 @@ In place of unit testing my code, I manually tested that all site features and r
 ### Buttons
 
 - The main header takes the user to the welcome page. - PASS
-
 - The ENTER button on the welcome page returns the /works page with a 200 status code. - PASS
-
 - All Add buttons - When users are not signed in, they get redirected to the login page with a 302 status code. When users are signed in, they are taken to the correct page with a 200 status code, as long as the page is not admin only. - PASS
-
 - All Go Back buttons return 200 codes to the correct page. - PASS
-
 - Both Artist and Crew Upload buttons display or hide one another when pressed, keeping only one on the screen at any one time. - PASS
-
 - All form submit buttons POST data sucessfully. - PASS
-
 - All Edit/Delete buttons correctly modify their data. - PASS (One bug has been found and is noted under bugs.)
 
 ### Links
 
 - All social media links redirect to the correct websites. - PASS
-
 - External links correctly open in a new tab using target='_blank'. - PASS
-
 - Clicking any image takes the user to that images page. From here, clicking the artist name, style or type will take the user to each respective page. All info links work correctly as expected. - PASS
-
 - Clicking a crew name or artist name takes the user to the individual pages, where more detail about the object is correctly displayed. - PASS
-
-No links are broken. - PASS
+- No links are broken. - PASS
 
 ### Forms
 
 - All forms were tested for prompting incorrect input types. - PASS
-
 - All correct validation working and displaying. - PASS
-
 - Character count limitations working. - PASS
-
 - When posting a form with empty data, the form validation prompts the user that they must enter a value. - PASS
 
 ### Responsiveness
 
 - All pages respond to different screen sizes effectively. - PASS
-
 - No content behaves weirdly when resized and correctly repositions. - PASS
-
 - No content overflows off the page at any size. - PASS
+
+### Cross Browser and Device Testing
+
+- All devices and broswers performed correctly during testing. - PASS
+- The bug detected is in the bugs section.
 
 </details>
 
@@ -690,7 +685,7 @@ No links are broken. - PASS
 - /types - PASS
 
 <div align="center">
-    <img src="./static/images/testing/main-pages-200.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/main-pages-200.jpg" alt="main page 200" width="700">
 </div>
 
 - /work/ObjectID - PASS
@@ -700,7 +695,7 @@ No links are broken. - PASS
 - /type/type_name - PASS
 
 <div align="center">
-    <img src="./static/images/testing/get-pages-200.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/get-pages-200.jpg" alt="get pages 200" width="700">
 </div>
 
 ### Registered User Pages
@@ -713,7 +708,7 @@ No links are broken. - PASS
 - /add_type - PASS
 
 <div align="center">
-    <img src="./static/images/testing/add-pages-200.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/add-pages-200.jpg" alt="add pages 200" width="700">
 </div>
 
 - /edit_work/ObjectID - PASS
@@ -723,13 +718,13 @@ No links are broken. - PASS
 - /edit_type/type_name - PASS
 
 <div align="center">
-    <img src="./static/images/testing/edit-pages-200.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/edit-pages-200.jpg" alt="edit pages 200" width="700">
 </div>
 
 - I tested the pagination, checking the correct query parameter was passed for each page. - PASS
 
 <div align="center">
-    <img src="./static/images/testing/get-works-pagination.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/get-works-pagination.jpg" alt="pagination" width="700">
 </div>
 
 </details>
@@ -742,7 +737,7 @@ No links are broken. - PASS
 When a user is not logged into an account, they are unable to access any pages beyond the standard Read level functionality and will be redirected to the login page. - PASS
 
 <div align="center">
-    <img src="./static/images/testing/redirects-302.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/redirects-302.jpg" alt="302 redirects" width="700">
 </div>
 
 ### Admin Only Pages
@@ -750,7 +745,7 @@ When a user is not logged into an account, they are unable to access any pages b
 Logging in with the username 'test', I tried to access add_type and add_style pages that only the admin should have access to. - PASS
 
 <div align="center">
-    <img src="./static/images/testing/admin-pages-302.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/admin-pages-302.jpg" alt="admin pages 302" width="700">
 </div>
 
 </details>
@@ -767,11 +762,11 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 - Check for profile redirect and flash displaying username.
 
 <div align="center">
-    <img src="./static/images/testing/creating-test-profile.gif" alt="PEP8" width="700">
+    <img src="./static/images/testing/creating-test-profile.gif" alt="create profile" width="700">
 </div>
 
 <div align="center">
-    <img src="./static/images/testing/testname-register-302.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/testname-register-302.jpg" alt="register" width="700">
 </div>
 
 ### Creating A Crew - PASS
@@ -785,11 +780,11 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 - Find crew and click on it to view.
 
 <div align="center">
-    <img src="./static/images/testing/create-crew.gif" alt="PEP8" width="700">
+    <img src="./static/images/testing/create-crew.gif" width="700">
 </div>
 
 <div align="center">
-    <img src="./static/images/testing/create-crew.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/create-crew.jpg" width="700">
 </div>
 
 ### Creating An Artist - PASS
@@ -803,11 +798,11 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 - Find artist and click on it to view.
 
 <div align="center">
-    <img src="./static/images/testing/create-artist.gif" alt="PEP8" width="700">
+    <img src="./static/images/testing/create-artist.gif" width="700">
 </div>
 
 <div align="center">
-    <img src="./static/images/testing/create-artist.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/create-artist.jpg" width="700">
 </div>
 
 ### Uploading A New Work - PASS
@@ -823,11 +818,11 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 - Find work at top of main page and click on it to view.
 
 <div align="center">
-    <img src="./static/images/testing/create-work.gif" alt="PEP8" width="700">
+    <img src="./static/images/testing/create-work.gif" width="700">
 </div>
 
 <div align="center">
-    <img src="./static/images/testing/new-work.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/new-work.jpg" width="700">
 </div>
 
 ### Edit or Delete Work - PASS
@@ -843,11 +838,11 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 - Check that the work is now gone from All Works.
 
 <div align="center">
-    <img src="./static/images/testing/edit-delete-work.gif" alt="PEP8" width="700">
+    <img src="./static/images/testing/edit-delete-work.gif" width="700">
 </div>
 
 <div align="center">
-    <img src="./static/images/testing/edit-delete-work.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/edit-delete-work.jpg" width="700">
 </div>
 
 ### Logout and Login - PASS
@@ -861,11 +856,11 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 - Checking for page redirect to user profile and flash displaying login success.
 
 <div align="center">
-    <img src="./static/images/testing/logout-login.gif" alt="PEP8" width="700">
+    <img src="./static/images/testing/logout-login.gif" width="700">
 </div>
 
 <div align="center">
-    <img src="./static/images/testing/logout-login.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/logout-login.jpg" width="700">
 </div>
 
 ### Delete Content and Account - PASS
@@ -878,11 +873,11 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 - Checking the navbar links have changed as user is no longer logged in.
 
 <div align="center">
-    <img src="./static/images/testing/delete-artist-then-account.gif" alt="PEP8" width="700">
+    <img src="./static/images/testing/delete-artist-then-account.gif" width="700">
 </div>
 
 <div align="center">
-    <img src="./static/images/testing/delete-artist-then-account.jpg" alt="PEP8" width="700">
+    <img src="./static/images/testing/delete-artist-then-account.jpg" width="700">
 </div>
 
 </details>
@@ -892,17 +887,13 @@ Logging in with the username 'test', I tried to access add_type and add_style pa
 ### **Fixed**
 
 - Spelling mistakes in some class and id names were discovered and fixed through testing.
-
 - Delete modals would sometimes delete the wrong object. This was fixed through testing.
-
 - Created onerror image for images that break and cause the site to look bad.
 
 ### **Still Existing**
 
 - On the profile page, when users click to delete a work, the modal window glitches out and jumps between the center of the screen and inside the work card panel. This often makes it really hard to click one of the options. This needs to be fixed by repositioning the divs.
-
 - The gradient underline on the header logo box displays strangely on Apple Facebook and Safari browsers. The underline displays as a full box, there may be some code to fix this but due to time this will have to wait.
-
 - The search feature only returns the artist name. All objects used to return if a query matched, so I may have changed the code by accident. I could not see the issue when looking inititaly, so for now the feature just searches for the artist name and this fix can be implemented at a later date.
 
 [Back to Table Of Contents](#table-of-contents)
