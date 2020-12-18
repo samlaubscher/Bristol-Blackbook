@@ -1051,7 +1051,23 @@ def page_not_found(e):
     *  Template displaying error handling page.
     """
 
-    return render_template('404.html'), 404
+    return render_template('error.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(e):
+    """internal_error:
+
+    * Displays error handling page.
+
+    \n Args:
+    *   Error event code.
+
+    \n Returns:
+    *  Template displaying error handling page.
+    """
+
+    return render_template('error.html'), 500
 
 
 # Environment Variables
