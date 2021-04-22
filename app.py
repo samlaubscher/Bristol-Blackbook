@@ -314,7 +314,6 @@ def profile(username):
     """
 
     if 'user' in session:
-        # get session user's username from db
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
         works = list(mongo.db.works.find({"submitted_by": username}))
@@ -397,6 +396,7 @@ def new_work():
 def edit_work(work_id):
     """edit_work:
 
+    * Checks for user editing authentication.
     * Loads existing work data from db.
     * Updates data for work in db when method is POST.
 
@@ -408,29 +408,34 @@ def edit_work(work_id):
     """
 
     if 'user' in session:
-        if request.method == "POST":
-            update_work = {
-                "artist_name": request.form.get("artist_name"),
-                "year_painted": request.form.get("year_painted"),
-                "style_name": request.form.get("style_name"),
-                "image_url": request.form.get("image_url"),
-                "submitted_by": session["user"],
-                }
-            mongo.db.works.update_one(
-                {"_id": ObjectId(work_id)},
-                {"$set": update_work}
-                )
-            flash("Work Successfully Updated!")
-
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
         work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
-        artists = mongo.db.artists.find().sort("artist_name", 1)
-        styles = mongo.db.styles.find().sort("style_name", 1)
-        types = mongo.db.types.find().sort("type_name", 1)
-        return render_template(
-            "edit_work.html", work=work,
-            artists=artists, styles=styles,
-            types=types
-            )
+        if work["submitted_by"] == username or session["user"] == "admin":
+            if request.method == "POST":
+                update_work = {
+                    "artist_name": request.form.get("artist_name"),
+                    "year_painted": request.form.get("year_painted"),
+                    "style_name": request.form.get("style_name"),
+                    "image_url": request.form.get("image_url"),
+                    "submitted_by": session["user"],
+                    }
+                mongo.db.works.update_one(
+                    {"_id": ObjectId(work_id)},
+                    {"$set": update_work}
+                    )
+                flash("Work Successfully Updated!")
+
+            artists = mongo.db.artists.find().sort("artist_name", 1)
+            styles = mongo.db.styles.find().sort("style_name", 1)
+            types = mongo.db.types.find().sort("type_name", 1)
+            return render_template(
+                "edit_work.html", work=work,
+                artists=artists, styles=styles,
+                types=types
+                )
+
+        return redirect(url_for("works"))
 
     return redirect(url_for("login"))
 
@@ -439,6 +444,7 @@ def edit_work(work_id):
 def delete_work(work_id):
     """delete_work:
 
+    * Checks for user delete authentication.
     * Removes work object from db collection.
     * Returns works main page with flash displaying success.
 
@@ -450,9 +456,17 @@ def delete_work(work_id):
     """
 
     if 'user' in session:
-        mongo.db.works.remove({"_id": ObjectId(work_id)})
-        flash("Work Successfully Deleted!")
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        work = mongo.db.works.find_one({"_id": ObjectId(work_id)})
+        if work["submitted_by"] == username or session["user"] == "admin":
+            mongo.db.works.remove({"_id": ObjectId(work_id)})
+            flash("Work Successfully Deleted!")
+            return redirect(url_for("works"))
+
         return redirect(url_for("works"))
+
+    return redirect(url_for("login"))
 
 
 @app.route("/artists")
@@ -489,8 +503,8 @@ def artist(artist_name):
     *   Template to diplay all content of individual object from collection.
     """
 
-    artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
-    works = list(mongo.db.works.find({"artist_name": str(artist_name)}))
+    artist = mongo.db.artists.find_one({"artist_name": str(artist_name).upper()})
+    works = list(mongo.db.works.find({"artist_name": str(artist_name).upper()}))
     return render_template("artist.html", artist=artist, works=works)
 
 
@@ -531,6 +545,7 @@ def add_artist():
 def edit_artist(artist_name):
     """edit_artist:
 
+    * Checks for user edit authentication.
     * Loads existing artist data from db.
     * Updates data for artist in db when method is POST.
 
@@ -542,25 +557,30 @@ def edit_artist(artist_name):
     """
 
     if 'user' in session:
-        if request.method == "POST":
-            update_artist = {
-                "artist_name": request.form.get("artist_name").upper(),
-                "artist_crews": request.form.getlist("artist_crews"),
-                "submitted_by": session["user"]
-                }
-            mongo.db.artists.update_one(
-                {"artist_name": str(artist_name)},
-                {"$set": update_artist}
-                )
-            flash("Artist Successfully Updated!")
-            return redirect(url_for("artists"))
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        artist = mongo.db.artists.find_one({"artist_name": str(artist_name).upper()})
+        if artist["submitted_by"] == username or session["user"] == "admin":
+            if request.method == "POST":
+                update_artist = {
+                    "artist_name": request.form.get("artist_name").upper(),
+                    "artist_crews": request.form.getlist("artist_crews"),
+                    "submitted_by": session["user"]
+                    }
+                mongo.db.artists.update_one(
+                    {"artist_name": str(artist_name).upper()},
+                    {"$set": update_artist}
+                    )
+                flash("Artist Successfully Updated!")
+                return redirect(url_for("artists"))
 
-        artist = mongo.db.artists.find_one({"artist_name": str(artist_name)})
-        crews = mongo.db.crews.find().sort("crew_name", 1)
-        return render_template(
-            "edit_artist.html",
-            artist=artist, crews=crews
-            )
+            crews = mongo.db.crews.find().sort("crew_name", 1)
+            return render_template(
+                "edit_artist.html",
+                artist=artist, crews=crews
+                )
+
+        return redirect(url_for("artists"))
 
     return redirect(url_for("login"))
 
@@ -569,6 +589,7 @@ def edit_artist(artist_name):
 def delete_artist(artist_name):
     """delete_artist:
 
+    * Checks for user delete authentication.
     * Removes work object from db collection.
     * Returns works main page with flash displaying success.
 
@@ -580,8 +601,14 @@ def delete_artist(artist_name):
     """
 
     if 'user' in session:
-        mongo.db.artists.remove({"artist_name": str(artist_name)})
-        flash("Artist Successfully Deleted!")
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        artist = mongo.db.artists.find_one({"artist_name": str(artist_name).upper()})
+        if artist["submitted_by"] == username or session["user"] == "admin":
+            mongo.db.artists.remove({"artist_name": str(artist_name).upper()})
+            flash("Artist Successfully Deleted!")
+            return redirect(url_for("artists"))
+
         return redirect(url_for("artists"))
 
     return redirect(url_for("login"))
@@ -620,9 +647,9 @@ def crew(crew_name):
     *   Template to diplay all content of individual crew object from db.
     """
 
-    crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
-    artists = list(mongo.db.artists.find({"artist_crews": str(crew_name)}))
-    works = list(mongo.db.works.find({"artist_name": str(crew_name)}))
+    crew = mongo.db.crews.find_one({"crew_name": str(crew_name).upper()})
+    artists = list(mongo.db.artists.find({"artist_crews": str(crew_name).upper()}))
+    works = list(mongo.db.works.find({"artist_name": str(crew_name).upper()}))
     return render_template(
         "crew.html", crew=crew,
         artists=artists, works=works
@@ -664,6 +691,7 @@ def add_crew():
 def edit_crew(crew_name):
     """edit_crew:
 
+    * Checks for user editing authentication.
     * Loads existing crew data from db.
     * Updates data for crew in db when method is POST.
 
@@ -675,21 +703,26 @@ def edit_crew(crew_name):
     """
 
     if 'user' in session:
-        if request.method == "POST":
-            update_crew = {
-                "crew_name": request.form.get("crew_name").upper(),
-                "crew_image": request.form.get("crew_image"),
-                "submitted_by": session["user"]
-                }
-            mongo.db.crews.update_one(
-                {"crew_name": str(crew_name)},
-                {"$set": update_crew}
-                )
-            flash("Crew Successfully Updated!")
-            return redirect(url_for("crews"))
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        crew = mongo.db.crews.find_one({"crew_name": str(crew_name).upper()})
+        if crew["submitted_by"] == username or session["user"] == "admin":
+            if request.method == "POST":
+                update_crew = {
+                    "crew_name": request.form.get("crew_name").upper(),
+                    "crew_image": request.form.get("crew_image"),
+                    "submitted_by": session["user"]
+                    }
+                mongo.db.crews.update_one(
+                    {"crew_name": str(crew_name).upper()},
+                    {"$set": update_crew}
+                    )
+                flash("Crew Successfully Updated!")
+                return redirect(url_for("crews"))
 
-        crew = mongo.db.crews.find_one({"crew_name": str(crew_name)})
-        return render_template("edit_crew.html", crew=crew)
+            return render_template("edit_crew.html", crew=crew)
+
+        return redirect(url_for("crews"))
 
     return redirect(url_for("login"))
 
@@ -698,6 +731,7 @@ def edit_crew(crew_name):
 def delete_crew(crew_name):
     """delete_crew:
 
+    * Checks for user deleting authentication.
     * Removes crew object from db collection.
     * Returns crews page with flash displaying success.
 
@@ -709,8 +743,14 @@ def delete_crew(crew_name):
     """
 
     if 'user' in session:
-        mongo.db.crews.remove({"crew_name": str(crew_name)})
-        flash("Crew Successfully Deleted!")
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        crew = mongo.db.crews.find_one({"crew_name": str(crew_name).upper()})
+        if crew["submitted_by"] == username or session["user"] == "admin":
+            mongo.db.crews.remove({"crew_name": str(crew_name).upper()})
+            flash("Crew Successfully Deleted!")
+            return redirect(url_for("crews"))
+
         return redirect(url_for("crews"))
 
     return redirect(url_for("login"))
